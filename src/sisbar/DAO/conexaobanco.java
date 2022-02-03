@@ -57,8 +57,14 @@ public class conexaobanco {
         return true;
      }
     
-}
     
+    
+}
+
+
+
 
     
+
+// https://www.youtube.com/watch?v=VTGE4lkyxeo&list=PLWaWJaNCDTKCQXGO34NJcPz--vZ-SFVi9&index=3&ab_channel=EliasAbreuDomingosSilva    
 
