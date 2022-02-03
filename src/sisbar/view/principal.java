@@ -4,6 +4,11 @@
  */
 package sisbar.view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sisbar.DAO.conexaobanco;
+
 /**
  *
  * @author suporte11-pc
@@ -38,6 +43,16 @@ public class principal extends javax.swing.JFrame {
         jMenu1.setText("Cadastros");
 
         jMenuItem1.setText("Produtos");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem1MouseClicked(evt);
+            }
+        });
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -60,6 +75,16 @@ public class principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        produtos prod = new produtos();
+        prod.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+          // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -92,6 +117,12 @@ public class principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
+              /*  conexaobanco cn = new conexaobanco();
+                try {
+                    cn.conexao();
+                } catch (SQLException ex) {
+                    Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                }*/
             }
         });
     }
