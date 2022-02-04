@@ -1,11 +1,14 @@
 
 package sisbar.DAO;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+//import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Statement;
+import com.sun.jdi.connect.spi.Connection;
+import java.beans.Statement;
+import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-
+/*
 public class conexaobanco {
     
  
@@ -31,10 +34,9 @@ public class conexaobanco {
         //JOptionPane.showMessageDialog(null, "conectado blz ");
     }
 
-    public void desconetar() throws java.sql.SQLException {
+    public void desconetar() throws java.sql.SQLException, IOException {
         conn.close();
     }
-
     public ResultSet consultarGenerico(String sqlC) throws java.sql.SQLException {
         stm = (Statement) conn.createStatement();
         ResultSet rs = stm.executeQuery(sqlC);
@@ -61,7 +63,7 @@ public class conexaobanco {
     
 }
 
-
+*/
 
 
     

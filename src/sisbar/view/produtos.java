@@ -4,6 +4,9 @@
  */
 package sisbar.view;
 
+import sisbar.controller.Produtos.ProdutosController;
+import sisbar.model.ModelProdutos;
+
 /**
  *
  * @author suporte11-pc
@@ -124,6 +127,11 @@ public class produtos extends javax.swing.JFrame {
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         // TODO add your handling code here:
+        ModelProdutos prod = new ModelProdutos();
+        prod.setDescricao(jTextDescricao.getText());
+        prod.setGrupo(jTextGrupo.getText());
+        ProdutosController produ = new ProdutosController();
+        produ.cadastrar(prod);
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
@@ -179,4 +187,6 @@ public class produtos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextQtde;
     private javax.swing.JTextField jTextUnidMed;
     // End of variables declaration//GEN-END:variables
+
+   
 }
