@@ -6,8 +6,7 @@ import com.sun.jdi.connect.spi.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 //import java.sql.Connection;
-
-
+/*
 public class Conectar {
     
    private static final String usuario = "root";
@@ -17,7 +16,7 @@ public class Conectar {
    public static Connection getConectar(){
        Connection con = null;
        try{
-          Class.forName("com.mysql.jdbc.Driver");
+          Class.forName("con.mysql.jdbc.Driver");
           con = (Connection) DriverManager.getConnection(url, usuario, senha);
        }catch(Exception ex){
            JOptionPane.showInternalMessageDialog(null,"Erro de conexao" + ex.getMessage());
@@ -28,3 +27,4 @@ public class Conectar {
 
     
 }
+*/
