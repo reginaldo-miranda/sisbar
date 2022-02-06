@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class conexaobanco {
     
-   
+   /*
   //  public Statement stm;
   //  public ResultSet rs;
     private final String driver = "com.mysql.jdbc.Driver";
@@ -30,7 +30,17 @@ public class conexaobanco {
     public void desconetar() throws java.sql.SQLException, IOException {
         conn.close();
     }
-   
+   */
+    
+    public Connection getConnection() {
+        String url = "jdbc:mysql://localhost/bar";
+              try {
+        return (Connection) DriverManager.getConnection(url, "root", "");
+        } catch (SQLException e) {
+        throw new RuntimeException(e);
+}
+
+}
 }
 
 

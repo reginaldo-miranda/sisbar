@@ -10,26 +10,27 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
 public class ProdutosController {
-   private Connection conn = null; 
-   public void cadastrar(ModelProdutos prod, Connection Connection) {
   
-     String sql = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
-     PreparedStatement stmt = null;
-     try(
-         PreparedStatement PreparedStatement = stmtPrepareStatement(sql);
-         stmt.setString(1, prod.getDescricao());
-         stmt.setString(2, prod.getGrupo());
-         stmt.executeUpdate(sql);
-        // stm.close();
-        // conexaobanco.close();
-         JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
-     }catch(Exception ex){
-         JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
-     }
+   public void cadastrar(ModelProdutos prod, Connection Connection) {
+      Connection conn = new conexaobanco().getConnection();
+      String sql = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
+       prepareStatement = null;
+      try{PreparedStatement ps = conn.prepareStatement("sql");
+      }catch(SQLException e){
+          throw new RuntimeException(e);
 
-    private PreparedStatement stmtPrepareStatement(String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+      }
+   }
+}
+
+
+    // String sql = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
+ //    PreparedStatement stmt = null;
+
+   
+     
+     
+     
 
    
    
