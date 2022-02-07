@@ -40,6 +40,7 @@ public class produtos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextUnidMed = new javax.swing.JTextField();
         jButtonGravar = new javax.swing.JButton();
+        jButtonProcurarProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produtos");
@@ -66,6 +67,13 @@ public class produtos extends javax.swing.JFrame {
             }
         });
 
+        jButtonProcurarProd.setText("Procurar");
+        jButtonProcurarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProcurarProdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,7 +81,10 @@ public class produtos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonGravar)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonGravar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonProcurarProd))
                     .addComponent(jLabel1)
                     .addComponent(jTextDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -116,7 +127,9 @@ public class produtos extends javax.swing.JFrame {
                     .addComponent(jTextQtde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextUnidMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGravar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGravar)
+                    .addComponent(jButtonProcurarProd))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -139,6 +152,12 @@ public class produtos extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jButtonGravarMouseClicked
+
+    private void jButtonProcurarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarProdActionPerformed
+        // TODO add your handling code here:
+       pesquisarProdutos pesqProd = new pesquisarProdutos();
+        pesqProd.setVisible(true);
+    }//GEN-LAST:event_jButtonProcurarProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,6 +196,7 @@ public class produtos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGravar;
+    private javax.swing.JButton jButtonProcurarProd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

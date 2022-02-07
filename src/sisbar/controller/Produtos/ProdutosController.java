@@ -3,10 +3,10 @@ package sisbar.controller.Produtos;
 
 
 import com.mysql.jdbc.PreparedStatement;
-import com.sun.jdi.connect.spi.Connection;
-import java.beans.Statement;
+//import com.sun.jdi.connect.spi.Connection;
+//import java.beans.Statement;
 import javax.swing.JOptionPane;
-import sisbar.DAO.Conectar;
+//import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
 
@@ -16,9 +16,7 @@ public class ProdutosController {
        
          conexcaobco cone = new conexcaobco();
          cone.conexao();
-         
          String sql1 = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
-         
          
       try {
             PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
@@ -27,20 +25,24 @@ public class ProdutosController {
             stm.setString(2,prod.getGrupo());
             stm.executeUpdate();
             
-           
-       } catch (Exception e) {
-           
+       } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, "Erro ao gravar o produto" + ex.getMessage());
        }finally {
-          
+          JOptionPane.showMessageDialog(null, "Gravado com sucesso");
+          cone.desconetar();
       }
-         
    }
-
-     
-  }
-
+   public void PesquisarProd(ModelProdutos id){
+        conexcaobco cone = new conexcaobco();
+         cone.conexao();
+         String sql1 = "select * from produtos WHERE id_produto = id";
+       
+   }
    
-   
+ // https://www.youtube.com/watch?v=fBe0uD9BWeU&ab_channel=williamsantos pesquisar produtos
+}
+
+  
 
 
 

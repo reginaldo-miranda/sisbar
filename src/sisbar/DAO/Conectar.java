@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 //import java.sql.Connection;
 
-public class Conectar {
+public class Conectar { // nao esta sendo usanda a q esta em uso é conexcaobco
     
    private static final String usuario = "root";
    private static final String senha   = "";
@@ -28,3 +28,4 @@ public class Conectar {
 
     
 }
+// obs nao esta sendo usada
