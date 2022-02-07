@@ -2,26 +2,47 @@
 package sisbar.controller.Produtos;
 
 
+import com.mysql.jdbc.PreparedStatement;
 import com.sun.jdi.connect.spi.Connection;
 import java.beans.Statement;
-import sisbar.DAO.conexaobanco;
-import sisbar.model.ModelProdutos;
-import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import sisbar.DAO.Conectar;
+import sisbar.DAO.conexcaobco;
+import sisbar.model.ModelProdutos;
 
 public class ProdutosController {
   
-   public void cadastrar(ModelProdutos prod, Connection Connection) {
-      Connection conn = new conexaobanco().getConnection();
-      String sql = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
-       prepareStatement = null;
-      try{PreparedStatement ps = conn.prepareStatement("sql");
-      }catch(SQLException e){
-          throw new RuntimeException(e);
-
+   public void cadastrar(ModelProdutos prod) {
+       
+         conexcaobco cone = new conexcaobco();
+         cone.conexao();
+         
+         String sql1 = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
+         
+         
+      try {
+            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
+            
+            stm.setString(1,prod.getDescricao());
+            stm.setString(2,prod.getGrupo());
+            stm.executeUpdate();
+            
+           
+       } catch (Exception e) {
+           
+       }finally {
+          
       }
+         
    }
-}
+
+     
+  }
+
+   
+   
+
+
 
 
     // String sql = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";

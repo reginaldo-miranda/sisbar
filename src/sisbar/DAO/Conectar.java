@@ -1,12 +1,13 @@
 
 package sisbar.DAO;
 
-//import com.mysql.jdbc.Connection;
-import com.sun.jdi.connect.spi.Connection;
+import com.mysql.jdbc.Connection;
+//import com.sun.jdi.connect.spi.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 //import java.sql.Connection;
-/*
+
 public class Conectar {
     
    private static final String usuario = "root";
@@ -18,7 +19,7 @@ public class Conectar {
        try{
           Class.forName("con.mysql.jdbc.Driver");
           con = (Connection) DriverManager.getConnection(url, usuario, senha);
-       }catch(Exception ex){
+       }catch(ClassNotFoundException | SQLException ex){
            JOptionPane.showInternalMessageDialog(null,"Erro de conexao" + ex.getMessage());
        }
        
@@ -27,4 +28,3 @@ public class Conectar {
 
     
 }
-*/

@@ -132,6 +132,7 @@ public class produtos extends javax.swing.JFrame {
         prod.setGrupo(jTextGrupo.getText());
         ProdutosController produ = new ProdutosController();
         produ.cadastrar(prod);
+        
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
