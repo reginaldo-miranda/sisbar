@@ -3,12 +3,18 @@ package sisbar.controller.Produtos;
 
 
 import com.mysql.jdbc.PreparedStatement;
+import java.awt.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import com.sun.jdi.connect.spi.Connection;
 //import java.beans.Statement;
 import javax.swing.JOptionPane;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
+import sisbar.view.produtos;
 
 public class ProdutosController {
   
@@ -38,9 +44,59 @@ public class ProdutosController {
          String sql1 = "select * from produtos WHERE id_produto = id";
        
    }
-   
- // https://www.youtube.com/watch?v=fBe0uD9BWeU&ab_channel=williamsantos pesquisar produtos
+   public void listarProdutos(){
+       
+       conexcaobco cone = new conexcaobco();
+         cone.conexao();
+         String sql1 = "select * from produtos ";
+          try {
+            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
+            
+            
+            stm.executeQuery();
+            
+       } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, "Erro ao listar o produto" + ex.getMessage());
+       }finally {
+          JOptionPane.showMessageDialog(null, "listado com sucesso");
+          cone.desconetar();
+      }
+          
+   }
+   public static void listarPord(){
+          
+         conexcaobco cone = new conexcaobco();
+         cone.conexao();
+        
+         String sqll = "select * from produtos ";
+         ResultSet st = cone.BuscaSql(sqll);
+         
+            try {
+                while (st.next()){    
+                   ModelProdutos produtos = new ModelProdutos();
+                    
+                   produtos.setDescricao(st.getNString("descricao"));
+                   produtos.setGrupo(st.getString("grupo"));
+                   produtos.setId_produtos(st.getInt("id_produtos"));
+                   
+               }               
+                   
+               } catch (SQLException ex) {
+                Logger.getLogger(ProdutosController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+   }
 }
+           
+            
+           
+      
+    
+
+   
+    
+ // https://www.youtube.com/watch?v=fBe0uD9BWeU&ab_channel=williamsantos pesquisar produtos
+
 
   
 

@@ -41,7 +41,7 @@ public class conexcaobco {
       try {
         stm = conn.createStatement();
         rs = stm.executeQuery(sql);
-        //conn.close();
+        conn.close();
         return rs;
       } catch (Exception ex) {
          JOptionPane.showMessageDialog(null, "Erro ao fechar a conexcao" + ex.getMessage());  
