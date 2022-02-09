@@ -6,6 +6,7 @@ import com.mysql.jdbc.PreparedStatement;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //import com.sun.jdi.connect.spi.Connection;
@@ -14,7 +15,6 @@ import javax.swing.JOptionPane;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
-import sisbar.view.produtos;
 
 public class ProdutosController {
   
@@ -67,17 +67,21 @@ public class ProdutosController {
           
          conexcaobco cone = new conexcaobco();
          cone.conexao();
+         List<ModelProdutos>produ = new ArrayList<>();
         
          String sqll = "select * from produtos ";
          ResultSet st = cone.BuscaSql(sqll);
          
+         
+         
             try {
                 while (st.next()){    
                    ModelProdutos produtos = new ModelProdutos();
-                    
+                                      
                    produtos.setDescricao(st.getNString("descricao"));
                    produtos.setGrupo(st.getString("grupo"));
                    produtos.setId_produtos(st.getInt("id_produtos"));
+                   prod.add(produtos);
                    
                }               
                    
