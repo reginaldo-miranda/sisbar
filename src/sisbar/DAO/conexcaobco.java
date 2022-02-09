@@ -32,6 +32,7 @@ public class conexcaobco {
   public void desconetar(){
       try {
           conn.close();
+        //  rs.close();
       } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null, "Erro ao fechar a conexcao" + ex.getMessage());
       }
@@ -41,7 +42,7 @@ public class conexcaobco {
       try {
         stm = conn.createStatement();
         rs = stm.executeQuery(sql);
-        conn.close();
+       // conn.close();
         return rs;
       } catch (Exception ex) {
          JOptionPane.showMessageDialog(null, "Erro ao fechar a conexcao" + ex.getMessage());  

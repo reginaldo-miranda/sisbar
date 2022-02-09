@@ -4,17 +4,58 @@
  */
 package sisbar.view;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+import sisbar.DAO.conexcaobco;
+import sisbar.model.ModelProdutos;
+
+import sisbar.controller.Produtos.ProdutosController;
+
 /**
  *
  * @author suporte11-pc
  */
 public class pesquisarProdutos extends javax.swing.JFrame {
 
+    private Iterable<Object> myArrayList;
+
     /**
      * Creates new form pesquisarProdutos
      */
     public pesquisarProdutos() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
+        modelo.setNumRows(0);
+        jTableListaProd.setRowSorter(new TableRowSorter(modelo));
+        readJTable();
+    }
+    
+    public void readJTable(){
+            
+             conexcaobco cone = new conexcaobco();
+             DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
+             modelo.setNumRows(0);
+             jTableListaProd.getColumnModel().getColumn(0).setPreferredWidth(20);
+             jTableListaProd.getColumnModel().getColumn(1).setPreferredWidth(80);
+             jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);
+                    JOptionPane.showMessageDialog(null, "Estou na readJtable");      
+             // ArrayList myArrayList = new ArrayList();
+              ModelProdutos pro = new ModelProdutos();
+              ProdutosController prodc = new ProdutosController();
+               JOptionPane.showMessageDialog(null, "Estou antes do for");  
+               
+              for (Iterator it = prodc.listarPord().iterator(); it.hasNext();) {
+                     modelo.addRow(new Object[]{
+                     prodc.getDescricao(),
+                     prodc.getGrupo()
+                 });
+              }
+            
+    // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
+       
     }
 
     /**
@@ -38,13 +79,13 @@ public class pesquisarProdutos extends javax.swing.JFrame {
 
         jTableListaProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "descricao", "grupo"
             }
         ));
         jScrollPane1.setViewportView(jTableListaProd);
@@ -121,4 +162,8 @@ public class pesquisarProdutos extends javax.swing.JFrame {
     private javax.swing.JTable jTableListaProd;
     private javax.swing.JTextField jTextFieldPesquisaProd;
     // End of variables declaration//GEN-END:variables
+
+    private Object stream() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

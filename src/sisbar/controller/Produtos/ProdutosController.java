@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
 
-public class ProdutosController {
+public class ProdutosController extends sisbar.model.ModelProdutos{
   
    public void cadastrar(ModelProdutos prod) {
        
@@ -59,20 +59,18 @@ public class ProdutosController {
              JOptionPane.showMessageDialog(null, "Erro ao listar o produto" + ex.getMessage());
        }finally {
           JOptionPane.showMessageDialog(null, "listado com sucesso");
-          cone.desconetar();
+          //cone.desconetar();
       }
           
    }
-   public static void listarPord(){
+   public ArrayList listarPord(){
           
          conexcaobco cone = new conexcaobco();
          cone.conexao();
-         List<ModelProdutos>produ = new ArrayList<>();
+         ArrayList myArrayList = new ArrayList();
         
          String sqll = "select * from produtos ";
          ResultSet st = cone.BuscaSql(sqll);
-         
-         
          
             try {
                 while (st.next()){    
@@ -81,14 +79,16 @@ public class ProdutosController {
                    produtos.setDescricao(st.getNString("descricao"));
                    produtos.setGrupo(st.getString("grupo"));
                    produtos.setId_produtos(st.getInt("id_produtos"));
-                   prod.add(produtos);
+                   myArrayList.add(produtos);
                    
                }               
                    
                } catch (SQLException ex) {
-                Logger.getLogger(ProdutosController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+                   Logger.getLogger(ProdutosController.class.getName()).log(Level.SEVERE, null, ex);
+               }finally{
+                    cone.desconetar();
+               }
+               return myArrayList;
    }
 }
            
