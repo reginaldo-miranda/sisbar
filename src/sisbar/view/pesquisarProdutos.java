@@ -4,10 +4,13 @@
  */
 package sisbar.view;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.function.Consumer;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import sisbar.DAO.conexcaobco;
@@ -35,10 +38,7 @@ public class pesquisarProdutos extends javax.swing.JFrame {
              conexcaobco cone = new conexcaobco();
              DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
              modelo.setNumRows(0);
-             /*
-             jTableListaProd.getColumnModel().getColumn(0).setPreferredWidth(20);
-             jTableListaProd.getColumnModel().getColumn(1).setPreferredWidth(80);
-             jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);*/
+
              
              JOptionPane.showMessageDialog(null, "Estou na read Jtable");      
              ArrayList<String> myArrayList = new ArrayList((Collection) cone.rs);
@@ -58,6 +58,11 @@ public class pesquisarProdutos extends javax.swing.JFrame {
             });
         }
                JOptionPane.showMessageDialog(null, "passei o for"); 
+
+           
+               
+                // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
+
     }
  // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
     /**
@@ -84,7 +89,7 @@ public class pesquisarProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "descricao", "grupo"
+                "id_produtos", "descricao", "grupo"
             }
         ));
         jScrollPane1.setViewportView(jTableListaProd);

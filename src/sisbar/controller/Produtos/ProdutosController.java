@@ -65,7 +65,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
           
    }
  //  public ArrayList listarPord(){
-  public ArrayList listarProd(){        
+  public static void listarProd(){        
          conexcaobco cone = new conexcaobco();
          cone.conexao();
          ArrayList arryProd = new ArrayList();
@@ -89,8 +89,6 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
                }finally{
                     cone.desconetar();
                }
-               return arryProd;
-                              
               
    }
 
