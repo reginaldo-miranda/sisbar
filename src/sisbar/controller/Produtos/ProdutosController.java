@@ -12,9 +12,12 @@ import java.util.logging.Logger;
 //import com.sun.jdi.connect.spi.Connection;
 //import java.beans.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
+import sisbar.view.produtos;
+import sisbar.view.pesquisarProdutos;
 
 public class ProdutosController extends sisbar.model.ModelProdutos{
   
@@ -51,8 +54,6 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
          String sql1 = "select * from produtos ";
           try {
             PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
-            
-            
             stm.executeQuery();
             
        } catch (Exception ex) {
@@ -63,23 +64,23 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
       }
           
    }
-   public ArrayList listarPord(){
-          
+ //  public ArrayList listarPord(){
+  public ArrayList listarProd(){        
          conexcaobco cone = new conexcaobco();
          cone.conexao();
-         ArrayList myArrayList = new ArrayList();
+         ArrayList arryProd = new ArrayList();
         
-         String sqll = "select * from produtos ";
-         ResultSet st = cone.BuscaSql(sqll);
+        String sqll = "select * from produtos ";
+        ResultSet st =  cone.rs;//BuscaSql(sqll);
          
             try {
                 while (st.next()){    
                    ModelProdutos produtos = new ModelProdutos();
                                       
-                   produtos.setDescricao(st.getNString("descricao"));
+                   produtos.setDescricao(st.getString("descricao"));
                    produtos.setGrupo(st.getString("grupo"));
                    produtos.setId_produtos(st.getInt("id_produtos"));
-                   myArrayList.add(produtos);
+                   arryProd.add(produtos);
                    
                }               
                    
@@ -88,9 +89,14 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
                }finally{
                     cone.desconetar();
                }
-               return myArrayList;
+               return arryProd;
+                              
+              
    }
+
+ 
 }
+
            
             
            

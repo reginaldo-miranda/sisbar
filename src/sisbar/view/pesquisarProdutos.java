@@ -5,6 +5,7 @@
 package sisbar.view;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,11 +21,7 @@ import sisbar.controller.Produtos.ProdutosController;
  */
 public class pesquisarProdutos extends javax.swing.JFrame {
 
-    private Iterable<Object> myArrayList;
-
-    /**
-     * Creates new form pesquisarProdutos
-     */
+  
     public pesquisarProdutos() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
@@ -38,26 +35,31 @@ public class pesquisarProdutos extends javax.swing.JFrame {
              conexcaobco cone = new conexcaobco();
              DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
              modelo.setNumRows(0);
+             /*
              jTableListaProd.getColumnModel().getColumn(0).setPreferredWidth(20);
              jTableListaProd.getColumnModel().getColumn(1).setPreferredWidth(80);
-             jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);
-                    JOptionPane.showMessageDialog(null, "Estou na readJtable");      
-             // ArrayList myArrayList = new ArrayList();
+             jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);*/
+             
+             JOptionPane.showMessageDialog(null, "Estou na read Jtable");      
+             ArrayList<String> myArrayList = new ArrayList((Collection) cone.rs);
+              
+             
               ModelProdutos pro = new ModelProdutos();
               ProdutosController prodc = new ProdutosController();
-               JOptionPane.showMessageDialog(null, "Estou antes do for");  
+              JOptionPane.showMessageDialog(null, "Estou antes do for");  
                
-              for (Iterator it = prodc.listarPord().iterator(); it.hasNext();) {
-                     modelo.addRow(new Object[]{
-                     prodc.getDescricao(),
-                     prodc.getGrupo()
-                 });
-              }
-            
-    // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
-       
+              
+        for (Iterator<String> it = myArrayList.iterator(); it.hasNext();) {
+            String p = it.next();
+            modelo.addRow(new Object[]{
+                prodc.getDescricao(),
+                prodc.getGrupo()
+                    
+            });
+        }
+               JOptionPane.showMessageDialog(null, "passei o for"); 
     }
-
+ // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,10 +81,7 @@ public class pesquisarProdutos extends javax.swing.JFrame {
 
         jTableListaProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "id", "descricao", "grupo"
