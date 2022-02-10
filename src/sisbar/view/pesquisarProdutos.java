@@ -4,9 +4,12 @@
  */
 package sisbar.view;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.function.Consumer;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import sisbar.DAO.conexcaobco;
@@ -38,24 +41,31 @@ public class pesquisarProdutos extends javax.swing.JFrame {
              conexcaobco cone = new conexcaobco();
              DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
              modelo.setNumRows(0);
-             jTableListaProd.getColumnModel().getColumn(0).setPreferredWidth(20);
-             jTableListaProd.getColumnModel().getColumn(1).setPreferredWidth(80);
-             jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);
+            // jTableListaProd.getColumnModel().getColumn(0).setPreferredWidth(20);
+            // jTableListaProd.getColumnModel().getColumn(1).setPreferredWidth(80);
+           //  jTableListaProd.getColumnModel().getColumn(2).setPreferredWidth(50);
                     JOptionPane.showMessageDialog(null, "Estou na readJtable");      
-             // ArrayList myArrayList = new ArrayList();
+              ArrayList myArrayList = new ArrayList();
+            
               ModelProdutos pro = new ModelProdutos();
               ProdutosController prodc = new ProdutosController();
-               JOptionPane.showMessageDialog(null, "Estou antes do for");  
+              
                
-              for (Iterator it = prodc.listarPord().iterator(); it.hasNext();) {
-                     modelo.addRow(new Object[]{
-                     prodc.getDescricao(),
-                     prodc.getGrupo()
-                 });
-              }
-            
-    // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
-       
+               myArrayList.add(pro);               
+              JOptionPane.showMessageDialog(null, "Estou antes do for");  
+               for(Object p: myArrayList){
+                    
+                    modelo.addRow(new Object[]{
+                        pro.getId_produtos(),
+                        pro.getDescricao(),
+                        pro.getGrupo()
+                    });
+                     JOptionPane.showMessageDialog(null, "passei o for"); 
+               }
+
+               
+                // https://www.youtube.com/watch?v=_XtR56iXRdM&t=244s&ab_channel=MarcioTostes
+    
     }
 
     /**
@@ -79,13 +89,10 @@ public class pesquisarProdutos extends javax.swing.JFrame {
 
         jTableListaProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "id", "descricao", "grupo"
+                "id_produtos", "descricao", "grupo"
             }
         ));
         jScrollPane1.setViewportView(jTableListaProd);
