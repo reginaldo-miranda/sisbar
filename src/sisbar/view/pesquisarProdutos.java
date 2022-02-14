@@ -38,11 +38,11 @@ public class pesquisarProdutos extends javax.swing.JFrame {
              conexcaobco cone = new conexcaobco();
              DefaultTableModel modelo = (DefaultTableModel) jTableListaProd.getModel();
              modelo.setNumRows(0);
-
+             JOptionPane.showMessageDialog(null, "Estou na read Jtable");  
              
-             JOptionPane.showMessageDialog(null, "Estou na read Jtable");      
-             ArrayList<String> myArrayList = new ArrayList((Collection) cone.rs);
-              
+             ArrayList<String> listaProd;
+             listaProd = new ArrayList<>(); 
+             listaProd.add();
              
               ModelProdutos pro = new ModelProdutos();
               ProdutosController prodc = new ProdutosController();
