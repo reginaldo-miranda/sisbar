@@ -32,7 +32,8 @@ public class principal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemProdutos = new javax.swing.JMenuItem();
+        jMenuItemClientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -41,18 +42,31 @@ public class principal extends javax.swing.JFrame {
 
         jMenu1.setText("Cadastros");
 
-        jMenuItem1.setText("Produtos");
-        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuItemProdutos.setText("Produtos");
+        jMenuItemProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem1MouseClicked(evt);
+                jMenuItemProdutosMouseClicked(evt);
             }
         });
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemProdutosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jMenuItemProdutos);
+
+        jMenuItemClientes.setText("Clientes");
+        jMenuItemClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemClientesMouseClicked(evt);
+            }
+        });
+        jMenuItemClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemClientesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemClientes);
 
         jMenuBar1.add(jMenu1);
 
@@ -75,15 +89,25 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
         // TODO add your handling code here:
         produtos prod = new produtos();
         prod.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
-    private void jMenuItem1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MouseClicked
+    private void jMenuItemProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemProdutosMouseClicked
           // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1MouseClicked
+    }//GEN-LAST:event_jMenuItemProdutosMouseClicked
+
+    private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
+        // TODO add your handling code here:
+        Clientes clie = new Clientes();
+        clie.setVisible(true);
+    }//GEN-LAST:event_jMenuItemClientesActionPerformed
+
+    private void jMenuItemClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemClientesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItemClientesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -130,6 +154,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemProdutos;
     // End of variables declaration//GEN-END:variables
 }

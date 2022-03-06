@@ -4,12 +4,50 @@
  */
 package sisbar.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class ModelClientes {
+@Entity
+@Table(name = "Clients")
+public class ModelClientes implements Serializable{
     
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id_clientes")
     private int id_clientes;
+    
+    @Column(name = "nome",nullable = false, length = 80)
     private String nome;    
+    
+    @Column(name = "fone", length = 40)
     private String fone;
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + this.id_clientes;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ModelClientes other = (ModelClientes) obj;
+        return this.id_clientes == other.id_clientes;
+    }
 
     /**
      * @return the id_clientes
