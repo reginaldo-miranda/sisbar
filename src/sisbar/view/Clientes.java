@@ -4,6 +4,9 @@
  */
 package sisbar.view;
 
+import sisbar.controller.Produtos.ClientesController;
+import sisbar.model.ModelClientes;
+
 /**
  *
  * @author Reginaldo
@@ -36,6 +39,11 @@ public class Clientes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonGravar.setText("Gravar");
+        jButtonGravar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonGravarMouseClicked(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
 
@@ -86,6 +94,15 @@ public class Clientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
+        // TODO add your handling code here:
+        ModelClientes cliente = new ModelClientes();
+        cliente.setNome(jTextFielNome.getText());
+        cliente.setFone(jTextFieldFone.getText());
+        ClientesController contr = new ClientesController();
+        contr.inserir(cliente);
+    }//GEN-LAST:event_jButtonGravarMouseClicked
 
     /**
      * @param args the command line arguments
