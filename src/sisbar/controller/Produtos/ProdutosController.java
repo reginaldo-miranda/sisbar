@@ -2,7 +2,7 @@
 package sisbar.controller.Produtos;
 
 
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +19,6 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
 import sisbar.view.produtos;
-import sisbar.view.pesquisarProdutos;
 
 public class ProdutosController extends sisbar.model.ModelProdutos{
   
@@ -38,19 +37,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
    }
    public void listarProdutos(){
        
-       conexcaobco cone = new conexcaobco();
-         cone.conexao();
-         String sql1 = "select * from produtos ";
-          try {
-            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
-            stm.executeQuery();
-            
-       } catch (Exception ex) {
-             JOptionPane.showMessageDialog(null, "Erro ao listar o produto" + ex.getMessage());
-       }finally {
-          JOptionPane.showMessageDialog(null, "listado com sucesso");
-          //cone.desconetar();
-      }
+   
           
    }
  //  public ArrayList listarPord(){

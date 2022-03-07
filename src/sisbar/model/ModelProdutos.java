@@ -64,16 +64,6 @@ public class ModelProdutos implements Serializable {
     @Column(name= "grupo", length = 30)
     private String grupo;
     
-/*  id-produtos INT PRIMARY KEY AUTO_INCREMENT,
-  descricao VARCHAR(100),
-  unid_medida VARCHAR(20),
-  preco_venda DOUBLE,
-  qde DOUBLE,
-  grupo VARCHAR(30) */
-
-    /**
-     * @return the descricao
-     */
     public String getDescricao() {
         return descricao;
     }

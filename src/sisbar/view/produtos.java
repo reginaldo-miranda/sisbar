@@ -155,8 +155,8 @@ public class produtos extends javax.swing.JFrame {
 
     private void jButtonProcurarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarProdActionPerformed
         // TODO add your handling code here:
-       pesquisarProdutos pesqProd = new pesquisarProdutos();
-        pesqProd.setVisible(true);
+      //
+       // pesqProd.setVisible(true);
     }//GEN-LAST:event_jButtonProcurarProdActionPerformed
 
     /**

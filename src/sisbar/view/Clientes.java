@@ -44,6 +44,11 @@ public class Clientes extends javax.swing.JFrame {
                 jButtonGravarMouseClicked(evt);
             }
         });
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
 
         jButtonSair.setText("Sair");
 
@@ -103,6 +108,11 @@ public class Clientes extends javax.swing.JFrame {
         ClientesController contr = new ClientesController();
         contr.inserir(cliente);
     }//GEN-LAST:event_jButtonGravarMouseClicked
+
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButtonGravarActionPerformed
 
     /**
      * @param args the command line arguments

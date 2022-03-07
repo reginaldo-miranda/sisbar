@@ -2,7 +2,7 @@
 package sisbar.controller.Produtos;
 
 
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
 import sisbar.view.produtos;
-import sisbar.view.pesquisarProdutos;
+//import sisbar.view.pesquisarProdutos;
 
 public class Bkp_ProdutosController1 extends sisbar.model.ModelProdutos{
   
@@ -28,11 +28,11 @@ public class Bkp_ProdutosController1 extends sisbar.model.ModelProdutos{
          String sql1 = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
          
       try {
-            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
+    //        PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
             
-            stm.setString(1,prod.getDescricao());
-            stm.setString(2,prod.getGrupo());
-            stm.executeUpdate();
+   //         stm.setString(1,prod.getDescricao());
+   //         stm.setString(2,prod.getGrupo());
+     //       stm.executeUpdate();
             
        } catch (Exception ex) {
              JOptionPane.showMessageDialog(null, "Erro ao gravar o produto" + ex.getMessage());
@@ -53,8 +53,8 @@ public class Bkp_ProdutosController1 extends sisbar.model.ModelProdutos{
          cone.conexao();
          String sql1 = "select * from produtos ";
           try {
-            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
-            stm.executeQuery();
+        //    PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
+          //  stm.executeQuery();
             
        } catch (Exception ex) {
              JOptionPane.showMessageDialog(null, "Erro ao listar o produto" + ex.getMessage());
