@@ -9,26 +9,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
 //import com.sun.jdi.connect.spi.Connection;
 //import java.beans.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import sisbar.DAO.FabricaGerenciadorEntidades;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
 import sisbar.view.produtos;
 import sisbar.view.pesquisarProdutos;
 
-public class ProdutosController extends sisbar.model.ModelProdutos{
+public class Bkp_ProdutosController1 extends sisbar.model.ModelProdutos{
   
    public void cadastrar(ModelProdutos prod) {
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        gerente.getTransaction().begin();
-        gerente.persist(prod);
-        gerente.getTransaction().commit();
-        gerente.close();
+       
+         conexcaobco cone = new conexcaobco();
+         cone.conexao();
+         String sql1 = "INSERT INTO produtos (descricao,grupo) VALUES (?,?)";
+         
+      try {
+            PreparedStatement  stm = (PreparedStatement) cone.conn.prepareStatement(sql1);
+            
+            stm.setString(1,prod.getDescricao());
+            stm.setString(2,prod.getGrupo());
+            stm.executeUpdate();
+            
+       } catch (Exception ex) {
+             JOptionPane.showMessageDialog(null, "Erro ao gravar o produto" + ex.getMessage());
+       }finally {
+          JOptionPane.showMessageDialog(null, "Gravado com sucesso");
+          cone.desconetar();
+      }
    }
    public void PesquisarProd(ModelProdutos id){
         conexcaobco cone = new conexcaobco();
@@ -74,7 +85,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
                }               
                    
                } catch (SQLException ex) {
-                   Logger.getLogger(ProdutosController.class.getName()).log(Level.SEVERE, null, ex);
+                   Logger.getLogger(Bkp_ProdutosController1.class.getName()).log(Level.SEVERE, null, ex);
                }finally{
                     cone.desconetar();
                }
