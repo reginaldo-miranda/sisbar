@@ -29,6 +29,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
         gerente.getTransaction().commit();
         gerente.close();
    }
+   
    public void PesquisarProd(ModelProdutos id){
         conexcaobco cone = new conexcaobco();
          cone.conexao();

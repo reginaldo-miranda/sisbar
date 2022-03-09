@@ -49,10 +49,10 @@ public class ModelProdutos implements Serializable {
    @Column(name = "id_produtos")
     private int id_produtos;
    
-    @Column(name = "descricao", length = 100)
+    @Column(name = "descricao", nullable = true ,length = 100)
     private String descricao;
     
-    @Column(name = "unid_medida", length = 20)
+    @Column(name = "unid_medida", nullable = true, length = 20)
     private String unid_medida;
    
     @Column(name = "preco_venda")
@@ -61,7 +61,7 @@ public class ModelProdutos implements Serializable {
     @Column(name = "qde")
     private double qde;
     
-    @Column(name= "grupo", length = 30)
+    @Column(name= "grupo", nullable = true, length = 30)
     private String grupo;
     
     public String getDescricao() {

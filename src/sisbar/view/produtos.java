@@ -32,7 +32,7 @@ public class produtos extends javax.swing.JFrame {
         jTextDescricao = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextPrecoUnit = new javax.swing.JTextField();
+        jTextPrecoVenda = new javax.swing.JTextField();
         jTextQtde = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -91,7 +91,7 @@ public class produtos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextPrecoUnit))
+                                .addComponent(jTextPrecoVenda))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextQtde, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -116,7 +116,7 @@ public class produtos extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextPrecoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -142,7 +142,10 @@ public class produtos extends javax.swing.JFrame {
         // TODO add your handling code here:
         ModelProdutos prod = new ModelProdutos();
         prod.setDescricao(jTextDescricao.getText());
+        prod.setPreco_venda(Integer.parseInt(jTextPrecoVenda.getText()));
+        prod.setQde(Integer.parseInt(jTextQtde.getText()));
         prod.setGrupo(jTextGrupo.getText());
+        prod.setUnid_medida(jTextUnidMed.getText());
         ProdutosController produ = new ProdutosController();
         produ.cadastrar(prod);
         
@@ -204,7 +207,7 @@ public class produtos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextDescricao;
     private javax.swing.JTextField jTextGrupo;
-    private javax.swing.JTextField jTextPrecoUnit;
+    private javax.swing.JTextField jTextPrecoVenda;
     private javax.swing.JTextField jTextQtde;
     private javax.swing.JTextField jTextUnidMed;
     // End of variables declaration//GEN-END:variables

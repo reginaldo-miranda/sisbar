@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelClientes.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelProdutos.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/ClientesController.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/ProdutosController.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/DAO/banco/script.sql</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/produtos.java</file>
             <file>file:/C:/laragon/www/sisbar/src/META-INF/persistence.xml</file>
         </group>
     </open-files>
