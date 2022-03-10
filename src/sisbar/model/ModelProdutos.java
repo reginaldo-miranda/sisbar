@@ -7,6 +7,7 @@
 package sisbar.model;
 
 import java.io.Serializable;
+import static java.util.Collections.list;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -144,7 +145,6 @@ public class ModelProdutos implements Serializable {
     public void setQde(double qde) {
         this.qde = qde;
     }
-    
     
     
     

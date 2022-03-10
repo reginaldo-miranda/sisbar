@@ -10,9 +10,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "clinetes.todos",
+                query = "SELECT cli FROM ModelClientes cli"
+    ),
+    @NamedQuery(name = "clientes.porNome",
+             query = "SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nomeprocurar" 
+    ),
+    
+     //  @NamedQuery(name = "clientes.fone",
+     //  query = "SELECT cli FROM ModelClientes cli WHERE cli.fone LIKE :fomeprocurar"
+     // ),
+    @NamedQuery(name = "clientes.porFone",
+            query = "SELECT CLI FROM ModelClientes cli where cli LIKE :foneprocurar"
+            )
+
+    
+}
+
+)
 @Table(name = "Clientes")
 public class ModelClientes implements Serializable{
     
