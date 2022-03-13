@@ -41,6 +41,13 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
    
           
    }
+   
+   public void preencherTab(){
+       
+       DefaultTableModel mod = (DefaultTableModel) jTableProd.getModel();
+      // jTableProd.
+    
+   }
  //  public ArrayList listarPord(){
   public static void listarProd(){        
          conexcaobco cone = new conexcaobco();
