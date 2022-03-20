@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 //import com.sun.jdi.connect.spi.Connection;
 //import java.beans.Statement;
 import javax.swing.JOptionPane;
@@ -33,9 +34,21 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
           
         } 
 
-    public ArrayList<ModelProdutos> getListaProd() {
+   /* public ArrayList<ModelProdutos> getListaProd() {
         return ListaProd;
     }
+    */
+    
+    public ArrayList<ModelProdutos> getListaProd() {
+        
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        
+        TypedQuery<ModelProdutos> consulta = gerente.createNamedQuery("produto.todos", ModelProdutos.class);
+        return (ArrayList<ModelProdutos>) consulta.getResultList();
+    }
+    
+    
+    
   
    public void cadastrar(ModelProdutos prod) {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();

@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ProdutosController;
@@ -22,11 +24,18 @@ import sisbar.controller.Produtos.ProdutosController;
  * @author coreo
  */
 @Entity
+
+@NamedQueries({
+    
+    @NamedQuery(name = "produto.todos",
+            query = "SELECT P from produtos p"
+            )
+
+
+})
+
 @Table(name = "produtos")
 public class ModelProdutos implements Serializable {
-
-   
- 
 
     @Override
     public int hashCode() {
