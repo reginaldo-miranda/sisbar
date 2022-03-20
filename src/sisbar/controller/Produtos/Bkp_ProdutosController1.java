@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
-import sisbar.view.produtos;
+//import sisbar.view.produtos;
 //import sisbar.view.pesquisarProdutos;
 
 public class Bkp_ProdutosController1 extends sisbar.model.ModelProdutos{

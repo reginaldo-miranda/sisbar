@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.table.DefaultTableModel;
+import sisbar.controller.Produtos.ProdutosController;
 
 /**
  *
@@ -22,6 +24,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "produtos")
 public class ModelProdutos implements Serializable {
+
+   
+ 
 
     @Override
     public int hashCode() {
@@ -51,7 +56,7 @@ public class ModelProdutos implements Serializable {
     private int id_produtos;
    
     @Column(name = "descricao", nullable = true ,length = 100)
-    private String descricao;
+    public String descricao;
     
     @Column(name = "unid_medida", nullable = true, length = 20)
     private String unid_medida;
@@ -64,6 +69,17 @@ public class ModelProdutos implements Serializable {
     
     @Column(name= "grupo", nullable = true, length = 30)
     private String grupo;
+    
+    
+  public ModelProdutos(String descricao, String grupo) {
+
+      setDescricao(descricao);
+      setGrupo(grupo);
+    }
+
+    public ModelProdutos() {
+      //  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public String getDescricao() {
         return descricao;
@@ -80,6 +96,7 @@ public class ModelProdutos implements Serializable {
      * @return the grupo
      */
     public String getGrupo() {
+        
         return grupo;
     }
 
@@ -146,6 +163,18 @@ public class ModelProdutos implements Serializable {
         this.qde = qde;
     }
     
-    
-    
 }
+
+
+/*
+
+   ModelProdutos prod = new ModelProdutos();
+        prod.setDescricao(jTextDescricao.getText());
+        prod.setPreco_venda(Integer.parseInt(jTextPrecoVenda.getText()));
+        prod.setQde(Integer.parseInt(jTextQtde.getText()));
+        prod.setGrupo(jTextGrupo.getText());
+        prod.setUnid_medida(jTextUnidMed.getText());
+        ProdutosController produ = new ProdutosController();
+        produ.cadastrar(prod);
+        
+*/

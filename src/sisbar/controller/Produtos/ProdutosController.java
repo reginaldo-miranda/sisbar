@@ -18,9 +18,24 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
-import sisbar.view.produtos;
+import sisbar.view.Produtos;
 
 public class ProdutosController extends sisbar.model.ModelProdutos{
+      
+  ArrayList<ModelProdutos> ListaProd;
+    
+    public ProdutosController(){
+        this.ListaProd = new ArrayList<>();
+        
+       
+       ListaProd.add(new ModelProdutos("Bauru", "lanche"));
+       ListaProd.add(new ModelProdutos("x Bauru", "lanche"));
+          
+        } 
+
+    public ArrayList<ModelProdutos> getListaProd() {
+        return ListaProd;
+    }
   
    public void cadastrar(ModelProdutos prod) {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -42,13 +57,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
           
    }
    
-   public void preencherTab(){
-       
-       DefaultTableModel mod = (DefaultTableModel) jTableProd.getModel();
-      // jTableProd.
-    
-   }
- //  public ArrayList listarPord(){
+  //  public ArrayList listarPord(){
   public static void listarProd(){        
          conexcaobco cone = new conexcaobco();
          cone.conexao();

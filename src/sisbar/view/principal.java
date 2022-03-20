@@ -91,7 +91,7 @@ public class principal extends javax.swing.JFrame {
 
     private void jMenuItemProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemProdutosActionPerformed
         // TODO add your handling code here:
-        produtos prod = new produtos();
+        Produtos prod = new Produtos();
         prod.setVisible(true);
     }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
