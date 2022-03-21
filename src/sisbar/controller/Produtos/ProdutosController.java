@@ -19,36 +19,21 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 //import sisbar.DAO.Conectar;
 import sisbar.DAO.conexcaobco;
 import sisbar.model.ModelProdutos;
-import sisbar.view.Produtos;
+import sisbar.view.produtos;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ProdutosController extends sisbar.model.ModelProdutos{
-      
-  ArrayList<ModelProdutos> ListaProd;
     
+    private  ArrayList<ModelProdutos> listaProd = new ArrayList<>();
+  
     public ProdutosController(){
-        this.ListaProd = new ArrayList<>();
         
-       
-       ListaProd.add(new ModelProdutos("Bauru", "lanche"));
-       ListaProd.add(new ModelProdutos("x Bauru", "lanche"));
-          
-        } 
-
-   /* public ArrayList<ModelProdutos> getListaProd() {
-        return ListaProd;
-    }
-    */
-    
-    public ArrayList<ModelProdutos> getListaProd() {
-        
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
-        TypedQuery<ModelProdutos> consulta = gerente.createNamedQuery("produto.todos", ModelProdutos.class);
-        return (ArrayList<ModelProdutos>) consulta.getResultList();
-    }
-    
-    
-    
+        getListaProd();
+     // listaProd.add(new ModelProdutos("xbauru", "lanche"));
+    //  listaProd.add(new ModelProdutos("bauru", "lanche"));
+  }
+  
   
    public void cadastrar(ModelProdutos prod) {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -70,7 +55,8 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
           
    }
    
-  //  public ArrayList listarPord(){
+
+ //  public ArrayList listarPord(){
   public static void listarProd(){        
          conexcaobco cone = new conexcaobco();
          cone.conexao();
@@ -97,6 +83,18 @@ public class ProdutosController extends sisbar.model.ModelProdutos{
                }
               
    }
+
+    /**
+     * @return the listaProd
+     */
+    public java.util.List<ModelProdutos> getListaProd() {
+         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        
+        TypedQuery<ModelProdutos> consulta = gerente.createNamedQuery("produto.todos", ModelProdutos.class);
+    
+        // return listaProd;
+        return consulta.getResultList();
+    }
 
  
 }

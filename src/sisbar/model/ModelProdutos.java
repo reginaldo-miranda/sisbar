@@ -7,6 +7,7 @@
 package sisbar.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import static java.util.Collections.list;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.swing.table.DefaultTableModel;
-import sisbar.controller.Produtos.ProdutosController;
 
 /**
  *
@@ -26,16 +25,28 @@ import sisbar.controller.Produtos.ProdutosController;
 @Entity
 
 @NamedQueries({
+    @NamedQuery(name = "produto.todos", query = "SELECT P FROM ModelProdutos p"
     
-    @NamedQuery(name = "produto.todos",
-            query = "SELECT P from produtos p"
-            )
-
+    )
 
 })
 
+
 @Table(name = "produtos")
-public class ModelProdutos implements Serializable {
+public  class ModelProdutos implements Serializable {
+
+   //   private  ArrayList<ModelProdutos> listaProd = new ArrayList<>();
+          
+       public ModelProdutos() {
+    }
+       
+    
+    public ModelProdutos(String descricao, String  grupo) {
+        
+        setDescricao(descricao);
+        setGrupo(grupo);
+            
+    }
 
     @Override
     public int hashCode() {
@@ -65,7 +76,11 @@ public class ModelProdutos implements Serializable {
     private int id_produtos;
    
     @Column(name = "descricao", nullable = true ,length = 100)
-    public String descricao;
+    private String descricao;
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     
     @Column(name = "unid_medida", nullable = true, length = 20)
     private String unid_medida;
@@ -79,111 +94,51 @@ public class ModelProdutos implements Serializable {
     @Column(name= "grupo", nullable = true, length = 30)
     private String grupo;
     
-    
-  public ModelProdutos(String descricao, String grupo) {
-
-      setDescricao(descricao);
-      setGrupo(grupo);
-    }
-
-    public ModelProdutos() {
-      //  throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
     public String getDescricao() {
         return descricao;
     }
 
-    /**
-     * @param descricao the descricao to set
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    /**
-     * @return the grupo
-     */
-    public String getGrupo() {
-        
-        return grupo;
-    }
-
-    /**
-     * @param grupo the grupo to set
-     */
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
-    }
-
-    /**
-     * @return the id_produtos
-     */
     public int getId_produtos() {
         return id_produtos;
     }
 
-    /**
-     * @param id_produtos the id_produtos to set
-     */
     public void setId_produtos(int id_produtos) {
         this.id_produtos = id_produtos;
     }
 
-    /**
-     * @return the unid_medida
-     */
     public String getUnid_medida() {
         return unid_medida;
     }
 
-    /**
-     * @param unid_medida the unid_medida to set
-     */
     public void setUnid_medida(String unid_medida) {
         this.unid_medida = unid_medida;
     }
 
-    /**
-     * @return the preco_venda
-     */
     public double getPreco_venda() {
         return preco_venda;
     }
 
-    /**
-     * @param preco_venda the preco_venda to set
-     */
     public void setPreco_venda(double preco_venda) {
         this.preco_venda = preco_venda;
     }
 
-    /**
-     * @return the qde
-     */
     public double getQde() {
         return qde;
     }
 
-    /**
-     * @param qde the qde to set
-     */
     public void setQde(double qde) {
         this.qde = qde;
     }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    
+    
     
 }
-
-
-/*
-
-   ModelProdutos prod = new ModelProdutos();
-        prod.setDescricao(jTextDescricao.getText());
-        prod.setPreco_venda(Integer.parseInt(jTextPrecoVenda.getText()));
-        prod.setQde(Integer.parseInt(jTextQtde.getText()));
-        prod.setGrupo(jTextGrupo.getText());
-        prod.setUnid_medida(jTextUnidMed.getText());
-        ProdutosController produ = new ProdutosController();
-        produ.cadastrar(prod);
-        
-*/
