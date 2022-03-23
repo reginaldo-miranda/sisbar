@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
+import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
 
 
@@ -17,15 +18,9 @@ public class ClientesController {
     
    private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
    
-   public ArrayList<ModelClientes> getListaCliente(){
-       
-       EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-       
-       TypedQuery<ModelClientes> consulta = gerente.createNamedQuery("clinetes.todos", ModelClientes.class);
-       
-       
-       return (ArrayList<ModelClientes>) consulta.getResultList();
-       
+   public ClientesController(){
+      
+       getListaCli();
    }        
     public void inserir(ModelClientes cli){
         
@@ -75,6 +70,13 @@ public class ClientesController {
         
     }
 
- 
+ public java.util.List<ModelClientes> getListaCli() {
+         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        
+        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos",  ModelClientes.class);
+    
+        // return listaProd;
+        return consulta.getResultList();
+    }
     
 }
