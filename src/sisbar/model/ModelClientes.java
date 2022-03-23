@@ -7,16 +7,19 @@ package sisbar.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "clinetes.todos",
+    @NamedQuery(name = "clientes.todos",
                 query = "SELECT cli FROM ModelClientes cli"
     ),
     @NamedQuery(name = "clientes.porNome",
@@ -29,13 +32,16 @@ import javax.persistence.Table;
     @NamedQuery(name = "clientes.porFone",
             query = "SELECT CLI FROM ModelClientes cli where cli LIKE :foneprocurar"
             )
-
-    
 }
 
 )
 @Table(name = "Clientes")
+
 public class ModelClientes implements Serializable{
+    
+    public ModelClientes(){
+        
+    }
     
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,4 +117,20 @@ public class ModelClientes implements Serializable{
     public void setFone(String fone) {
         this.fone = fone;
     }
+
+    public void persist(Object object) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("sisbarPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(object);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
 }

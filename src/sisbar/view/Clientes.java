@@ -4,6 +4,7 @@
  */
 package sisbar.view;
 
+import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
 
@@ -13,11 +14,16 @@ import sisbar.model.ModelClientes;
  */
 public class Clientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Clientes
-     */
+    ClientesController controla = new ClientesController();
+    
     public Clientes() {
         initComponents();
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+         for(ModelClientes cli : controla.getListaCli()){
+            
+            modelo.addRow(new Object[]{cli.getNome(), cli.getFone()});
+        }
     }
 
     /**
@@ -36,6 +42,8 @@ public class Clientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButtonExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +67,16 @@ public class Clientes extends javax.swing.JFrame {
 
         jButtonExcluir.setText("Excluir");
 
+        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Fone"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableClientes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,22 +85,23 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFielNome, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-                            .addComponent(jTextFieldFone))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                        .addComponent(jButtonExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSair)
-                        .addGap(28, 28, 28))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonGravar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonExcluir)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSair)
+                        .addGap(389, 389, 389))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,12 +114,14 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
                 .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGravar)
-                    .addComponent(jButtonSair)
-                    .addComponent(jButtonExcluir))
-                .addGap(28, 28, 28))
+                    .addComponent(jButtonExcluir)
+                    .addComponent(jButtonSair))
+                .addContainerGap())
         );
 
         pack();
@@ -161,6 +182,8 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFielNome;
     private javax.swing.JTextField jTextFieldFone;
     // End of variables declaration//GEN-END:variables
