@@ -4,6 +4,7 @@
  */
 package sisbar.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
@@ -44,6 +45,8 @@ public class Clientes extends javax.swing.JFrame {
         jButtonExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
+        jTextFieldPesquisar = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +69,11 @@ public class Clientes extends javax.swing.JFrame {
         jLabel2.setText("Fone");
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,6 +85,8 @@ public class Clientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableClientes);
 
+        jLabel3.setText("Pesquisar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,23 +95,27 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jButtonGravar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonExcluir)
+                                .addGap(125, 125, 125)
+                                .addComponent(jButtonSair))
+                            .addComponent(jTextFieldPesquisar))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonGravar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonExcluir)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonSair)
-                        .addGap(389, 389, 389))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,7 +130,11 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGravar)
                     .addComponent(jButtonExcluir)
@@ -140,6 +158,22 @@ public class Clientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        int linha;
+        
+        linha = jTableClientes.getSelectedRow();
+        
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this, "escolha uma linha");
+        }
+            
+            
+        ModelClientes cliente = new ModelClientes();
+        ClientesController contr = new ClientesController();
+        
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,9 +216,11 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFielNome;
     private javax.swing.JTextField jTextFieldFone;
+    private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }
