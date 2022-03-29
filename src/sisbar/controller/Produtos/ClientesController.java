@@ -22,6 +22,7 @@ public class ClientesController {
    public ClientesController(){
       
        getListaCli();
+       
    }        
     public void inserir(ModelClientes cli){
         

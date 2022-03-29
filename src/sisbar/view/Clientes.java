@@ -17,14 +17,17 @@ import sisbar.model.ModelClientes;
 public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
+    ModelClientes model = new ModelClientes();
     
     public Clientes() {
         initComponents();
         
+       controla.equals(this);
+        
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
          for(ModelClientes cli : controla.getListaCli()){
             
-            modelo.addRow(new Object[]{cli.getNome(), cli.getFone()});
+            modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
     }
 
@@ -48,6 +51,7 @@ public class Clientes extends javax.swing.JFrame {
         jTableClientes = new javax.swing.JTable();
         jTextFieldPesquisar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jTextFieldId_cliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,13 +124,17 @@ public class Clientes extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel1))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(6, 6, 6)
+                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,21 +175,22 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
-        int linha, codigo;
+        int linha;
         
-        codigo = jTableClientes.getSelectedRow();
-        ModelClientes cliente = new ModelClientes();
-        cliente.setId_clientes(codigo);
+        linha = jTableClientes.getSelectedRow();
+         
+       
         
         
-        if(codigo == -1){
+        if(linha == -1){
             JOptionPane.showMessageDialog(this, "escolha uma linha");
         }else{
             int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar"); 
             if(resposta == JOptionPane.YES_OPTION){
+                
                 ClientesController contr = new ClientesController();
-                contr.excluir(codigo);
-                JOptionPane.showMessageDialog(this, "excluido");
+                contr.excluir(linha);
+                JOptionPane.showMessageDialog(this, "excluido" + linha);
             }
               JOptionPane.showMessageDialog(this, "cancelado");
         }    
@@ -241,6 +250,7 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField jTextFielNome;
     private javax.swing.JTextField jTextFieldFone;
+    private javax.swing.JTextField jTextFieldId_cliente;
     private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
+import javax.swing.JTextField;
 
 @Entity
 @NamedQueries({
@@ -131,6 +132,10 @@ public class ModelClientes implements Serializable{
         } finally {
             em.close();
         }
+    }
+
+    public void setId_clientes(JTextField jTextFieldId_cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
