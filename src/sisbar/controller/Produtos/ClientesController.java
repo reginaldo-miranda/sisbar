@@ -8,6 +8,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
 import sisbar.model.ModelProdutos;
@@ -42,7 +43,7 @@ public class ClientesController {
             gerente.getTransaction().begin();
             gerente.remove(cli);
             gerente.getTransaction().commit();
-                      
+            JOptionPane.showMessageDialog(null, "aqui");
         }
         gerente.close();
     }

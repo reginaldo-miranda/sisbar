@@ -4,6 +4,7 @@
  */
 package sisbar.view;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
@@ -63,6 +64,11 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nome");
 
@@ -80,7 +86,7 @@ public class Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Fone"
+                "id", "Nome", "Fone"
             }
         ));
         jScrollPane1.setViewportView(jTableClientes);
@@ -161,19 +167,33 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
-        int linha;
+        int linha, codigo;
         
-        linha = jTableClientes.getSelectedRow();
-        
-        if(linha == -1){
-            JOptionPane.showMessageDialog(this, "escolha uma linha");
-        }
-            
-            
+        codigo = jTableClientes.getSelectedRow();
         ModelClientes cliente = new ModelClientes();
-        ClientesController contr = new ClientesController();
+        cliente.setId_clientes(codigo);
+        
+        
+        if(codigo == -1){
+            JOptionPane.showMessageDialog(this, "escolha uma linha");
+        }else{
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar"); 
+            if(resposta == JOptionPane.YES_OPTION){
+                ClientesController contr = new ClientesController();
+                contr.excluir(codigo);
+                JOptionPane.showMessageDialog(this, "excluido");
+            }
+              JOptionPane.showMessageDialog(this, "cancelado");
+        }    
+     
+       
         
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        // TODO add your handling code here:
+     this.dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     /**
      * @param args the command line arguments

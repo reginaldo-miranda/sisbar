@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelClientes.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Clientes.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelProdutos.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/ClientesController.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/principal.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Produtos.java</file>
         </group>
     </open-files>
 </project-private>
