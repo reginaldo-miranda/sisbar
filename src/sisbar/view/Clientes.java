@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
-import static sisbar.model.ModelClientes_.nome;
+//import static sisbar.model.ModelClientes_.nome;
 
 /**
  *

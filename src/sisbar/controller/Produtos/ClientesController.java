@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
-import static sisbar.model.ModelClientes_.nome;
+//import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
 
