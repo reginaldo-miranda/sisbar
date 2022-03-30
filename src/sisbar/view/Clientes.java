@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
+import static sisbar.model.ModelClientes_.nome;
 
 /**
  *
@@ -176,11 +177,17 @@ public class Clientes extends javax.swing.JFrame {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
         int linha;
+        String codigo = "0";
+        
+        ModelClientes clie = new ModelClientes();
+        
+        
         
         linha = jTableClientes.getSelectedRow();
+       jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha,0).toString());
+       jTextFielNome.setText(jTableClientes.getValueAt(linha,1).toString());
          
-       
-        
+             
         
         if(linha == -1){
             JOptionPane.showMessageDialog(this, "escolha uma linha");
@@ -189,7 +196,7 @@ public class Clientes extends javax.swing.JFrame {
             if(resposta == JOptionPane.YES_OPTION){
                 
                 ClientesController contr = new ClientesController();
-                contr.excluir(linha);
+                contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
             }
               JOptionPane.showMessageDialog(this, "cancelado");
