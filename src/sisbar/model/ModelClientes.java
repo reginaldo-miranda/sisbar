@@ -134,8 +134,8 @@ public class ModelClientes implements Serializable{
         }
     }
 
-    public void setId_clientes(JTextField jTextFieldId_cliente) {
+  /*  public void setId_clientes(JTextField jTextFieldId_cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
     
 }

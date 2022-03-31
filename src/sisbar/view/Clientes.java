@@ -19,15 +19,15 @@ public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
     ModelClientes model = new ModelClientes();
-    
+
     public Clientes() {
         initComponents();
-        
-       controla.equals(this);
-        
+
+        controla.equals(this);
+
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
-         for(ModelClientes cli : controla.getListaCli()){
-            
+        for (ModelClientes cli : controla.getListaCli()) {
+
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
     }
@@ -53,6 +53,7 @@ public class Clientes extends javax.swing.JFrame {
         jTextFieldPesquisar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldId_cliente = new javax.swing.JTextField();
+        jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,9 +95,21 @@ public class Clientes extends javax.swing.JFrame {
                 "id", "Nome", "Fone"
             }
         ));
+        jTableClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableClientes);
 
         jLabel3.setText("Pesquisar");
+
+        jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,7 +130,9 @@ public class Clientes extends javax.swing.JFrame {
                                 .addComponent(jButtonGravar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonExcluir)
-                                .addGap(125, 125, 125)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonAlterar)
+                                .addGap(46, 46, 46)
                                 .addComponent(jButtonSair))
                             .addComponent(jTextFieldPesquisar))
                         .addContainerGap())
@@ -153,7 +168,8 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGravar)
                     .addComponent(jButtonExcluir)
-                    .addComponent(jButtonSair))
+                    .addComponent(jButtonSair)
+                    .addComponent(jButtonAlterar))
                 .addContainerGap())
         );
 
@@ -162,54 +178,108 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
         // TODO add your handling code here:
-        ModelClientes cliente = new ModelClientes();
-        cliente.setNome(jTextFielNome.getText());
-        cliente.setFone(jTextFieldFone.getText());
-        ClientesController contr = new ClientesController();
-        contr.inserir(cliente);
+     /*   ModelClientes cliente = new ModelClientes();
+
+        if (jTextFieldId_cliente.getText().isEmpty()) {
+            cliente.setNome(jTextFielNome.getText());
+            cliente.setFone(jTextFieldFone.getText());
+            ClientesController contr = new ClientesController();
+            contr.inserir(cliente);
+        } else {
+
+            cliente.setId_clientes(Integer.parseInt(jTextFieldId_cliente.getText()));
+            cliente.setNome(jTextFielNome.getText());
+            cliente.setFone(jTextFieldFone.getText());
+            ClientesController contr = new ClientesController();
+            contr.inserir(cliente);
+        }*/
     }//GEN-LAST:event_jButtonGravarMouseClicked
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         // TODO add your handling code here:
-        
+          ModelClientes cliente = new ModelClientes();
+
+        if (jTextFieldId_cliente.getText().isEmpty()) {
+            cliente.setNome(jTextFielNome.getText());
+            cliente.setFone(jTextFieldFone.getText());
+            ClientesController contr = new ClientesController();
+            contr.inserir(cliente);
+        } else {
+
+            cliente.setId_clientes(Integer.parseInt(jTextFieldId_cliente.getText()));
+            cliente.setNome(jTextFielNome.getText());
+            cliente.setFone(jTextFieldFone.getText());
+            ClientesController contr = new ClientesController();
+            contr.inserir(cliente);
+             
+        }
+
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
         int linha;
         String codigo = "0";
-        
-        ModelClientes clie = new ModelClientes();
-        
-        
-        
+
+        //    ModelClientes clie = new ModelClientes();
         linha = jTableClientes.getSelectedRow();
-       jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha,0).toString());
-       jTextFielNome.setText(jTableClientes.getValueAt(linha,1).toString());
-         
-             
-        
-        if(linha == -1){
+
+        // jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha,0).toString());
+        //  jTextFielNome.setText(jTableClientes.getValueAt(linha,1).toString());
+        if (linha == -1) {
             JOptionPane.showMessageDialog(this, "escolha uma linha");
-        }else{
-            int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar"); 
-            if(resposta == JOptionPane.YES_OPTION){
-                
+        } else {
+
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar");
+            if (resposta == JOptionPane.YES_OPTION) {
+
                 ClientesController contr = new ClientesController();
                 contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
             }
-              JOptionPane.showMessageDialog(this, "cancelado");
-        }    
-     
-       
-        
+            JOptionPane.showMessageDialog(this, "cancelado");
+        }
+
+
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
-     this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
+        // TODO add your handling code here:
+        int linha;
+        linha = jTableClientes.getSelectedRow();
+        jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha, 0).toString());
+        jTextFielNome.setText(jTableClientes.getValueAt(linha, 1).toString());
+        jTextFieldFone.setText(jTableClientes.getValueAt(linha, 2).toString());
+    }//GEN-LAST:event_jTableClientesMouseClicked
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        // TODO add your handling code here:
+
+        int linha;
+        String codigo = "0";
+        linha = jTableClientes.getSelectedRow();
+
+        // jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha,0).toString());
+        //  jTextFielNome.setText(jTableClientes.getValueAt(linha,1).toString());
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(this, "escolha uma linha");
+        } else {
+
+            int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja ed");
+            if (resposta == JOptionPane.YES_OPTION) {
+
+                ClientesController contr = new ClientesController();
+                contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
+                JOptionPane.showMessageDialog(this, "excluido" + linha);
+            }
+            JOptionPane.showMessageDialog(this, "cancelado");
+        }
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +317,7 @@ public class Clientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAlterar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonSair;

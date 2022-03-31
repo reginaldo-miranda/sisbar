@@ -15,23 +15,18 @@ import sisbar.model.ModelClientes;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
 
-
 public class ClientesController {
-    
-   private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
-   
-   public ClientesController(){
-      
-       getListaCli();
-       
-   }     
-    public void carregartela(){
-        
-       EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
-        ModelClientes mod = new ModelClientes();
-       
+
+    private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
+    ModelClientes mod = new ModelClientes();
+
+    public ClientesController() {
+
+        getListaCli();
+
     }
+
+    /* este metodo esta bom
     public void inserir(ModelClientes cli){
         
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -40,15 +35,38 @@ public class ClientesController {
         gerente.getTransaction().commit();
         gerente.close();
     }
-    
-    public void excluir(int codigo){
+     */
+
+    public void inserir(ModelClientes cli) { // teste de metodo
+
         
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
+        gerente.getTransaction().begin();
+
+        //   if (cli != null ){
+        if (cli.getId_clientes() > 0) {
+            gerente.merge(cli);
+            gerente.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso");
+
+        } else {
+
+            gerente.persist(cli);
+            gerente.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso");
+            gerente.close();
+           
+        }
+        getListaCli();
+    }
+
+    public void excluir(int codigo) {
+
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+
         ModelClientes cli = gerente.find(ModelClientes.class, codigo);
-        
-                
-        if (cli != null){
+
+        if (cli != null) {
             gerente.getTransaction().begin();
             gerente.remove(cli);
             gerente.getTransaction().commit();
@@ -56,41 +74,38 @@ public class ClientesController {
         }
         gerente.close();
     }
-    
-    public void alterarCliente(ModelClientes cli){
-        
+
+    public void alterarCliente(ModelClientes cli) {
+
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
+
         gerente.getTransaction().begin();
-        
+
         gerente.merge(cli);
         gerente.getTransaction().commit();
         gerente.close();
-        
+
     }
-    
-    public ModelClientes pesquisaCliente(int codigo){
-        
+
+    public ModelClientes pesquisaCliente(int codigo) {
+
         ModelClientes cli;
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
+
         cli = gerente.find(ModelClientes.class, codigo);
         gerente.close();
         return cli;
-        
+
     }
 
- public java.util.List<ModelClientes> getListaCli() {
-     
-         
-        
-         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-         
-        
-        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos",  ModelClientes.class);
-          
+    public java.util.List<ModelClientes> getListaCli() {
+
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+
+        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos", ModelClientes.class);
+
         // return listaProd;
         return consulta.getResultList();
     }
-    
+
 }
