@@ -19,17 +19,22 @@ public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
     ModelClientes model = new ModelClientes();
+    
 
     public Clientes() {
         initComponents();
-
-        controla.equals(this);
+        jButtonGravar.setEnabled(false);
+        jButtonExcluir.setEnabled(false);
+        jTextFielNome.requestFocus();
+                
+      //  controla.equals(this);
 
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
+   
     }
 
     /**
@@ -56,6 +61,12 @@ public class Clientes extends javax.swing.JFrame {
         jButtonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextFielNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFielNomeKeyPressed(evt);
+            }
+        });
 
         jButtonGravar.setText("Gravar");
         jButtonGravar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,6 +114,8 @@ public class Clientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableClientes);
 
         jLabel3.setText("Pesquisar");
+
+        jTextFieldId_cliente.setEditable(false);
 
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -280,6 +293,11 @@ public class Clientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "cancelado");
         }
     }//GEN-LAST:event_jButtonAlterarActionPerformed
+
+    private void jTextFielNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyPressed
+        // TODO add your handling code here:
+        jButtonGravar.setEnabled(true);
+    }//GEN-LAST:event_jTextFielNomeKeyPressed
 
     /**
      * @param args the command line arguments
