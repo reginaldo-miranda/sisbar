@@ -19,7 +19,6 @@ public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
     ModelClientes model = new ModelClientes();
-    
 
     public Clientes() {
         initComponents();
@@ -77,11 +76,6 @@ public class Clientes extends javax.swing.JFrame {
         });
 
         jButtonGravar.setText("Gravar");
-        jButtonGravar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonGravarMouseClicked(evt);
-            }
-        });
         jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGravarActionPerformed(evt);
@@ -206,28 +200,9 @@ public class Clientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
-        // TODO add your handling code here:
-     /*   ModelClientes cliente = new ModelClientes();
-
-        if (jTextFieldId_cliente.getText().isEmpty()) {
-            cliente.setNome(jTextFielNome.getText());
-            cliente.setFone(jTextFieldFone.getText());
-            ClientesController contr = new ClientesController();
-            contr.inserir(cliente);
-        } else {
-
-            cliente.setId_clientes(Integer.parseInt(jTextFieldId_cliente.getText()));
-            cliente.setNome(jTextFielNome.getText());
-            cliente.setFone(jTextFieldFone.getText());
-            ClientesController contr = new ClientesController();
-            contr.inserir(cliente);
-        }*/
-    }//GEN-LAST:event_jButtonGravarMouseClicked
-
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         // TODO add your handling code here:
-          ModelClientes cliente = new ModelClientes();
+        ModelClientes cliente = new ModelClientes();
 
         if (jTextFieldId_cliente.getText().isEmpty()) {
             cliente.setNome(jTextFielNome.getText());
@@ -241,7 +216,7 @@ public class Clientes extends javax.swing.JFrame {
             cliente.setFone(jTextFieldFone.getText());
             ClientesController contr = new ClientesController();
             contr.inserir(cliente);
-             
+
         }
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
@@ -289,21 +264,21 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
-          
+
         jTableClientes.setEnabled(true);
         JOptionPane.showMessageDialog(null, "Escolha uma linha");
-       
+
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jTextFielNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyPressed
         // TODO add your handling code here:
         jButtonGravar.setEnabled(true);
-        
+
     }//GEN-LAST:event_jTextFielNomeKeyPressed
 
     private void jTextFieldFoneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldFoneKeyPressed
         // TODO add your handling code here:
-         jButtonGravar.setEnabled(true);
+        jButtonGravar.setEnabled(true);
     }//GEN-LAST:event_jTextFieldFoneKeyPressed
 
     private void jButtonIncluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIncluirMouseClicked
@@ -313,7 +288,7 @@ public class Clientes extends javax.swing.JFrame {
         jTextFieldFone.setText("");
         jButtonAlterar.setEnabled(false);
         jTextFielNome.requestFocus();
-        
+
     }//GEN-LAST:event_jButtonIncluirMouseClicked
 
     /**

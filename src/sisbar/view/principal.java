@@ -35,6 +35,7 @@ public class principal extends javax.swing.JFrame {
         jMenuItemProdutos = new javax.swing.JMenuItem();
         jMenuItemClientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItemPdv = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -70,7 +71,16 @@ public class principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("vendas");
+
+        jMenuItemPdv.setText("pdv");
+        jMenuItemPdv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPdvActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemPdv);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -108,6 +118,12 @@ public class principal extends javax.swing.JFrame {
     private void jMenuItemClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemClientesMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemClientesMouseClicked
+
+    private void jMenuItemPdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPdvActionPerformed
+        // TODO add your handling code here:
+        Pdv pdv = new Pdv();
+        pdv.setVisible(true);
+    }//GEN-LAST:event_jMenuItemPdvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,6 +171,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemClientes;
+    private javax.swing.JMenuItem jMenuItemPdv;
     private javax.swing.JMenuItem jMenuItemProdutos;
     // End of variables declaration//GEN-END:variables
 }
