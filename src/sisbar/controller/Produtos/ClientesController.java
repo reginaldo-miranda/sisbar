@@ -10,12 +10,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.DAO.GenericoDao;
 import sisbar.model.ModelClientes;
 //import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
 
-public class ClientesController {
+public class ClientesController extends GenericoDao<ModelClientes> {
 
     private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
     ModelClientes mod = new ModelClientes();
@@ -35,7 +36,7 @@ public class ClientesController {
         gerente.getTransaction().commit();
         gerente.close();
     }
-     */
+     
 
     public void inserir(ModelClientes cli) { // teste de metodo
 
@@ -97,7 +98,7 @@ public class ClientesController {
         return cli;
 
     }
-
+*/
     public java.util.List<ModelClientes> getListaCli() {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();

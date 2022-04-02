@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
+import sisbar.DAO.GenericoDao;
 //import static sisbar.model.ModelClientes_.nome;
 
 /**
@@ -237,7 +238,10 @@ public class Clientes extends javax.swing.JFrame {
             if (resposta == JOptionPane.YES_OPTION) {
 
                 ClientesController contr = new ClientesController();
-                contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
+           //   contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
+           // contr.excluir(Integer.valueOf(jTextFieldId_cliente.getText()));
+       //     contr.excluir,Integer.valueOf(jTextFieldId_cliente);
+               
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
             }
             JOptionPane.showMessageDialog(this, "cancelado");
