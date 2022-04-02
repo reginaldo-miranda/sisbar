@@ -16,7 +16,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
-import javax.swing.JTextField;
 import sisbar.DAO.EntidadeBase;
 
 
@@ -82,7 +81,7 @@ public class ModelClientes implements EntidadeBase, Serializable{
     /**
      * @return the id_clientes
      */
-    
+  
     public int getId_clientes() {
         return id_clientes;
     }
@@ -140,6 +139,13 @@ public class ModelClientes implements EntidadeBase, Serializable{
   /*  public void setId_clientes(JTextField jTextFieldId_cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+
+    @Override
+    public int getId() {
+       
+        return id_clientes;
+       
+    }
 
   
  

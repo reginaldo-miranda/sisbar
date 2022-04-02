@@ -10,5 +10,6 @@ package sisbar.DAO;
  */
 public interface EntidadeBase {
     public int getId();
+   
     
 }

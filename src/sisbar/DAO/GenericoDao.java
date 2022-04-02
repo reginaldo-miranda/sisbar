@@ -18,7 +18,7 @@ public class GenericoDao<T extends EntidadeBase>{
         gerente.getTransaction().begin();
 
         //   if (cli != null ){
-        if (t.getId() > 0) {
+        if (t.getId() != 0) {
             gerente.merge(t);
             gerente.getTransaction().commit();
             JOptionPane.showMessageDialog(null, "Alterado com sucesso");
