@@ -233,18 +233,16 @@ public class Clientes extends javax.swing.JFrame {
         if (linha == -1) {
             JOptionPane.showMessageDialog(this, "escolha uma linha");
         } else {
-             
             int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar");
-            
             if (resposta == JOptionPane.YES_OPTION) {
-
                 ClientesController contr = new ClientesController();
-
                 contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
-
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
+            } else if (resposta == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "na confirmado");
+            } else if (resposta == JOptionPane.CANCEL_OPTION) {
+                JOptionPane.showMessageDialog(this, "cancelado");
             }
-            JOptionPane.showMessageDialog(this, "cancelado");
         }
 
 
