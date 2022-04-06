@@ -7,7 +7,7 @@ package sisbar.view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import net.proteanit.sql.DbUtils;
+//import net.proteanit.sql.DbUtils;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
 import sisbar.DAO.GenericoDao;
@@ -232,7 +232,7 @@ public class Clientes extends javax.swing.JFrame {
         int linha;
         String codigo = "0";
 
-        ModelClientes clie = new ModelClientes();
+      //  ModelClientes clie = new ModelClientes();
         linha = jTableClientes.getSelectedRow();
 
         if (linha == -1) {
@@ -305,9 +305,11 @@ public class Clientes extends javax.swing.JFrame {
         
       //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
         
-      // contr.pesquisar(ModelClientes.class , jTextFielNome.getText());
+      //  contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
+        contr.pesquisarCli(ModelClientes.class, jTextFielNome.getText());
         
-     jTableClientes.setModel(DbUtils.resultSetToTableModel(contr.pesquisarCli(nome(Integer.valueOf(jTextFieldPesquisar)))));
+   //  jTableClientes.setModel(DbUtils.resultSetToTableModel(contr.pesquisarCli(nome(Integer.valueOf(jTextFieldPesquisar)))));
+       jTableClientes.setAutoCreateRowSorter(true);
         
        // LINK https://www.youtube.com/watch?v=OfOvYbgEthU
     }//GEN-LAST:event_jTextFielNomeKeyReleased

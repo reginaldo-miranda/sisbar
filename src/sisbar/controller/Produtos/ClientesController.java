@@ -16,7 +16,7 @@ import sisbar.model.ModelClientes;
 //import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
-import net.proteanit.sql.DbUtils;
+//import net.proteanit.sql.DbUtils;
 
 public class ClientesController extends GenericoDao<ModelClientes> {
 
@@ -111,15 +111,31 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         return consulta.getResultList();
     }
     
-    public java.util.List<ModelClientes> pesquisarCli(String nome){
+   /* public java.util.List<ModelClientes> pesquisarCli(){
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
-
+        
         // return listaProd;
         return consulta.getResultList();
         
     }
+*/
+    public java.util.List<ModelClientes> pesquisarCli(Class<ModelClientes> aClass, String text) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-   
+        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
+        
+        // return listaProd;
+        return consulta.getResultList();  
+        
+    }
+
+ 
 }
+
+
+// pesquisa table por vector https://www.youtube.com/watch?v=cBU372RfWDI&t=11s&ab_channel=ConhecendoPrograma%C3%A7%C3%A3o
+
+// https://www.youtube.com/watch?v=jn8wIoqcjjc&ab_channel=RodrigoSPEABT
