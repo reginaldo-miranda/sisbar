@@ -5,6 +5,7 @@
 package sisbar.controller.Produtos;
 
 import java.awt.List;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -15,6 +16,7 @@ import sisbar.model.ModelClientes;
 //import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
+import net.proteanit.sql.DbUtils;
 
 public class ClientesController extends GenericoDao<ModelClientes> {
 
@@ -108,5 +110,16 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         // return listaProd;
         return consulta.getResultList();
     }
+    
+    public java.util.List<ModelClientes> pesquisarCli(String nome){
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
+        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
+
+        // return listaProd;
+        return consulta.getResultList();
+        
+    }
+
+   
 }

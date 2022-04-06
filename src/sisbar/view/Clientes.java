@@ -7,9 +7,11 @@ package sisbar.view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.proteanit.sql.DbUtils;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
 import sisbar.DAO.GenericoDao;
+import static sisbar.model.ModelClientes_.nome;
 //import static sisbar.model.ModelClientes_.nome;
 
 /**
@@ -67,6 +69,9 @@ public class Clientes extends javax.swing.JFrame {
         jTextFielNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFielNomeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFielNomeKeyReleased(evt);
             }
         });
 
@@ -292,6 +297,20 @@ public class Clientes extends javax.swing.JFrame {
         jTextFielNome.requestFocus();
 
     }//GEN-LAST:event_jButtonIncluirMouseClicked
+
+    private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
+        // TODO add your handling code here:
+        
+        ClientesController contr = new ClientesController();
+        
+      //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
+        
+      // contr.pesquisar(ModelClientes.class , jTextFielNome.getText());
+        
+     jTableClientes.setModel(DbUtils.resultSetToTableModel(contr.pesquisarCli(nome(Integer.valueOf(jTextFieldPesquisar)))));
+        
+       // LINK https://www.youtube.com/watch?v=OfOvYbgEthU
+    }//GEN-LAST:event_jTextFielNomeKeyReleased
 
     /**
      * @param args the command line arguments
