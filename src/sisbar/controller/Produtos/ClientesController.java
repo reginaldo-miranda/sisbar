@@ -8,11 +8,13 @@ import java.awt.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.DAO.GenericoDao;
 import sisbar.model.ModelClientes;
+import static sisbar.model.ModelClientes_.nome;
 //import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
@@ -125,11 +127,15 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
+   //     TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
         
+        Query q = gerente.createNamedQuery("clientes.porNome");
+     //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
+        q.setParameter("nomeprocurar", nome);
+        ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
         // return listaProd;
-        return consulta.getResultList();  
-        
+       // return consulta.getResultList();  
+        return cli;
     }
 
  
