@@ -4,8 +4,10 @@
  */
 package sisbar.controller.Produtos;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdv;
 
 /**
@@ -24,4 +26,5 @@ public class PdvController {
         gerente.getTransaction().begin();
     }
     
+   
 }

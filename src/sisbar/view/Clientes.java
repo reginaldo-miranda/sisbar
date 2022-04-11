@@ -70,9 +70,6 @@ public class Clientes extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFielNomeKeyPressed(evt);
             }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFielNomeKeyReleased(evt);
-            }
         });
 
         jTextFieldFone.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -121,6 +118,12 @@ public class Clientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableClientes);
 
+        jTextFieldPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Pesquisar");
 
         jTextFieldId_cliente.setEditable(false);
@@ -148,7 +151,6 @@ public class Clientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldPesquisar)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +164,8 @@ public class Clientes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonAlterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSair)))
+                                .addComponent(jButtonSair))
+                            .addComponent(jTextFieldPesquisar))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -298,21 +301,11 @@ public class Clientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonIncluirMouseClicked
 
-    private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
+    private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
         // TODO add your handling code here:
-        
-        ClientesController contr = new ClientesController();
-        
-      //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
-        
-      //  contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
-        contr.pesquisarCli(ModelClientes.class, jTextFielNome.getText());
-        
-   //  jTableClientes.setModel(DbUtils.resultSetToTableModel(contr.pesquisarCli(nome(Integer.valueOf(jTextFieldPesquisar)))));
-       jTableClientes.setAutoCreateRowSorter(true);
-        
-       // LINK https://www.youtube.com/watch?v=OfOvYbgEthU
-    }//GEN-LAST:event_jTextFielNomeKeyReleased
+           ClientesController contr = new ClientesController();
+            contr.pesquisarCli(jTextFieldPesquisar.getText());
+    }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -366,3 +359,5 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 }
+
+//      // LINK https://www.youtube.com/watch?v=OfOvYbgEthU

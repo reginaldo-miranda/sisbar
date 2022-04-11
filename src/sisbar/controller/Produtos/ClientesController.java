@@ -4,7 +4,7 @@
  */
 package sisbar.controller.Produtos;
 
-import java.awt.List;
+//import java.awt.List;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -18,8 +18,14 @@ import static sisbar.model.ModelClientes_.nome;
 //import static sisbar.model.ModelClientes_.nome;
 import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
-//import net.proteanit.sql.DbUtils;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.model.ModelClientes;
+import sisbar.model.ModelPdv;
+
+//import net.proteanit.sql.DbUtils;
 public class ClientesController extends GenericoDao<ModelClientes> {
 
     private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
@@ -102,7 +108,7 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         return cli;
 
     }
-*/
+     */
     public java.util.List<ModelClientes> getListaCli() {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -112,8 +118,8 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         // return listaProd;
         return consulta.getResultList();
     }
-    
-   /* public java.util.List<ModelClientes> pesquisarCli(){
+
+    /* public java.util.List<ModelClientes> pesquisarCli(){
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
@@ -122,25 +128,28 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         return consulta.getResultList();
         
     }
-*/
-    public java.util.List<ModelClientes> pesquisarCli(Class<ModelClientes> aClass, String text) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     */
+    /**
+     *
+     * @return
+     */
+    public List<ModelClientes> pesquisarCli(String nome) {
+
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-   //     TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
-        
+        //     TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
         Query q = gerente.createNamedQuery("clientes.porNome");
-     //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
         q.setParameter("nomeprocurar", nome);
-        ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
+        List<ModelClientes> client = q.getResultList();
+        //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
+
+        //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
         // return listaProd;
-       // return consulta.getResultList();  
-        return cli;
+        // return consulta.getResultList();  
+        return client;
     }
 
- 
 }
-
 
 // pesquisa table por vector https://www.youtube.com/watch?v=cBU372RfWDI&t=11s&ab_channel=ConhecendoPrograma%C3%A7%C3%A3o
 
