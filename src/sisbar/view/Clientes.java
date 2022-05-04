@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 //import net.proteanit.sql.DbUtils;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.model.ModelClientes;
-import sisbar.DAO.GenericoDao;
+//import sisbar.DAO.GenericoDao;
 import static sisbar.model.ModelClientes_.nome;
 //import static sisbar.model.ModelClientes_.nome;
 
@@ -244,7 +244,7 @@ public class Clientes extends javax.swing.JFrame {
             int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar");
             if (resposta == JOptionPane.YES_OPTION) {
                 ClientesController contr = new ClientesController();
-                contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
+             //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
             } else if (resposta == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "na confirmado");
@@ -304,7 +304,7 @@ public class Clientes extends javax.swing.JFrame {
     private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
         // TODO add your handling code here:
            ClientesController contr = new ClientesController();
-            contr.pesquisarCli(jTextFieldPesquisar.getText());
+          //  contr.pesquisarCli(jTextFieldPesquisar.getText());
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
     /**

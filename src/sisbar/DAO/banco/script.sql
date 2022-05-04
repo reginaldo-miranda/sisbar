@@ -1,5 +1,5 @@
 USE bar;
-/*
+
 CREATE table clientes
 (  
   id_clientes INT PRIMARY KEY AUTO_INCREMENT,
@@ -17,7 +17,7 @@ CREATE table produtos(
   qde DOUBLE
  
 )
-*/
+
 /*
 CREATE table pdv(
     id_pdv INT not null PRIMARY KEY AUTO_INCREMENT,
@@ -26,7 +26,7 @@ CREATE table pdv(
     data datetime
     
 )
-*/
+/*
 CREATE table pdvItens(
   id_pdvItens INT not null PRIMARY KEY AUTO_INCREMENT,
   id_cliente varchar(100),

@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
-import sisbar.DAO.GenericoDao;
+//import sisbar.DAO.GenericoDao;
 import sisbar.model.ModelClientes;
 import static sisbar.model.ModelClientes_.nome;
 //import static sisbar.model.ModelClientes_.nome;
@@ -26,18 +26,19 @@ import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdv;
 
 //import net.proteanit.sql.DbUtils;
-public class ClientesController extends GenericoDao<ModelClientes> {
+public class ClientesController  {
 
     private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
     ModelClientes mod = new ModelClientes();
 
     public ClientesController() {
 
-        getListaCli();
+   //     getListaCli();
 
     }
 
     /* este metodo esta bom
+
     public void inserir(ModelClientes cli){
         
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -46,7 +47,8 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         gerente.getTransaction().commit();
         gerente.close();
     }
-     
+     /*
+*/
 
     public void inserir(ModelClientes cli) { // teste de metodo
 
@@ -70,7 +72,7 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         }
         getListaCli();
     }
-
+    
     public void excluir(int codigo) {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -108,7 +110,9 @@ public class ClientesController extends GenericoDao<ModelClientes> {
         return cli;
 
     }
-     */
+     
+    
+  
     public java.util.List<ModelClientes> getListaCli() {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -132,25 +136,29 @@ public class ClientesController extends GenericoDao<ModelClientes> {
     /**
      *
      * @return
-     */
+     
     public List<ModelClientes> pesquisarCli(String nome) {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-        //     TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
-        Query q = gerente.createNamedQuery("clientes.porNome");
+           TypedQuery<ModelClientes> q = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
+     //   Query q = gerente.createNamedQuery("clientes.porNome");
         q.setParameter("nomeprocurar", nome);
         List<ModelClientes> client = q.getResultList();
+       
         //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
 
         //  ArrayList<ModelClientes> cli = (ArrayList<ModelClientes>) q.getResultList();
         // return listaProd;
         // return consulta.getResultList();  
         return client;
-    }
+    }*/
 
 }
 
 // pesquisa table por vector https://www.youtube.com/watch?v=cBU372RfWDI&t=11s&ab_channel=ConhecendoPrograma%C3%A7%C3%A3o
 
 // https://www.youtube.com/watch?v=jn8wIoqcjjc&ab_channel=RodrigoSPEABT
+
+// rafael sakurai
+// https://www.youtube.com/watch?v=DN8Jh-xdejU&list=PLSbRNf-AJDe-EBUYfQGf1UB94ZxFeTjgc&index=8 

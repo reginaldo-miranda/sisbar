@@ -6,9 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.model.ModelClientes;
-
+/*  
 public class GenericoDao<T extends EntidadeBase>{
-    
+  
     EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
     
     public T inserir(T t) { // teste de metodo
@@ -83,3 +83,4 @@ public class GenericoDao<T extends EntidadeBase>{
     }
     
 }
+*/
