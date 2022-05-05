@@ -141,6 +141,11 @@ public class Clientes extends javax.swing.JFrame {
                 jButtonIncluirMouseClicked(evt);
             }
         });
+        jButtonIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIncluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -306,6 +311,10 @@ public class Clientes extends javax.swing.JFrame {
            ClientesController contr = new ClientesController();
           //  contr.pesquisarCli(jTextFieldPesquisar.getText());
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
+
+    private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     /**
      * @param args the command line arguments
