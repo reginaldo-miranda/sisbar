@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>sisbar.model.ModelClientes</class>
     <class>sisbar.model.ModelProdutos</class>
+    <class>sisbar.model.ModelPdv</class>
+    <class>sisbar.model.ModelPdvItens</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sisbar?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

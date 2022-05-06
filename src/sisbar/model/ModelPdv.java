@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package sisbar.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -14,17 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+
 @Table (name = "pdv")
-public class ModelPdv {
+public class ModelPdv implements Serializable {
     
-    
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Column(name = "id_pdv")
     private int id_pdv; // INT not null PRIMARY KEY AUTO_INCREMENT,
     private String nomeCliente; // varchar(100),
     private Double total_pdv; // double,
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id_pdv")
+  
+   
     public int getId_pdv() {
         return id_pdv;
     }
