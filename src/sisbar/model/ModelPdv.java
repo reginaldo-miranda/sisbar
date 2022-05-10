@@ -1,36 +1,65 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package sisbar.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+/**
+ *
+ * @author suporte11-pc
+ */
 @Entity
-
-@Table (name = "pdv")
+@Table(name = "pdv")
+@NamedQueries({
+    @NamedQuery(name = "ModelPdv.findAll", query = "SELECT m FROM ModelPdv m"),
+    @NamedQuery(name = "ModelPdv.findByIdPdv", query = "SELECT m FROM ModelPdv m WHERE m.idPdv = :idPdv"),
+    @NamedQuery(name = "ModelPdv.findByNomeCliente", query = "SELECT m FROM ModelPdv m WHERE m.nomeCliente = :nomeCliente"),
+    @NamedQuery(name = "ModelPdv.findByTotalPdv", query = "SELECT m FROM ModelPdv m WHERE m.totalPdv = :totalPdv"),
+    @NamedQuery(name = "ModelPdv.findByData", query = "SELECT m FROM ModelPdv m WHERE m.data = :data")})
 public class ModelPdv implements Serializable {
-    
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id_pdv")
-    private int id_pdv; // INT not null PRIMARY KEY AUTO_INCREMENT,
-    private String nomeCliente; // varchar(100),
-    private Double total_pdv; // double,
 
-  
-   
-    public int getId_pdv() {
-        return id_pdv;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id_pdv")
+    private Integer idPdv;
+    @Column(name = "nomeCliente")
+    private String nomeCliente;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "total_pdv")
+    private Double totalPdv;
+    @Column(name = "data")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date data;
+
+    public ModelPdv() {
     }
 
-    public void setId_pdv(int id_pdv) {
-        this.id_pdv = id_pdv;
+    public ModelPdv(Integer idPdv) {
+        this.idPdv = idPdv;
+    }
+
+    public Integer getIdPdv() {
+        return idPdv;
+    }
+
+    public void setIdPdv(Integer idPdv) {
+        this.idPdv = idPdv;
     }
 
     public String getNomeCliente() {
@@ -41,12 +70,12 @@ public class ModelPdv implements Serializable {
         this.nomeCliente = nomeCliente;
     }
 
-    public Double getTotal_pdv() {
-        return total_pdv;
+    public Double getTotalPdv() {
+        return totalPdv;
     }
 
-    public void setTotal_pdv(Double total_pdv) {
-        this.total_pdv = total_pdv;
+    public void setTotalPdv(Double totalPdv) {
+        this.totalPdv = totalPdv;
     }
 
     public Date getData() {
@@ -56,34 +85,30 @@ public class ModelPdv implements Serializable {
     public void setData(Date data) {
         this.data = data;
     }
-    private Date data; // datetime
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + this.id_pdv;
-        hash = 71 * hash + Objects.hashCode(this.nomeCliente);
+        int hash = 0;
+        hash += (idPdv != null ? idPdv.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof ModelPdv)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        ModelPdv other = (ModelPdv) object;
+        if ((this.idPdv == null && other.idPdv != null) || (this.idPdv != null && !this.idPdv.equals(other.idPdv))) {
             return false;
         }
-        final ModelPdv other = (ModelPdv) obj;
-        if (this.id_pdv != other.id_pdv) {
-            return false;
-        }
-        return Objects.equals(this.nomeCliente, other.nomeCliente);
+        return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "sisbar.model.ModelPdv[ idPdv=" + idPdv + " ]";
+    }
     
 }

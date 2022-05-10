@@ -23,7 +23,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
-import sisbar.model.ModelPdv;
+
 
 //import net.proteanit.sql.DbUtils;
 public class ClientesController  {
