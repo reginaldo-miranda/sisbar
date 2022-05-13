@@ -106,7 +106,7 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemProdutosActionPerformed
 
     private void jMenuItemProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemProdutosMouseClicked
-          // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItemProdutosMouseClicked
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
@@ -156,7 +156,7 @@ public class principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
-              /*  conexaobanco cn = new conexaobanco();
+                /*  conexaobanco cn = new conexaobanco();
                 try {
                     cn.conexao();
                 } catch (SQLException ex) {

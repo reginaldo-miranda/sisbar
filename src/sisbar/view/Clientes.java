@@ -70,6 +70,9 @@ public class Clientes extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextFielNomeKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFielNomeKeyReleased(evt);
+            }
         });
 
         jTextFieldFone.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -240,7 +243,7 @@ public class Clientes extends javax.swing.JFrame {
         int linha;
         String codigo = "0";
 
-      //  ModelClientes clie = new ModelClientes();
+        //  ModelClientes clie = new ModelClientes();
         linha = jTableClientes.getSelectedRow();
 
         if (linha == -1) {
@@ -249,7 +252,7 @@ public class Clientes extends javax.swing.JFrame {
             int resposta = JOptionPane.showConfirmDialog(rootPane, "deseja apagar");
             if (resposta == JOptionPane.YES_OPTION) {
                 ClientesController contr = new ClientesController();
-             //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
+                //   contr.excluir(ModelClientes.class, Integer.valueOf(jTextFieldId_cliente.getText()));
                 JOptionPane.showMessageDialog(this, "excluido" + linha);
             } else if (resposta == JOptionPane.NO_OPTION) {
                 JOptionPane.showMessageDialog(this, "na confirmado");
@@ -308,13 +311,21 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
         // TODO add your handling code here:
-           ClientesController contr = new ClientesController();
-          //  contr.pesquisarCli(jTextFieldPesquisar.getText());
+        ClientesController contr = new ClientesController();
+        //  contr.pesquisarCli(jTextFieldPesquisar.getText());
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonIncluirActionPerformed
+
+    private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
+        ClientesController cli = new ClientesController();   
+        cli.pesquisarCli(jTextFielNome.getText());
+        cli.getListaCli();
+      
+           
+    }//GEN-LAST:event_jTextFielNomeKeyReleased
 
     /**
      * @param args the command line arguments
