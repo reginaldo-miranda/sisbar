@@ -61,6 +61,11 @@ public class Pdv extends javax.swing.JFrame {
         jButtonGravar.setText("gravar");
 
         jButtonBuscaClientes.setText("Clientes");
+        jButtonBuscaClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaClientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +119,12 @@ public class Pdv extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
+        // TODO add your handling code here:
+        Clientes clie = new Clientes();
+        clie.setVisible(true);
+    }//GEN-LAST:event_jButtonBuscaClientesActionPerformed
 
     /**
      * @param args the command line arguments
