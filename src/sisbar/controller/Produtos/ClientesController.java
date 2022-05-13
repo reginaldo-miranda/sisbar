@@ -21,6 +21,8 @@ import sisbar.view.Clientes;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Table;
+import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
 
@@ -134,7 +136,15 @@ public class ClientesController {
         Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nomeprocurar");
         query.setParameter("nomeprocurar" ,nome+"%");
         List<ModelClientes> lista = query.getResultList();
+        
+            
         return lista;
+    }
+    
+    
+    public void listatabela(Table table){
+        DefaultTableModel model;
+        List<ModelClientes>
     }
 
 }

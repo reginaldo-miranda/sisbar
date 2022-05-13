@@ -4,6 +4,8 @@
  */
 package sisbar.view;
 
+import java.util.List;
+import javax.persistence.Table;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -30,14 +32,26 @@ public class Clientes extends javax.swing.JFrame {
         //  jButtonAlterar.setEnabled(false);
         jTextFielNome.requestFocus();
         jTableClientes.setEnabled(false);
+        Table table = null;
 
         //  controla.equals(this);
-        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        /*  DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
+         */
+       listaPersona(table);
+      
+    }
 
+    public void listaPersona(Table table) {
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+             
+        for (ModelClientes cli : controla.getListaCli()) {
+         
+            modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
+        }
     }
 
     /**
@@ -320,11 +334,11 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
-        ClientesController cli = new ClientesController();   
+        ClientesController cli = new ClientesController();
         cli.pesquisarCli(jTextFielNome.getText());
-        cli.getListaCli();
-      
-           
+        //cli.getListaCli();
+
+
     }//GEN-LAST:event_jTextFielNomeKeyReleased
 
     /**
