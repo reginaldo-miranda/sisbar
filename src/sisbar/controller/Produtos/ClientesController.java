@@ -134,17 +134,22 @@ public class ClientesController {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nomeprocurar");
-        query.setParameter("nomeprocurar" ,nome+"%");
+        query.setParameter("nomeprocurar", nome + "%");
         List<ModelClientes> lista = query.getResultList();
-        
-            
+
         return lista;
     }
-    
-    
-    public void listatabela(Table table){
-        DefaultTableModel model;
-        List<ModelClientes>
+
+    public void listatabela(Table table) {
+        ClientesController controla = new ClientesController();
+
+        ModelClientes cliente = new ModelClientes();
+        DefaultTableModel model = null;
+        model.addRow(new Object[]{cliente.getId_clientes(), cliente.getNome(), cliente.getFone()});
+        for (ModelClientes cli : controla.getListaCli()) {
+
+            model.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
+        }
     }
 
 }

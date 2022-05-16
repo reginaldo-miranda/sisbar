@@ -41,17 +41,21 @@ public class Clientes extends javax.swing.JFrame {
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
          */
-       listaPersona(table);
-      
+        listaPersona(table);
+
     }
 
     public void listaPersona(Table table) {
+
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
-             
+        modelo.setRowCount(0);
         for (ModelClientes cli : controla.getListaCli()) {
-         
+
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
+            modelo.fireTableDataChanged();
         }
+        //  modelo.setRowCount(0);
+
     }
 
     /**
