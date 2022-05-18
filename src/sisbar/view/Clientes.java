@@ -35,14 +35,13 @@ public class Clientes extends javax.swing.JFrame {
         Table table = null;
 
         //  controla.equals(this);
-        /*  DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
-         */
-        listaPersona(table);
 
+        //  listaPersona(table);
     }
 
     public void listaPersona(Table table) {
@@ -338,10 +337,14 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+      //  modelo.setRowCount(0);
         ClientesController cli = new ClientesController();
         cli.pesquisarCli(jTextFielNome.getText());
-        //cli.getListaCli();
-
+        modelo.fireTableDataChanged();
+ //       cli.getListaCli();
+      
+        //  cli.pesquisarCli(nome)
 
     }//GEN-LAST:event_jTextFielNomeKeyReleased
 

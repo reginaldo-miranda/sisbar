@@ -68,7 +68,7 @@ public class ClientesController {
             gerente.close();
 
         }
-        getListaCli();
+        // getListaCli();
     }
 
     public void excluir(int codigo) {
@@ -130,28 +130,40 @@ public class ClientesController {
     }
      */
     public List<ModelClientes> pesquisarCli(String nome) {
-
+        /*
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nomeprocurar");
         query.setParameter("nomeprocurar", nome + "%");
         List<ModelClientes> lista = query.getResultList();
 
-        return lista;
-    }
+        return lista;*/
 
-    public void listatabela(Table table) {
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+
+        //  TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos", ModelClientes.class);
+        Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nome");
+        query.setParameter("nome", nome + "%");
+        List<ModelClientes> lista = query.getResultList();
+        return lista;// query.getResultList();
+    }
+    
+    public void listatabela(jTable table,  String nome) {
+        DefaultTableModel model;
+        
+        List<ModelClientes> dados pesquisarCli(nome);
         ClientesController controla = new ClientesController();
 
         ModelClientes cliente = new ModelClientes();
         DefaultTableModel model = null;
         model.addRow(new Object[]{cliente.getId_clientes(), cliente.getNome(), cliente.getFone()});
-        for (ModelClientes cli : controla.getListaCli()) {
+        
+      for (ModelClientes cli : controla.getListaCli()) {
 
             model.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
     }
-
+     
 }
 
 // pesquisa table por vector https://www.youtube.com/watch?v=cBU372RfWDI&t=11s&ab_channel=ConhecendoPrograma%C3%A7%C3%A3o
