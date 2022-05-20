@@ -20,8 +20,10 @@ import sisbar.model.ModelProdutos;
 import sisbar.view.Clientes;
 
 import java.util.List;
+import java.util.Vector;
 import javax.persistence.EntityManager;
 import javax.persistence.Table;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
@@ -30,6 +32,7 @@ import sisbar.model.ModelClientes;
 public class ClientesController {
 
     private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
+
     ModelClientes mod = new ModelClientes();
 
     public ClientesController() {
@@ -147,23 +150,22 @@ public class ClientesController {
         List<ModelClientes> lista = query.getResultList();
         return lista;// query.getResultList();
     }
-    
-    public void listatabela(jTable table,  String nome) {
+
+    public void listatabela(JTable table) {
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         DefaultTableModel model;
-        
-        List<ModelClientes> dados pesquisarCli(nome);
-        ClientesController controla = new ClientesController();
+        model = new DefaultTableModel();
+        Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nome");
+        query.setParameter("nome", nome + "%");
+        List<ModelClientes> lista = query.getResultList();
+       
 
-        ModelClientes cliente = new ModelClientes();
-        DefaultTableModel model = null;
-        model.addRow(new Object[]{cliente.getId_clientes(), cliente.getNome(), cliente.getFone()});
-        
-      for (ModelClientes cli : controla.getListaCli()) {
-
-            model.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
-        }
     }
-     
+
+    public List<ModelClientes> findModelClientesEntities() {
+        return findModelClientesEntities();
+    }
+
 }
 
 // pesquisa table por vector https://www.youtube.com/watch?v=cBU372RfWDI&t=11s&ab_channel=ConhecendoPrograma%C3%A7%C3%A3o

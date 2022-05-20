@@ -281,6 +281,8 @@ public class Clientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
+    
+    
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -341,6 +343,7 @@ public class Clientes extends javax.swing.JFrame {
       //  modelo.setRowCount(0);
         ClientesController cli = new ClientesController();
         cli.pesquisarCli(jTextFielNome.getText());
+        mostrarTable();
         modelo.fireTableDataChanged();
  //       cli.getListaCli();
       
@@ -348,6 +351,10 @@ public class Clientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFielNomeKeyReleased
 
+     private void mostrarTable(){
+         
+         controla.listatabela(jTableClientes);
+     }
     /**
      * @param args the command line arguments
      */

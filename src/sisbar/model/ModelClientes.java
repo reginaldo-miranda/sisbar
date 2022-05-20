@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
+import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.EntidadeBase;
 
 
@@ -146,7 +147,5 @@ public class ModelClientes implements EntidadeBase, Serializable{
         return id_clientes;
        
     }
-
-  
  
 }
