@@ -121,45 +121,16 @@ public class ClientesController {
         // return listaProd;
         return consulta.getResultList();
     }
-
-    /* public java.util.List<ModelClientes> pesquisarCli(){
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-
-        TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.porNome", ModelClientes.class);
-        
-        // return listaProd;
-        return consulta.getResultList();
-        
-    }
-     */
+    
     public List<ModelClientes> pesquisarCli(String nome) {
-        /*
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-
-        Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nomeprocurar");
-        query.setParameter("nomeprocurar", nome + "%");
-        List<ModelClientes> lista = query.getResultList();
-
-        return lista;*/
-
+       
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         //  TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos", ModelClientes.class);
         Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nome");
-        query.setParameter("nome", nome + "%");
+        query.setParameter("nome", "%" + nome + "%");
         List<ModelClientes> lista = query.getResultList();
-        return lista;// query.getResultList();
-    }
-
-    public void listatabela(JTable table) {
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        DefaultTableModel model;
-        model = new DefaultTableModel();
-        Query query = gerente.createQuery("SELECT cli FROM ModelClientes cli WHERE cli.nome LIKE :nome");
-        query.setParameter("nome", nome + "%");
-        List<ModelClientes> lista = query.getResultList();
-       
-
+        return lista;
     }
 
     public List<ModelClientes> findModelClientesEntities() {
