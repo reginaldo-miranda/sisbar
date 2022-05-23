@@ -1,34 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sisbar.controller.Produtos;
 
 //import java.awt.List;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import sisbar.DAO.FabricaGerenciadorEntidades;
-//import sisbar.DAO.GenericoDao;
-import sisbar.model.ModelClientes;
-import static sisbar.model.ModelClientes_.nome;
-//import static sisbar.model.ModelClientes_.nome;
-import sisbar.model.ModelProdutos;
-import sisbar.view.Clientes;
-
 import java.util.List;
-import java.util.Vector;
 import javax.persistence.EntityManager;
-import javax.persistence.Table;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
 
-//import net.proteanit.sql.DbUtils;
 public class ClientesController {
 
     private ArrayList<ModelClientes> listacli = new ArrayList<ModelClientes>();
@@ -37,7 +18,6 @@ public class ClientesController {
 
     public ClientesController() {
 
-        //     getListaCli();
     }
 
     /* este metodo esta bom
@@ -57,7 +37,6 @@ public class ClientesController {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         gerente.getTransaction().begin();
 
-        //   if (cli != null ){
         if (cli.getId_clientes() > 0) {
             gerente.merge(cli);
             gerente.getTransaction().commit();
@@ -71,7 +50,7 @@ public class ClientesController {
             gerente.close();
 
         }
-        // getListaCli();
+
     }
 
     public void excluir(int codigo) {
@@ -118,12 +97,11 @@ public class ClientesController {
 
         TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos", ModelClientes.class);
 
-        // return listaProd;
         return consulta.getResultList();
     }
-    
+
     public List<ModelClientes> pesquisarCli(String nome) {
-       
+
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
         //  TypedQuery<ModelClientes> consulta = (TypedQuery<ModelClientes>) gerente.createNamedQuery("clientes.todos", ModelClientes.class);

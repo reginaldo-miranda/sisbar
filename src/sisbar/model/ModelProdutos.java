@@ -76,7 +76,7 @@ public  class ModelProdutos implements Serializable {
     private int id_produtos;
    
     @Column(name = "descricao", nullable = true ,length = 100)
-    private String descricao;
+    public String descricao;
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;

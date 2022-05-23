@@ -55,6 +55,12 @@ public class produtos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produtos");
 
+        jTextDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextDescricaoKeyReleased(evt);
+            }
+        });
+
         jLabel1.setText("Descricao");
 
         jLabel2.setText("Preco unitario");
@@ -196,6 +202,10 @@ public class produtos extends javax.swing.JFrame {
     private void jTableProdComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableProdComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProdComponentShown
+
+    private void jTextDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextDescricaoKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     /**
      * @param args the command line arguments

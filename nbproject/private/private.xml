@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelClientes.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Clientes.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelProdutos.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/ClientesController.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/ProdutosController.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Pdv.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/principal.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/produtos.java</file>
         </group>
     </open-files>
 </project-private>
