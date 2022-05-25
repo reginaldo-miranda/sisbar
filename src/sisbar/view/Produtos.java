@@ -14,16 +14,16 @@ import javax.swing.table.DefaultTableModel;
  * @author suporte11-pc
  */
 public class produtos extends javax.swing.JFrame {
-
-   ProdutosController controla = new ProdutosController();
+    
+    ProdutosController controla = new ProdutosController();
     
     public produtos() {
         initComponents();
         
-         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
-         for(ModelProdutos prod : controla.getListaProd()){
+        DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
+        for (ModelProdutos prod : controla.getListaProd()) {
             
-            modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()} );
+            modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
         
     }
@@ -190,13 +190,13 @@ public class produtos extends javax.swing.JFrame {
 
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
         // TODO add your handling code here:
-       
+        
     }//GEN-LAST:event_jButtonGravarMouseClicked
 
     private void jButtonProcurarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarProdActionPerformed
         // TODO add your handling code here:
-      //
-       // pesqProd.setVisible(true);
+        //
+        // pesqProd.setVisible(true);
     }//GEN-LAST:event_jButtonProcurarProdActionPerformed
 
     private void jTableProdComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableProdComponentShown
@@ -205,6 +205,12 @@ public class produtos extends javax.swing.JFrame {
 
     private void jTextDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextDescricaoKeyReleased
         // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
+        modelo.setRowCount(0);
+        for (ModelProdutos prod : controla.pesquisarProd(jTextDescricao.getText())) {
+            
+            modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
+        }
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     /**
@@ -257,5 +263,4 @@ public class produtos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextUnidMed;
     // End of variables declaration//GEN-END:variables
 
-   
 }

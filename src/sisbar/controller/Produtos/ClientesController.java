@@ -110,10 +110,10 @@ public class ClientesController {
         List<ModelClientes> lista = query.getResultList();
         return lista;
     }
-
+/*
     public List<ModelClientes> findModelClientesEntities() {
         return findModelClientesEntities();
-    }
+    }*/
 
 }
 

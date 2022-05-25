@@ -23,7 +23,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
 
     public ProdutosController() {
 
-        getListaProd();
+      //  getListaProd();
 
     }
 
@@ -33,6 +33,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
         gerente.persist(prod);
         gerente.getTransaction().commit();
         gerente.close();
+        
     }
 
     public void PesquisarProd(ModelProdutos id) {
@@ -42,10 +43,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
 
     }
 
-    public void listarProdutos() {
-
-    }
-
+  
     public static void listarProd() {
         conexcaobco cone = new conexcaobco();
         cone.conexao();
@@ -93,12 +91,13 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
     public java.util.List<ModelProdutos> pesquisarProd(String nomeprod) {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        Query query = gerente.createQuery("SELECT cli FROM ModelProdutos prod WHERE prod.descricao LIKE :descricao");
-        query.setParameter("descricao", "%" + descricao + "%");
+        Query query = gerente.createQuery("SELECT prod FROM ModelProdutos prod WHERE prod.descricao LIKE :descricao");
+        query.setParameter("descricao", "%" + nomeprod + "%");
         java.util.List<ModelProdutos> lista = query.getResultList();
         return lista;
 
     }
+ 
 
 }
 
