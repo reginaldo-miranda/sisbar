@@ -15,17 +15,19 @@ import sisbar.model.ModelProdutos;
  * @author suporte11-pc
  */
 public class Grupo extends javax.swing.JFrame {
-
+    
     GrupoController controlag = new GrupoController();
+    
     public Grupo() {
         initComponents();
         carregarDadosG();
     }
     
-       public void carregarDadosG() {
+    public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
+        modelo.setRowCount(0);
         for (ModelGrupo gru : controlag.getListaGrupo()) {
-
+            
             modelo.addRow(new Object[]{gru.getDescricao(), gru.getDesconto()});
         }
     }
@@ -166,11 +168,16 @@ public class Grupo extends javax.swing.JFrame {
         grupo.setDescricao(jTextFieldDescricao.getText());
         grupo.setDesconto(Integer.parseInt(jTextFieldDesconto.getText()));
         grup.cadastrar(grupo);
+        
+        limparTela();
+        carregarDadosG();
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void limparTela(){
+    private void limparTela() {
+        
         jTextFieldDesconto.setText("");
         jTextFieldDescricao.setText("");
     }
+
     /**
      * @param args the command line arguments
      */

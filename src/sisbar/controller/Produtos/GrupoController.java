@@ -28,7 +28,7 @@ public class GrupoController {
     public java.util.List<ModelGrupo> getListaGrupo() {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-        TypedQuery<ModelGrupo> consulta = (TypedQuery<ModelGrupo>) gerente.createNamedQuery("produto.todos", ModelGrupo.class);
+        TypedQuery<ModelGrupo> consulta = (TypedQuery<ModelGrupo>) gerente.createNamedQuery("grupo.todos", ModelGrupo.class);
 
         // return listaProd;
         return consulta.getResultList();
