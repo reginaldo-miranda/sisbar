@@ -14,18 +14,20 @@ import javax.swing.table.DefaultTableModel;
  * @author suporte11-pc
  */
 public class produtos extends javax.swing.JFrame {
-    
+
     ProdutosController controla = new ProdutosController();
-    
+
     public produtos() {
         initComponents();
-        
+        carregarDados();
+    }
+
+    public void carregarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         for (ModelProdutos prod : controla.getListaProd()) {
-            
+
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
-        
     }
 
     /**
@@ -51,6 +53,7 @@ public class produtos extends javax.swing.JFrame {
         jButtonProcurarProd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProd = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produtos");
@@ -105,6 +108,13 @@ public class produtos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableProd);
 
+        jButton1.setText("Grupo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +139,10 @@ public class produtos extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextUnidMed, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5)
-                                    .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -152,7 +165,8 @@ public class produtos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -185,12 +199,21 @@ public class produtos extends javax.swing.JFrame {
         prod.setUnid_medida(jTextUnidMed.getText());
         ProdutosController produ = new ProdutosController();
         produ.cadastrar(prod);
-        
-    }//GEN-LAST:event_jButtonGravarActionPerformed
+        limparTela();
+        carregarDados();
 
+    }//GEN-LAST:event_jButtonGravarActionPerformed
+    public void limparTela() {
+
+        jTextDescricao.setText("");
+        jTextGrupo.setText("");
+        jTextGrupo.setText("");
+        jTextPrecoVenda.setText("");
+        jTextQtde.setText("");
+    }
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButtonGravarMouseClicked
 
     private void jButtonProcurarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProcurarProdActionPerformed
@@ -208,10 +231,15 @@ public class produtos extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         modelo.setRowCount(0);
         for (ModelProdutos prod : controla.pesquisarProd(jTextDescricao.getText())) {
-            
+
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
     }//GEN-LAST:event_jTextDescricaoKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+          Grupo grupo = new Grupo();
+          grupo.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,6 +275,7 @@ public class produtos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProcurarProd;
     private javax.swing.JLabel jLabel1;

@@ -1,5 +1,18 @@
 USE bar;
 
+
+
+CREATE table grupo(
+  id_grupo INT not null PRIMARY KEY AUTO_INCREMENT,
+  descricao varchar(100),
+  desconto DOUBLE
+ 
+ 
+)
+
+
+
+/*
 CREATE table clientes
 (  
   id_clientes INT PRIMARY KEY AUTO_INCREMENT,
@@ -36,3 +49,4 @@ CREATE table pdvItens(
   precoTotal double,
   data datetime
 )
+*/

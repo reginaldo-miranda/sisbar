@@ -26,6 +26,7 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
       //  getListaProd();
 
     }
+    
 
     public void cadastrar(ModelProdutos prod) {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
@@ -33,6 +34,8 @@ public class ProdutosController extends sisbar.model.ModelProdutos {
         gerente.persist(prod);
         gerente.getTransaction().commit();
         gerente.close();
+       
+      
         
     }
 
