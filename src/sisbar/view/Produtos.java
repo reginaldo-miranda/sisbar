@@ -8,6 +8,8 @@ import sisbar.controller.Produtos.ProdutosController;
 import sisbar.model.ModelProdutos;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import sisbar.controller.Produtos.GrupoController;
+import sisbar.model.ModelGrupo;
 
 /**
  *
@@ -239,6 +241,11 @@ public class produtos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           Grupo grupo = new Grupo();
           grupo.setVisible(true);
+          ModelGrupo gr = new ModelGrupo();
+          int teste = grupo.getGrupoSelecionado();
+        //  jTextGrupo.setText(Integer.toString(grupo.getGrupoSelecionado(teste)));
+        jTextGrupo.setText(Integer.toString(teste) );
+          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
