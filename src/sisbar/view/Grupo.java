@@ -16,23 +16,23 @@ import sisbar.model.ModelProdutos;
  * @author suporte11-pc
  */
 public class Grupo extends javax.swing.JFrame {
-    
+
     private GrupoController controlag = new GrupoController();
-    
-    private int  grupoSelecionado;
-    private boolean  selecionado = false;
-    
-     
+
+    private Grupo grupoSelecionado;
+    private boolean selecionado = false;
+  //  private Object nomeGrupo;
+
     public Grupo() {
         initComponents();
         carregarDadosG();
     }
-    
+
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
         modelo.setRowCount(0);
         for (ModelGrupo gru : getControlag().getListaGrupo()) {
-            
+
             modelo.addRow(new Object[]{gru.getDescricao(), gru.getDesconto()});
         }
     }
@@ -54,7 +54,7 @@ public class Grupo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         jButtonSelecionar = new javax.swing.JButton();
@@ -82,6 +82,12 @@ public class Grupo extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jTextFieldDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldDescricaoKeyReleased(evt);
+            }
+        });
+
         jLabel1.setText("Descricao");
 
         jLabel2.setText("Desconto");
@@ -93,7 +99,12 @@ public class Grupo extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -133,7 +144,7 @@ public class Grupo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)
+                                .addComponent(jButtonCancelar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,7 +171,7 @@ public class Grupo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonCancelar)
                     .addComponent(jButton3)
                     .addComponent(jButtonSair)
                     .addComponent(jButtonSelecionar))
@@ -182,27 +193,38 @@ public class Grupo extends javax.swing.JFrame {
         grupo.setDescricao(jTextFieldDescricao.getText());
         grupo.setDesconto(Integer.parseInt(jTextFieldDesconto.getText()));
         grup.cadastrar(grupo);
-        
+
         limparTela();
         carregarDadosG();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         int linha = jTableGrupo.getSelectedRow();
-        
-        if(linha == -1)
+        ModelGrupo grupo = new ModelGrupo();
+        if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
-        else{
-                  
-            grupoSelecionado = jTableGrupo.getSelectedRow();
-            selecionado = true;
-            JOptionPane.showMessageDialog(null, "Linha selecionado foi" + linha);
-            this.dispose();
+        } else {
+           grupoSelecionado = getGrupoSelecionado();
         }
-        
+
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
+
+    private void jTextFieldDescricaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldDescricaoKeyReleased
+        // TODO add your handling code here:
+        DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
+        modelo.setRowCount(0);
+        for (ModelGrupo gru : getControlag().pesquisarGrupo(jTextFieldDescricao.getText())) {
+
+            modelo.addRow(new Object[]{gru.getDescricao(), gru.getDesconto()});
+        }
+    }//GEN-LAST:event_jTextFieldDescricaoKeyReleased
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        setSelecionado(false);
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
     private void limparTela() {
-        
+
         jTextFieldDesconto.setText("");
         jTextFieldDescricao.setText("");
     }
@@ -244,8 +266,8 @@ public class Grupo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JButton jButtonSelecionar;
     private javax.swing.JLabel jLabel1;
@@ -267,7 +289,30 @@ public class Grupo extends javax.swing.JFrame {
     /**
      * @return the grupoSelecionado
      */
-    public int getGrupoSelecionado() {
+    public Grupo getGrupoSelecionado() {
         return grupoSelecionado;
     }
+
+    /**
+     * @param grupoSelecionado the grupoSelecionado to set
+     */
+    public void setGrupoSelecionado(Grupo grupoSelecionado) {
+        this.grupoSelecionado = grupoSelecionado;
+    }
+
+    /**
+     * @return the selecionado
+     */
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    /**
+     * @param selecionado the selecionado to set
+     */
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
+    }
+
+  
 }

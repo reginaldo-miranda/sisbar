@@ -18,6 +18,7 @@ import sisbar.model.ModelGrupo;
 public class produtos extends javax.swing.JFrame {
 
     ProdutosController controla = new ProdutosController();
+    ModelProdutos prod = new ModelProdutos();
 
     public produtos() {
         initComponents();
@@ -239,13 +240,12 @@ public class produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          Grupo grupo = new Grupo();
-          grupo.setVisible(true);
-          ModelGrupo gr = new ModelGrupo();
-          int teste = grupo.getGrupoSelecionado();
-        //  jTextGrupo.setText(Integer.toString(grupo.getGrupoSelecionado(teste)));
-        jTextGrupo.setText(Integer.toString(teste) );
-          
+        Grupo grupo = new Grupo();
+        ModelGrupo md = new ModelGrupo();
+        grupo.setVisible(true);
+        ModelGrupo gr = new ModelGrupo();
+       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
