@@ -4,6 +4,8 @@
  */
 package sisbar.view;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import sisbar.controller.Produtos.ProdutosController;
 import sisbar.model.ModelProdutos;
 import javax.swing.JTable;
@@ -56,7 +58,7 @@ public class produtos extends javax.swing.JFrame {
         jButtonProcurarProd = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProd = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButtonBuscarGrupo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produtos");
@@ -111,10 +113,10 @@ public class produtos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableProd);
 
-        jButton1.setText("Grupo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscarGrupo.setText("Grupo");
+        jButtonBuscarGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBuscarGrupoActionPerformed(evt);
             }
         });
 
@@ -145,7 +147,7 @@ public class produtos extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1))))
+                                        .addComponent(jButtonBuscarGrupo))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -169,7 +171,7 @@ public class produtos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonBuscarGrupo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -239,14 +241,17 @@ public class produtos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Grupo grupo = new Grupo();
-        ModelGrupo md = new ModelGrupo();
+    private void jButtonBuscarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoActionPerformed
+        String nome = "jose" ;
+        Grupo grupo = new Grupo(nome);
+      
         grupo.setVisible(true);
-        ModelGrupo gr = new ModelGrupo();
        
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+        /*
+        if (grupo.isSelecionado()){
+            JOptionPane.showMessageDialog(null, "estou aqui produtos");
+        }*/
+    }//GEN-LAST:event_jButtonBuscarGrupoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,7 +287,7 @@ public class produtos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBuscarGrupo;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProcurarProd;
     private javax.swing.JLabel jLabel1;

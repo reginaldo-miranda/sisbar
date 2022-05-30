@@ -4,9 +4,16 @@
  */
 package sisbar.view;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.UIManager.get;
 import javax.swing.table.DefaultTableModel;
+import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.controller.Produtos.GrupoController;
 import sisbar.model.ModelGrupo;
 import sisbar.model.ModelProdutos;
@@ -19,15 +26,24 @@ public class Grupo extends javax.swing.JFrame {
 
     private GrupoController controlag = new GrupoController();
 
-    private Grupo grupoSelecionado;
+    private ModelGrupo grupoSelecionado;
     private boolean selecionado = false;
-  //  private Object nomeGrupo;
+    private Object nomeGrupo;
+    private String itenSelecionado;
+    
+    List<ModelGrupo> listag = new ArrayList<> ();
 
     public Grupo() {
         initComponents();
         carregarDadosG();
     }
+    
+    public Grupo(String nome){
+        
+        JOptionPane.showMessageDialog(null, "aquii no construtor" + nome );
+    }
 
+   
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
         modelo.setRowCount(0);
@@ -200,11 +216,15 @@ public class Grupo extends javax.swing.JFrame {
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         int linha = jTableGrupo.getSelectedRow();
+        int col   = jTableGrupo.getSelectedColumn();
         ModelGrupo grupo = new ModelGrupo();
+        
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
-           grupoSelecionado = getGrupoSelecionado();
+            setNomeGrupo(jTableGrupo.getModel().getValueAt(linha, col));
+            setSelecionado(true);
+            this.dispose();
         }
 
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
@@ -289,14 +309,14 @@ public class Grupo extends javax.swing.JFrame {
     /**
      * @return the grupoSelecionado
      */
-    public Grupo getGrupoSelecionado() {
+    public ModelGrupo getGrupoSelecionado() {
         return grupoSelecionado;
     }
 
     /**
      * @param grupoSelecionado the grupoSelecionado to set
      */
-    public void setGrupoSelecionado(Grupo grupoSelecionado) {
+    public void setGrupoSelecionado(ModelGrupo grupoSelecionado) {
         this.grupoSelecionado = grupoSelecionado;
     }
 
@@ -312,6 +332,34 @@ public class Grupo extends javax.swing.JFrame {
      */
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
+    }
+
+    /**
+     * @return the itenSelecionado
+     */
+    public String getItenSelecionado() {
+        return itenSelecionado;
+    }
+
+    /**
+     * @param itenSelecionado the itenSelecionado to set
+     */
+    public void setItenSelecionado(String itenSelecionado) {
+        this.itenSelecionado = itenSelecionado;
+    }
+
+    /**
+     * @return the nomeGrupo
+     */
+    public Object getNomeGrupo() {
+        return nomeGrupo;
+    }
+
+    /**
+     * @param nomeGrupo the nomeGrupo to set
+     */
+    public void setNomeGrupo(Object nomeGrupo) {
+        this.nomeGrupo = nomeGrupo;
     }
 
   
