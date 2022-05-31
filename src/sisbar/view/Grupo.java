@@ -32,18 +32,25 @@ public class Grupo extends javax.swing.JFrame {
     private String itenSelecionado;
     
     List<ModelGrupo> listag = new ArrayList<> ();
+    private String nome1;
+   
 
     public Grupo() {
         initComponents();
+        
         carregarDadosG();
     }
     
-    public Grupo(String nome){
+    public Grupo(JFrame Frame, boolean selecionado){
         
-        JOptionPane.showMessageDialog(null, "aquii no construtor" + nome );
+     carregarDadosG();
+     getItenSelecionado();
+     selecionado = true;
+        
     }
-
-   
+    
+     
+       
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
         modelo.setRowCount(0);
@@ -222,7 +229,7 @@ public class Grupo extends javax.swing.JFrame {
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
-            setNomeGrupo(jTableGrupo.getModel().getValueAt(linha, col));
+           itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
             setSelecionado(true);
             this.dispose();
         }

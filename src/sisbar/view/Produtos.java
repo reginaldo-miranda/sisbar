@@ -21,6 +21,7 @@ public class produtos extends javax.swing.JFrame {
 
     ProdutosController controla = new ProdutosController();
     ModelProdutos prod = new ModelProdutos();
+    private String sele;
 
     public produtos() {
         initComponents();
@@ -242,15 +243,16 @@ public class produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     private void jButtonBuscarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoActionPerformed
-        String nome = "jose" ;
-        Grupo grupo = new Grupo(nome);
-      
-        grupo.setVisible(true);
+        
        
-        /*
-        if (grupo.isSelecionado()){
-            JOptionPane.showMessageDialog(null, "estou aqui produtos");
-        }*/
+        Grupo gru = new Grupo();
+        ModelGrupo mgru = new ModelGrupo();
+        gru.setVisible(true);
+        String descricao = gru.getItenSelecionado();
+        
+        jTextGrupo.setText(descricao);
+        
+        
     }//GEN-LAST:event_jButtonBuscarGrupoActionPerformed
 
     /**
