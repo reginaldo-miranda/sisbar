@@ -26,31 +26,28 @@ public class Grupo extends javax.swing.JFrame {
 
     private GrupoController controlag = new GrupoController();
 
-    private ModelGrupo grupoSelecionado;
+    private GrupoController grupoSelecionado;
     private boolean selecionado = false;
     private Object nomeGrupo;
     private String itenSelecionado;
-    
-    List<ModelGrupo> listag = new ArrayList<> ();
+
+    List<ModelGrupo> listag = new ArrayList<>();
     private String nome1;
-   
 
     public Grupo() {
         initComponents();
-        
+
         carregarDadosG();
     }
-    
-    public Grupo(JFrame Frame, boolean selecionado){
-        
-     carregarDadosG();
-     getItenSelecionado();
-     selecionado = true;
-        
+
+    public Grupo(String itens) {
+
+        carregarDadosG();
+        getItenSelecionado();
+        isSelecionado();
+
     }
-    
-     
-       
+
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
         modelo.setRowCount(0);
@@ -139,6 +136,11 @@ public class Grupo extends javax.swing.JFrame {
         });
 
         jButtonSelecionar.setText("Selecionar");
+        jButtonSelecionar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonSelecionarMouseClicked(evt);
+            }
+        });
         jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSelecionarActionPerformed(evt);
@@ -202,6 +204,7 @@ public class Grupo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -223,15 +226,17 @@ public class Grupo extends javax.swing.JFrame {
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
         int linha = jTableGrupo.getSelectedRow();
-        int col   = jTableGrupo.getSelectedColumn();
+        int col = jTableGrupo.getSelectedColumn();
         ModelGrupo grupo = new ModelGrupo();
-        
+
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
-           itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
+            itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
+                  
             setSelecionado(true);
             this.dispose();
+
         }
 
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
@@ -250,6 +255,11 @@ public class Grupo extends javax.swing.JFrame {
         // TODO add your handling code here:
         setSelecionado(false);
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonSelecionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSelecionarMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonSelecionarMouseClicked
     private void limparTela() {
 
         jTextFieldDesconto.setText("");
@@ -316,14 +326,14 @@ public class Grupo extends javax.swing.JFrame {
     /**
      * @return the grupoSelecionado
      */
-    public ModelGrupo getGrupoSelecionado() {
+    public GrupoController getGrupoSelecionado() {
         return grupoSelecionado;
     }
 
     /**
      * @param grupoSelecionado the grupoSelecionado to set
      */
-    public void setGrupoSelecionado(ModelGrupo grupoSelecionado) {
+    public void setGrupoSelecionado(GrupoController grupoSelecionado) {
         this.grupoSelecionado = grupoSelecionado;
     }
 
@@ -369,5 +379,4 @@ public class Grupo extends javax.swing.JFrame {
         this.nomeGrupo = nomeGrupo;
     }
 
-  
 }
