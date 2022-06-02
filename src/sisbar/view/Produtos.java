@@ -12,6 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.GrupoController;
 import sisbar.model.ModelGrupo;
+import static sisbar.model.ModelProdutos_.grupo;
 
 /**
  *
@@ -21,14 +22,13 @@ public class produtos extends javax.swing.JFrame {
 
     ProdutosController controla = new ProdutosController();
     ModelProdutos prod = new ModelProdutos();
-    Grupo gru = new Grupo();
-    
-   // private String sele;
+    // Grupo gru = new Grupo();
 
+    // private String sele;
     public produtos() {
         initComponents();
         carregarDados();
-     
+
     }
 
     public void carregarDados() {
@@ -121,6 +121,11 @@ public class produtos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableProd);
 
         jButtonBuscarGrupo.setText("Grupo");
+        jButtonBuscarGrupo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonBuscarGrupoMouseClicked(evt);
+            }
+        });
         jButtonBuscarGrupo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarGrupoActionPerformed(evt);
@@ -253,21 +258,35 @@ public class produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     private void jButtonBuscarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoActionPerformed
-        boolean selecionado = false;
+        /*
+        boolean selecionado = true;
 
-        Grupo gru = new Grupo();
-        gru.carregarDadosG();
-        ModelGrupo mgru = new ModelGrupo();
+        Grupo gru = new Grupo(this, true );
+        //   ModelGrupo mgru = new ModelGrupo();
         gru.setVisible(true);
         String descricao = gru.getItenSelecionado();
 
-         jTextGrupo.setText(descricao);
-
+        jTextGrupo.setText(descricao);
+         */
     }//GEN-LAST:event_jButtonBuscarGrupoActionPerformed
 
     private void jTableProdComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableProdComponentMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProdComponentMoved
+
+    private void jButtonBuscarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoMouseClicked
+
+        Grupo gru = new Grupo(this, true);
+        if (gru.isSelecionado()) {
+            //   ModelGrupo mgru = new ModelGrupo();
+            gru.setVisible(true);
+            String descricao = gru.getItenSelecionado();
+
+            jTextGrupo.setText(descricao);
+        }else{
+             gru.setVisible(true);
+        }
+    }//GEN-LAST:event_jButtonBuscarGrupoMouseClicked
 
     /**
      * @param args the command line arguments

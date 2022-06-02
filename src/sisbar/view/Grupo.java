@@ -34,19 +34,17 @@ public class Grupo extends javax.swing.JFrame {
     List<ModelGrupo> listag = new ArrayList<>();
     private String nome1;
 
-    public Grupo() {
+    public Grupo(java.awt.Frame parent, boolean selecionado) {
         initComponents();
 
         carregarDadosG();
     }
 
-    public Grupo(String itens) {
-
-        carregarDadosG();
-        getItenSelecionado();
-        isSelecionado();
-
+    private Grupo() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
+
 
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
@@ -225,15 +223,15 @@ public class Grupo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        int linha = jTableGrupo.getSelectedRow();
-        int col = jTableGrupo.getSelectedColumn();
-        ModelGrupo grupo = new ModelGrupo();
 
+        int linha = jTableGrupo.getSelectedRow();
+
+        // ModelGrupo grupo = new ModelGrupo();
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
             itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
-                  
+
             setSelecionado(true);
             this.dispose();
 
