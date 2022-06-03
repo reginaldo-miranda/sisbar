@@ -1,6 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+
+ link exemplo https://pt.stackoverflow.com/questions/139885/retornar-informa%C3%A7%C3%B5es-da-linha-da-jtable-ap%C3%B3s-sele%C3%A7%C3%A3o
  */
 package sisbar.view;
 
@@ -23,12 +25,12 @@ public class produtos extends javax.swing.JFrame {
     ProdutosController controla = new ProdutosController();
     ModelProdutos prod = new ModelProdutos();
     // Grupo gru = new Grupo();
+    private JFrame JFrame;
 
     // private String sele;
     public produtos() {
         initComponents();
         carregarDados();
-
     }
 
     public void carregarDados() {
@@ -277,15 +279,13 @@ public class produtos extends javax.swing.JFrame {
     private void jButtonBuscarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoMouseClicked
 
         Grupo gru = new Grupo(this, true);
-        if (gru.isSelecionado()) {
-            //   ModelGrupo mgru = new ModelGrupo();
-            gru.setVisible(true);
-            String descricao = gru.getItenSelecionado();
+ 
+        gru.setVisible(true);
+        gru.setTelapai(this);
+        String descricao = gru.getItenSelecionado();
 
-            jTextGrupo.setText(descricao);
-        }else{
-             gru.setVisible(true);
-        }
+        jTextGrupo.setText(descricao);
+
     }//GEN-LAST:event_jButtonBuscarGrupoMouseClicked
 
     /**

@@ -22,7 +22,7 @@ import sisbar.model.ModelProdutos;
  *
  * @author suporte11-pc
  */
-public class Grupo extends javax.swing.JFrame {
+public final class Grupo extends javax.swing.JFrame {
 
     private GrupoController controlag = new GrupoController();
 
@@ -30,21 +30,24 @@ public class Grupo extends javax.swing.JFrame {
     private boolean selecionado = false;
     private Object nomeGrupo;
     private String itenSelecionado;
-
-    List<ModelGrupo> listag = new ArrayList<>();
     private String nome1;
+    private JFrame JFrame;
 
     public Grupo(java.awt.Frame parent, boolean selecionado) {
         initComponents();
 
         carregarDadosG();
+        setTelapai(JFrame);
     }
 
-    private Grupo() {
+    public Grupo() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
+
     }
 
+    public void setTelapai(JFrame jframe) {
+        this.JFrame = jframe;
+    }
 
     public void carregarDadosG() {
         DefaultTableModel modelo = (DefaultTableModel) jTableGrupo.getModel();
@@ -226,13 +229,12 @@ public class Grupo extends javax.swing.JFrame {
 
         int linha = jTableGrupo.getSelectedRow();
 
-        // ModelGrupo grupo = new ModelGrupo();
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
             itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
-
             setSelecionado(true);
+            
             this.dispose();
 
         }
