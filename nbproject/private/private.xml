@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelGrupo.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelProdutos.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/GrupoController.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Grupo.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/principal.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/produtos.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Produtos.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/DialogGrupo.java</file>
         </group>
     </open-files>
 </project-private>
