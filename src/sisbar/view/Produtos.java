@@ -1,17 +1,41 @@
 // link exemplo https://pt.stackoverflow.com/questions/139885/retornar-informa%C3%A7%C3%B5es-da-linha-da-jtable-ap%C3%B3s-sele%C3%A7%C3%A3o
 package sisbar.view;
 
-import java.awt.Frame;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import sisbar.controller.Produtos.ProdutosController;
 import sisbar.model.ModelProdutos;
 import javax.swing.table.DefaultTableModel;
-import static sisbar.model.ModelPdvItens_.produtos;
 
 public class produtos extends javax.swing.JFrame {
 
-    ProdutosController controla = new ProdutosController();
+    /**
+     * @return the controla
+     */
+    public ProdutosController getControla() {
+        return controla;
+    }
+
+    /**
+     * @param controla the controla to set
+     */
+    public void setControla(ProdutosController controla) {
+        this.controla = controla;
+    }
+
+    /**
+     * @return the jTextDescricao
+     */
+    public javax.swing.JTextField getjTextDescricao() {
+        return jTextDescricao;
+    }
+
+    /**
+     * @param jTextDescricao the jTextDescricao to set
+     */
+    public void setjTextDescricao(javax.swing.JTextField jTextDescricao) {
+        this.jTextDescricao = jTextDescricao;
+    }
+
+    private ProdutosController controla = new ProdutosController();
 
     private String receber = null;
 
@@ -20,9 +44,10 @@ public class produtos extends javax.swing.JFrame {
         carregarDados();
 
     }
+
     public void carregarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
-        for (ModelProdutos prod : controla.getListaProd()) {
+        for (ModelProdutos prod : getControla().getListaProd()) {
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
     }
@@ -196,7 +221,7 @@ public class produtos extends javax.swing.JFrame {
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         // TODO add your handling code here:
         ModelProdutos prod = new ModelProdutos();
-        prod.setDescricao(jTextDescricao.getText());
+        prod.setDescricao(getjTextDescricao().getText());
         prod.setPreco_venda(Integer.parseInt(jTextPrecoVenda.getText()));
         prod.setQde(Integer.parseInt(jTextQtde.getText()));
         prod.setGrupo(jTextGrupo.getText());
@@ -209,11 +234,23 @@ public class produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGravarActionPerformed
     public void limparTela() {
 
-        jTextDescricao.setText("");
+        getjTextDescricao().setText("");
         jTextGrupo.setText("");
         jTextGrupo.setText("");
         jTextPrecoVenda.setText("");
         jTextQtde.setText("");
+    }
+
+    public void pegardados(ModelProdutos model) {
+        jTextDescricao.setText(model.getDescricao());
+        jTextDescricao.setFocusable(true);
+        if (jTextDescricao.isFocusable()) {
+            DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
+            modelo.setRowCount(0);
+            for (ModelProdutos prod : getControla().pesquisarProd(getjTextDescricao().getText())) {
+                modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
+            }
+        }
     }
     private void jButtonGravarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGravarMouseClicked
         // TODO add your handling code here:
@@ -233,7 +270,7 @@ public class produtos extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         modelo.setRowCount(0);
-        for (ModelProdutos prod : controla.pesquisarProd(jTextDescricao.getText())) {
+        for (ModelProdutos prod : getControla().pesquisarProd(getjTextDescricao().getText())) {
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
     }//GEN-LAST:event_jTextDescricaoKeyReleased

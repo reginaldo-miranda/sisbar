@@ -26,8 +26,9 @@ public class ModelPdvItens {
     
     @ManyToOne
     private ModelProdutos produtos;
+    
 
-  private ModelPdvItens(){
+  public ModelPdvItens(){
       
   }
   

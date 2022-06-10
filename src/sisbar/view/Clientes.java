@@ -1,6 +1,7 @@
 package sisbar.view;
 
 import javax.persistence.Table;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
@@ -10,26 +11,40 @@ public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
     ModelClientes model = new ModelClientes();
+    
+    private String clienteselecionado;
 
-    public Clientes() {
+    public Clientes(java.awt.Frame parent, boolean modal) {
         initComponents();
+        carregarClientes();
         jButtonGravar.setEnabled(false);
         jButtonExcluir.setEnabled(false);
         jTextFielNome.requestFocus();
         jTableClientes.setEnabled(false);
         Table table = null;
-
+/*
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
+*/
+    }
+    
+    public void carregarClientes(){
+           DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        for (ModelClientes cli : controla.getListaCli()) {
 
+            modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
+        }
+    }
+
+    Clientes() {
     }
 
     public void listaPersona(Table table) {
 
-        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) getjTableClientes().getModel();
         modelo.setRowCount(0);
         for (ModelClientes cli : controla.getListaCli()) {
 
@@ -152,12 +167,21 @@ public class Clientes extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextFielNome, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButtonIncluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonGravar)
@@ -167,17 +191,8 @@ public class Clientes extends javax.swing.JFrame {
                                 .addComponent(jButtonAlterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonSair))
-                            .addComponent(jTextFieldPesquisar))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextFieldId_cliente, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +209,7 @@ public class Clientes extends javax.swing.JFrame {
                 .addComponent(jTextFieldFone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,10 +224,11 @@ public class Clientes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-   
+
         ModelClientes cliente = new ModelClientes();
 
         if (jTextFieldId_cliente.getText().isEmpty()) {
@@ -237,7 +253,7 @@ public class Clientes extends javax.swing.JFrame {
         int linha;
         String codigo = "0";
 
-        linha = jTableClientes.getSelectedRow();
+        linha = getjTableClientes().getSelectedRow();
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(this, "escolha uma linha");
@@ -265,11 +281,11 @@ public class Clientes extends javax.swing.JFrame {
 
     private void jTableClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableClientesMouseClicked
         // TODO add your handling code here:
-        int linha;
-        linha = jTableClientes.getSelectedRow();
-        jTextFieldId_cliente.setText(jTableClientes.getValueAt(linha, 0).toString());
-        jTextFielNome.setText(jTableClientes.getValueAt(linha, 1).toString());
-        jTextFieldFone.setText(jTableClientes.getValueAt(linha, 2).toString());
+        int linha = getjTableClientes().getSelectedRow();
+        jTextFieldId_cliente.setText(getjTableClientes().getValueAt(linha, 0).toString());
+        jTextFielNome.setText(getjTableClientes().getValueAt(linha, 1).toString());
+        jTextFieldFone.setText(getjTableClientes().getValueAt(linha, 2).toString());
+        
         jButtonAlterar.setEnabled(true);
         jButtonExcluir.setEnabled(true);
     }//GEN-LAST:event_jTableClientesMouseClicked
@@ -277,7 +293,7 @@ public class Clientes extends javax.swing.JFrame {
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         // TODO add your handling code here:
 
-        jTableClientes.setEnabled(true);
+        getjTableClientes().setEnabled(true);
         JOptionPane.showMessageDialog(null, "Escolha uma linha");
 
     }//GEN-LAST:event_jButtonAlterarActionPerformed
@@ -314,7 +330,7 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIncluirActionPerformed
 
     private void jTextFielNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielNomeKeyReleased
-        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) getjTableClientes().getModel();
         modelo.setRowCount(0);
 
         for (ModelClientes cli : controla.pesquisarCli(jTextFielNome.getText())) {
@@ -329,7 +345,7 @@ public class Clientes extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-     
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Clientes().setVisible(true);
@@ -353,6 +369,34 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldId_cliente;
     private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the clienteselecionado
+     */
+    public String getClienteselecionado() {
+        return clienteselecionado;
+    }
+
+    /**
+     * @param clienteselecionado the clienteselecionado to set
+     */
+    public void setClienteselecionado(String clienteselecionado) {
+        this.clienteselecionado = clienteselecionado;
+    }
+
+    /**
+     * @return the jTableClientes
+     */
+    public javax.swing.JTable getjTableClientes() {
+        return jTableClientes;
+    }
+
+    /**
+     * @param jTableClientes the jTableClientes to set
+     */
+    public void setjTableClientes(javax.swing.JTable jTableClientes) {
+        this.jTableClientes = jTableClientes;
+    }
 }
 
 //      // LINK https://www.youtube.com/watch?v=OfOvYbgEthU
