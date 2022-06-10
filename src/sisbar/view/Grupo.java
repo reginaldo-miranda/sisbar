@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package sisbar.view;
 
 import java.awt.Frame;
@@ -17,7 +13,6 @@ public class Grupo extends javax.swing.JDialog {
     public String itenSelecionado;
     public produtos produtos;
     private JFrame frame;
-    
 
     private GrupoController controlag = new GrupoController();
 
@@ -26,11 +21,6 @@ public class Grupo extends javax.swing.JDialog {
         initComponents();
         carregarDadosG();
     }
-    
-    public Grupo(JFrame frame){
-        this.produtos = produtos;
-    }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -143,22 +133,16 @@ public class Grupo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-      
+
         int linha = jTableGrupo.getSelectedRow();
-         
+
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Grupo");
         } else {
 
             setSelecionado(true);
 
-             itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
-                       
-            // produtos prod = new produtos();
-            
-           //  prod.receber(itenSelecionado);
-           //  prod.setVisible(true);
-
+            itenSelecionado = jTableGrupo.getValueAt(linha, 0).toString();
             this.dispose();
 
         }

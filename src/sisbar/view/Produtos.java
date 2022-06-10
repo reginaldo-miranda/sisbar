@@ -14,19 +14,12 @@ public class produtos extends javax.swing.JFrame {
     ProdutosController controla = new ProdutosController();
 
     private String receber = null;
-    public JFrame frame;
 
     public produtos() {
         initComponents();
         carregarDados();
 
     }
-
-    produtos(JFrame frame) {
-        produtos = produtos;
-
-    }
-
     public void carregarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         for (ModelProdutos prod : controla.getListaProd()) {
@@ -253,23 +246,12 @@ public class produtos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableProdComponentMoved
 
-    public void receber(String receber) {
-
-        jTextGrupo.setText(receber);
-        JOptionPane.showMessageDialog(null, "estou aqui " + receber);
-    }
-
-
     private void jButtonBuscarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoMouseClicked
 
-//       Grupo gru = new Grupo((Frame) produtos, true);
         Grupo dialog = new Grupo(new javax.swing.JFrame(), true);
-
         dialog.setVisible(true);
-
         receber = dialog.getItenSelecionado();
         jTextGrupo.setText(receber);
-        // gru.setVisible(true);
 
     }//GEN-LAST:event_jButtonBuscarGrupoMouseClicked
 
