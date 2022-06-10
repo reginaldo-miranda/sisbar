@@ -1,35 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
-
- link exemplo https://pt.stackoverflow.com/questions/139885/retornar-informa%C3%A7%C3%B5es-da-linha-da-jtable-ap%C3%B3s-sele%C3%A7%C3%A3o
- */
+// link exemplo https://pt.stackoverflow.com/questions/139885/retornar-informa%C3%A7%C3%B5es-da-linha-da-jtable-ap%C3%B3s-sele%C3%A7%C3%A3o
 package sisbar.view;
 
+import java.awt.Frame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import sisbar.controller.Produtos.ProdutosController;
 import sisbar.model.ModelProdutos;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import sisbar.controller.Produtos.GrupoController;
-import sisbar.model.ModelGrupo;
+import static sisbar.model.ModelPdvItens_.produtos;
 
 public class produtos extends javax.swing.JFrame {
 
     ProdutosController controla = new ProdutosController();
-   
+
     private String receber = null;
+    public JFrame frame;
 
     public produtos() {
         initComponents();
         carregarDados();
+
+    }
+
+    produtos(JFrame frame) {
+        produtos = produtos;
+
     }
 
     public void carregarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         for (ModelProdutos prod : controla.getListaProd()) {
-
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
     }
@@ -53,7 +53,6 @@ public class produtos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProd = new javax.swing.JTable();
         jButtonBuscarGrupo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Produtos");
@@ -123,13 +122,6 @@ public class produtos extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("dialogGrupo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,15 +151,13 @@ public class produtos extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButtonBuscarGrupo)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton1))))))
+                                                .addComponent(jButtonBuscarGrupo))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addComponent(jButtonGravar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonProcurarProd)))
-                        .addGap(0, 153, Short.MAX_VALUE))
+                        .addGap(0, 213, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -186,8 +176,7 @@ public class produtos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextPrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscarGrupo)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonBuscarGrupo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -252,13 +241,12 @@ public class produtos extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         modelo.setRowCount(0);
         for (ModelProdutos prod : controla.pesquisarProd(jTextDescricao.getText())) {
-
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }
     }//GEN-LAST:event_jTextDescricaoKeyReleased
 
     private void jButtonBuscarGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoActionPerformed
-     
+
     }//GEN-LAST:event_jButtonBuscarGrupoActionPerformed
 
     private void jTableProdComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTableProdComponentMoved
@@ -266,6 +254,7 @@ public class produtos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTableProdComponentMoved
 
     public void receber(String receber) {
+
         jTextGrupo.setText(receber);
         JOptionPane.showMessageDialog(null, "estou aqui " + receber);
     }
@@ -273,20 +262,17 @@ public class produtos extends javax.swing.JFrame {
 
     private void jButtonBuscarGrupoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonBuscarGrupoMouseClicked
 
-     //   Grupo gru = new Grupo(this, true);
+//       Grupo gru = new Grupo((Frame) produtos, true);
         Grupo dialog = new Grupo(new javax.swing.JFrame(), true);
+
         dialog.setVisible(true);
+
+        receber = dialog.getItenSelecionado();
+        jTextGrupo.setText(receber);
+        // gru.setVisible(true);
 
     }//GEN-LAST:event_jButtonBuscarGrupoMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         DialogGrupo dialog = new DialogGrupo(new javax.swing.JFrame(), true);
-         dialog.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -318,7 +304,6 @@ public class produtos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonBuscarGrupo;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonProcurarProd;
@@ -335,5 +320,13 @@ public class produtos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextQtde;
     private javax.swing.JTextField jTextUnidMed;
     // End of variables declaration//GEN-END:variables
+
+    public String getReceber() {
+        return receber;
+    }
+
+    public void setReceber(String receber) {
+        this.receber = receber;
+    }
 
 }
