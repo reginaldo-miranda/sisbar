@@ -4,7 +4,10 @@
  */
 package sisbar.view;
 
+import javax.swing.table.DefaultTableModel;
+import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.ProdutosController;
+import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
 
 /**
@@ -12,14 +15,17 @@ import sisbar.model.ModelProdutos;
  * @author suporte11-pc
  */
 public class Pdv extends javax.swing.JFrame {
+
+ //   ModelProdutos modelprod = new ModelProdutos();
+    PdvItensController pdvcontrola = new PdvItensController();
     
-    ModelProdutos modelprod = new    ModelProdutos();
-    ProdutosController controla = new ProdutosController();
-    private String receber = null;
+    private String receber, receberProd, receberPreco = null;
     private String pegue = null;
 
     public Pdv() {
         initComponents();
+        desabilitarbtn();
+        carregaProdutosPdv();
     }
 
     @SuppressWarnings("unchecked")
@@ -38,8 +44,15 @@ public class Pdv extends javax.swing.JFrame {
         jTextFieldProduto2 = new javax.swing.JTextField();
         jButtonBuscaClientes = new javax.swing.JButton();
         jTextFieldTotal = new javax.swing.JTextField();
+        jButtonBuscaProd = new javax.swing.JButton();
+        jTextFieldQde = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldPUnitario = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jButtonSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Venda");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -55,13 +68,18 @@ public class Pdv extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Descricao", "Qtde", "Preco"
+                "Codigo", "Qtde", "Preco"
             }
         ));
         jTablePdv.setShowGrid(true);
         jScrollPane1.setViewportView(jTablePdv);
 
         jButtonNovaVenda.setText("novo");
+        jButtonNovaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovaVendaActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Produtos");
 
@@ -90,6 +108,36 @@ public class Pdv extends javax.swing.JFrame {
             }
         });
 
+        jButtonBuscaProd.setText("Busca Prod");
+        jButtonBuscaProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscaProdActionPerformed(evt);
+            }
+        });
+
+        jTextFieldQde.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldQdeActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Qde");
+
+        jTextFieldPUnitario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPUnitarioActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("P Unit");
+
+        jButtonSair.setText("Sair");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,29 +145,44 @@ public class Pdv extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jButtonGravar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonGravar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSair)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldIdPedido, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(jTextFieldIdPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButtonNovaVenda)))
-                                .addGap(156, 156, 156)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldTotal)
-                            .addComponent(jButtonBuscaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(40, Short.MAX_VALUE))
+                                        .addComponent(jButtonNovaVenda))
+                                    .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonBuscaClientes, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jTextFieldTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jTextFieldQde, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextFieldPUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonBuscaProd))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 12, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,49 +202,106 @@ public class Pdv extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscaClientes))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButtonGravar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBuscaProd)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldQde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGravar)
+                    .addComponent(jButtonSair))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
-        // TODO add your handling code here:
+ public void carregaProdutosPdv() {
+        DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
         
+        for (ModelPdvItens pdvitens : pdvcontrola.getListaPdv()) {
+            modelo.addRow(new Object[] {pdvitens.getIdPdv(), pdvitens.getQtde(), pdvitens.getPreco()});
+        }
+    }
+    private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
+     
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
         receber = dialog.getClienteSelecionado();
         jTextFieldNomeCliente.setText(receber);
 
+
     }//GEN-LAST:event_jButtonBuscaClientesActionPerformed
 
+    private void desabilitarbtn() {
+
+        jButtonBuscaClientes.setEnabled(false);
+        jButtonBuscaProd.setEnabled(false);
+        jButtonGravar.setEnabled(false);
+
+    }
+
+    private void habilitarbtn() {
+        jButtonBuscaClientes.setEnabled(true);
+        jButtonBuscaProd.setEnabled(true);
+        // jButtonGravar.setEnabled(true);
+    }
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
     }//GEN-LAST:event_formComponentShown
 
     private void jTextFieldProduto2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextFieldProduto2InputMethodTextChanged
-       
+
     }//GEN-LAST:event_jTextFieldProduto2InputMethodTextChanged
 
     private void jTextFieldProduto2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProduto2KeyPressed
-         
+
     }//GEN-LAST:event_jTextFieldProduto2KeyPressed
 
     private void jTextFieldProduto2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProduto2KeyReleased
-       modelprod.setDescricao(jTextFieldProduto2.getText());
-       produtos prod = new produtos();
-       prod.pegardados(modelprod);
-       prod.setVisible(true);
+      /*  modelprod.setDescricao(jTextFieldProduto2.getText());
+        produtos prod = new produtos();
+        prod.pegardados(modelprod);
+        prod.setVisible(true);
+        */
     }//GEN-LAST:event_jTextFieldProduto2KeyReleased
+
+    private void jButtonBuscaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaProdActionPerformed
+        BuscaProdutosDialog dialog = new BuscaProdutosDialog(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
+        receberProd = dialog.getProdSelecionado();
+        receberPreco = dialog.getPrecoSelecionado();
+        jTextFieldProduto2.setText(receberProd);
+        jTextFieldPUnitario.setText(receberPreco);
+        jButtonGravar.setEnabled(true);
+    }//GEN-LAST:event_jButtonBuscaProdActionPerformed
+
+    private void jButtonNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaVendaActionPerformed
+         habilitarbtn();
+         jTextFieldQde.requestFocus();
+    }//GEN-LAST:event_jButtonNovaVendaActionPerformed
+
+    private void jTextFieldQdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldQdeActionPerformed
+
+    private void jTextFieldPUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPUnitarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPUnitarioActionPerformed
+
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+                dispose();
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,16 +340,22 @@ public class Pdv extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscaClientes;
+    private javax.swing.JButton jButtonBuscaProd;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovaVenda;
+    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePdv;
     private javax.swing.JTextField jTextFieldIdPedido;
     private javax.swing.JTextField jTextFieldNomeCliente;
+    private javax.swing.JTextField jTextFieldPUnitario;
     private javax.swing.JTextField jTextFieldProduto2;
+    private javax.swing.JTextField jTextFieldQde;
     private javax.swing.JTextField jTextFieldTotal;
     // End of variables declaration//GEN-END:variables
 

@@ -1,4 +1,3 @@
-
 package sisbar.view;
 
 import javax.swing.JOptionPane;
@@ -8,19 +7,18 @@ import sisbar.model.ModelClientes;
 
 public class BuscaClienteJdailog extends javax.swing.JDialog {
 
-    
     ClientesController controla = new ClientesController();
     private String clienteSelecionado;
-    
+
     public BuscaClienteJdailog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         carregaClienteJdailog();
     }
-    
-       public void carregaClienteJdailog(){
-        
-            DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+
+    public void carregaClienteJdailog() {
+
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome()});
@@ -80,15 +78,13 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-       int linha = jTableClientes.getSelectedRow();
-       
-       
+        int linha = jTableClientes.getSelectedRow();
+
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Cliente");
         } else {
 
-           // setSelecionado(true);
-
+            // setSelecionado(true);
             setClienteSelecionado(jTableClientes.getValueAt(linha, 1).toString());
             this.dispose();
 
@@ -143,7 +139,6 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
     private javax.swing.JTable jTableClientes;
     // End of variables declaration//GEN-END:variables
 
-  
     public String getClienteSelecionado() {
         return clienteSelecionado;
     }

@@ -5,18 +5,21 @@
 package sisbar.controller.Produtos;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdvItens;
+import sisbar.model.ModelProdutos;
 
 
 public class PdvItensController {
     
     private ArrayList<ModelPdvItens> listacli = new ArrayList<>();
 
-    ModelPdvItens mod = new ModelPdvItens();
+    private ModelPdvItens mod = new ModelPdvItens();
 
     public PdvItensController() {
 
@@ -41,7 +44,47 @@ public class PdvItensController {
 
         }
     }
-    
+        public List<ModelPdvItens> getListaPdv() {
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+
+        TypedQuery<ModelPdvItens> consulta = gerente.createNamedQuery("produtopdv.todos", ModelPdvItens.class);
+
+        // return listaProd;
+        return consulta.getResultList();
+    }
+
+    /**
+     * @return the listacli
+     */
+    public ArrayList<ModelPdvItens> getListacli() {
+        return listacli;
+    }
+
+    /**
+     * @param listacli the listacli to set
+     */
+    public void setListacli(ArrayList<ModelPdvItens> listacli) {
+        this.listacli = listacli;
+    }
+
+    /**
+     * @return the mod
+     */
+    public ModelPdvItens getMod() {
+        return mod;
+    }
+
+    /**
+     * @param mod the mod to set
+     */
+    public void setMod(ModelPdvItens mod) {
+        this.mod = mod;
+    }
+
+    /**
+     * @return the mod
+     */
+ 
     
     
 }
