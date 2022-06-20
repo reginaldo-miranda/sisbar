@@ -1,5 +1,24 @@
-USE bar;
+USE sisbar;
+
+
+CREATE table vendaItens(
+   id INT not null PRIMARY KEY AUTO_INCREMENT,
+   quantidade Double,
+   valorUnitario Double,
+   valorTotal Double
+)
+
+CREATE table venda(
+ id INT not null PRIMARY KEY AUTO_INCREMENT,
+ data date,
+ valorTotal Double,
+ parcelas Integer
+ 
+)
 /*
+
+
+
 CREATE table pdv(
     id_pdv INT not null PRIMARY KEY AUTO_INCREMENT,
     nomeCliente varchar(100),
@@ -7,7 +26,7 @@ CREATE table pdv(
     data datetime
     
 )
-/*
+
 
 
 CREATE table grupo(
@@ -20,7 +39,7 @@ CREATE table grupo(
 
 
 
-/*
+
 CREATE table clientes
 (  
   id_clientes INT PRIMARY KEY AUTO_INCREMENT,
@@ -28,7 +47,7 @@ CREATE table clientes
   fone VARCHAR(40)
 )
 
-/*
+
 CREATE table produtos(
   id_produtos INT not null PRIMARY KEY AUTO_INCREMENT,
   descricao varchar(100),
@@ -47,7 +66,7 @@ CREATE table pdv(
     data datetime
     
 )
-*/
+/*
 CREATE table pdvItens(
   id_pdvItens INT not null PRIMARY KEY AUTO_INCREMENT,
   id_cliente varchar(100),
@@ -57,4 +76,4 @@ CREATE table pdvItens(
   precoTotal double,
   data datetime
 )
-
+*/

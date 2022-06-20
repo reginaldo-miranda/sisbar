@@ -31,12 +31,12 @@ public class MoVenda implements Serializable{
     @Temporal(TemporalType.DATE)
     @Column(name = "data" , nullable = false)
     private Calendar data;
-    @Column(name= "valor_total", nullable = false, columnDefinition = "decimal(12,2)")
+    @Column(name= "valorTotal", nullable = false, columnDefinition = "decimal(12,2)")
     private Double valorTotal;
     @Column(name = "parcelas" , nullable = false)
     private Integer parcelas;
     @ManyToOne
-    @JoinColumn(name = "cliente", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "clientes", referencedColumnName = "id_clientes", nullable = false)
     private ModelClientes moclientes;
     
     @OneToMany(mappedBy = "venda" , cascade = CascadeType.ALL , orphanRemoval = false, fetch = FetchType.LAZY)

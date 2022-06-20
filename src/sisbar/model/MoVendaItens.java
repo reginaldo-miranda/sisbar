@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "venda_itens")
+@Table(name = "vendaitens")
 public class MoVendaItens implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class MoVendaItens implements Serializable{
     @JoinColumn(name = "venda", referencedColumnName = "id" )
     private MoVenda venda;
     @ManyToOne
-    @JoinColumn(name = "produto" , referencedColumnName = "id")
+    @JoinColumn(name = "produtos" , referencedColumnName = "id_produtos")
     private ModelProdutos produtos;
 
     public MoVendaItens() {
