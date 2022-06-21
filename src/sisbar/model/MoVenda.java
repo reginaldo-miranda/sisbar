@@ -31,7 +31,7 @@ public class MoVenda implements Serializable{
     @Temporal(TemporalType.DATE)
     @Column(name = "data" , nullable = false)
     private Calendar data;
-    @Column(name= "valorTotal", nullable = false, columnDefinition = "decimal(12,2)")
+    @Column(name= "valorTotal", nullable = false )// columnDefinition = "decimal(12,2)")
     private Double valorTotal;
     @Column(name = "parcelas" , nullable = false)
     private Integer parcelas;

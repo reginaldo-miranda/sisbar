@@ -17,7 +17,7 @@ import sisbar.model.ModelProdutos;
  * @author suporte11-pc
  */
 public class teste extends javax.swing.JFrame {
-
+      
     /**
      * Creates new form teste
      */
@@ -28,7 +28,7 @@ public class teste extends javax.swing.JFrame {
     
     public void testevenda() {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-       
+              
         ModelProdutos p = gerente.find(ModelProdutos.class, 2);
         ModelClientes c = gerente.find(ModelClientes.class, 2);
         MoVenda v = new MoVenda();

@@ -4,9 +4,15 @@
  */
 package sisbar.view;
 
+import java.util.Calendar;
+import javax.persistence.EntityManager;
 import javax.swing.table.DefaultTableModel;
+import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.ProdutosController;
+import sisbar.model.MoVenda;
+import sisbar.model.MoVendaItens;
+import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
 
@@ -25,7 +31,7 @@ public class Pdv extends javax.swing.JFrame {
     public Pdv() {
         initComponents();
         desabilitarbtn();
-        carregaProdutosPdv();
+      //  carregaProdutosPdv();
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +90,11 @@ public class Pdv extends javax.swing.JFrame {
         jLabel3.setText("Produtos");
 
         jButtonGravar.setText("gravar");
+        jButtonGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGravarActionPerformed(evt);
+            }
+        });
 
         jTextFieldProduto2.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
@@ -302,6 +313,31 @@ public class Pdv extends javax.swing.JFrame {
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
                 dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+              
+        ModelProdutos p = gerente.find(ModelProdutos.class, 2); //jTextFieldProduto2.getText());
+        ModelClientes c = gerente.find(ModelClientes.class, 2); //jTextFieldNomeCliente.getText());
+        
+        MoVenda v = new MoVenda();
+        v.setData(Calendar.getInstance());
+        v.setParcelas(3);
+        v.setMoclientes(c);
+       
+      
+        MoVendaItens v1 = new MoVendaItens();
+        v1.setProdutos(p);
+        v1.setQuantidade(Double.valueOf(jTextFieldQde.getText()));
+        v1.setValorUnitario(p.getPreco_venda());
+        v1.setValorTotal(v1.getQuantidade() * v1.getValorUnitario());
+        v.adicionarItens(v1);
+        gerente.getTransaction().begin();
+        gerente.persist(v);
+        gerente.getTransaction().commit();
+        gerente.close();
+
+    }//GEN-LAST:event_jButtonGravarActionPerformed
 
     /**
      * @param args the command line arguments
