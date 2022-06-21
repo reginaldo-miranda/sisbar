@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.model.MoVendaItens;
 import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
@@ -44,10 +45,10 @@ public class PdvItensController {
 
         }
     }
-        public List<ModelPdvItens> getListaPdv() {
+        public List<MoVendaItens> getListaPdv() {
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
 
-        TypedQuery<ModelPdvItens> consulta = gerente.createNamedQuery("produtopdv.todos", ModelPdvItens.class);
+        TypedQuery<MoVendaItens> consulta = gerente.createNamedQuery("produtopdv.todos", MoVendaItens.class);
 
         // return listaProd;
         return consulta.getResultList();

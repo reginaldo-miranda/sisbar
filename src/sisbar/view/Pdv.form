@@ -48,6 +48,8 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButtonNovaVenda" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jButtonBuscarVendas" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jTextFieldNomeCliente" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
                               </Group>
@@ -95,13 +97,14 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFieldIdPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonNovaVenda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonBuscarVendas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jTextFieldTotal" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextFieldNomeCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonBuscaClientes" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -263,6 +266,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSairActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonBuscarVendas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar Vendas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarVendasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

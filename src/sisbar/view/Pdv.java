@@ -4,7 +4,9 @@
  */
 package sisbar.view;
 
+import com.mysql.cj.x.protobuf.MysqlxResultset;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
@@ -26,12 +28,13 @@ public class Pdv extends javax.swing.JFrame {
     PdvItensController pdvcontrola = new PdvItensController();
     
     private String receber, receberProd, receberPreco = null;
-    private String pegue = null;
+    private Integer id_prod;
+  
 
     public Pdv() {
         initComponents();
         desabilitarbtn();
-      //  carregaProdutosPdv();
+        carregaProdutosPdv();
     }
 
     @SuppressWarnings("unchecked")
@@ -56,6 +59,7 @@ public class Pdv extends javax.swing.JFrame {
         jTextFieldPUnitario = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JButton();
+        jButtonBuscarVendas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Venda");
@@ -149,6 +153,13 @@ public class Pdv extends javax.swing.JFrame {
             }
         });
 
+        jButtonBuscarVendas.setText("Buscar Vendas");
+        jButtonBuscarVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarVendasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,7 +182,9 @@ public class Pdv extends javax.swing.JFrame {
                                             .addComponent(jTextFieldIdPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButtonNovaVenda))
+                                        .addComponent(jButtonNovaVenda)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButtonBuscarVendas))
                                     .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,11 +218,12 @@ public class Pdv extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldIdPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonNovaVenda)))
+                            .addComponent(jButtonNovaVenda)
+                            .addComponent(jButtonBuscarVendas)))
                     .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addGap(1, 1, 1)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscaClientes))
@@ -238,12 +252,14 @@ public class Pdv extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  public void carregaProdutosPdv() {
+       
         DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
-        
-        for (ModelPdvItens pdvitens : pdvcontrola.getListaPdv()) {
-            modelo.addRow(new Object[] {pdvitens.getIdPdv(), pdvitens.getQtde(), pdvitens.getPreco()});
+        modelo.setRowCount(0);
+        for (MoVendaItens pdvitens : pdvcontrola.getListaPdv()) {
+            modelo.addRow(new Object[] {pdvitens.getId(), pdvitens.getQuantidade(), pdvitens.getValorTotal()});
         }
     }
+ 
     private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
      
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
@@ -288,12 +304,17 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProduto2KeyReleased
 
     private void jButtonBuscaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaProdActionPerformed
+        
         BuscaProdutosDialog dialog = new BuscaProdutosDialog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
         receberProd = dialog.getProdSelecionado();
         receberPreco = dialog.getPrecoSelecionado();
+        id_prod = dialog.getIdSelecionado();
+        
         jTextFieldProduto2.setText(receberProd);
         jTextFieldPUnitario.setText(receberPreco);
+        
+        jTextFieldQde.requestFocus();
         jButtonGravar.setEnabled(true);
     }//GEN-LAST:event_jButtonBuscaProdActionPerformed
 
@@ -315,11 +336,14 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-              
-        ModelProdutos p = gerente.find(ModelProdutos.class, 2); //jTextFieldProduto2.getText());
-        ModelClientes c = gerente.find(ModelClientes.class, 2); //jTextFieldNomeCliente.getText());
         
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        
+        
+        ModelProdutos p = gerente.find(ModelProdutos.class, id_prod);
+        ModelClientes c = gerente.find(ModelClientes.class, 2);
+        ProdutosController prod = new ProdutosController();
+             
         MoVenda v = new MoVenda();
         v.setData(Calendar.getInstance());
         v.setParcelas(3);
@@ -331,13 +355,21 @@ public class Pdv extends javax.swing.JFrame {
         v1.setQuantidade(Double.valueOf(jTextFieldQde.getText()));
         v1.setValorUnitario(p.getPreco_venda());
         v1.setValorTotal(v1.getQuantidade() * v1.getValorUnitario());
+        v1.setId(Integer.valueOf(id_prod));
         v.adicionarItens(v1);
+        
         gerente.getTransaction().begin();
         gerente.persist(v);
         gerente.getTransaction().commit();
         gerente.close();
+        carregaProdutosPdv();
 
     }//GEN-LAST:event_jButtonGravarActionPerformed
+
+    private void jButtonBuscarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarVendasActionPerformed
+         BuscarVendasDialog dialog = new BuscarVendasDialog(new javax.swing.JFrame(), true);
+         dialog.setVisible(true);
+    }//GEN-LAST:event_jButtonBuscarVendasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,6 +409,7 @@ public class Pdv extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscaClientes;
     private javax.swing.JButton jButtonBuscaProd;
+    private javax.swing.JButton jButtonBuscarVendas;
     private javax.swing.JButton jButtonGravar;
     private javax.swing.JButton jButtonNovaVenda;
     private javax.swing.JButton jButtonSair;
@@ -398,14 +431,5 @@ public class Pdv extends javax.swing.JFrame {
     /**
      * @return the pegue
      */
-    public String getPegue() {
-        return pegue;
-    }
-
-    /**
-     * @param pegue the pegue to set
-     */
-    public void setPegue(String pegue) {
-        this.pegue = pegue;
-    }
+    
 }

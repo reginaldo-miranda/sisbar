@@ -10,7 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+    @NamedQuery(name = "produtopdv1.todos", query = "SELECT P FROM MoVendaItens p"
+    
+    )
+
+})
 
 @Entity
 @Table(name = "vendaitens")

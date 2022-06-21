@@ -18,6 +18,7 @@ public class BuscaProdutosDialog extends javax.swing.JDialog {
     ProdutosController prodController = new ProdutosController();
     private String prodSelecionado;
     private String precoSelecionado;
+    private Integer idSelecionado;
 
     public BuscaProdutosDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -28,7 +29,7 @@ public class BuscaProdutosDialog extends javax.swing.JDialog {
     public void carregaProdutos() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
         for (ModelProdutos prod : prodController.getListaProd()) {
-            modelo.addRow(new Object[] {prod.getId_produtos(), prod.getDescricao(),prod.getUnid_medida(), prod.getPreco_venda()});
+            modelo.addRow(new Object[]{prod.getId_produtos(), prod.getDescricao(), prod.getUnid_medida(), prod.getPreco_venda()});
         }
     }
 
@@ -117,13 +118,14 @@ public class BuscaProdutosDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-           int linha = jTableProd.getSelectedRow();
+        int linha = jTableProd.getSelectedRow();
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um produto");
         } else {
 
             // setSelecionado(true);
+            setIdSelecionado(Integer.parseInt(jTableProd.getValueAt(linha, 0).toString()));
             setProdSelecionado(jTableProd.getValueAt(linha, 1).toString());
             setPrecoSelecionado(jTableProd.getValueAt(linha, 3).toString());
             this.dispose();
@@ -206,5 +208,19 @@ public class BuscaProdutosDialog extends javax.swing.JDialog {
      */
     public void setPrecoSelecionado(String precoSelecionado) {
         this.precoSelecionado = precoSelecionado;
+    }
+
+    /**
+     * @return the idSelecionado
+     */
+    public Integer getIdSelecionado() {
+        return idSelecionado;
+    }
+
+    /**
+     * @param idSelecionado the idSelecionado to set
+     */
+    public void setIdSelecionado(Integer idSelecionado) {
+        this.idSelecionado = idSelecionado;
     }
 }

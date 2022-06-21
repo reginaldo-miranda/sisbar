@@ -12,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries({
-    @NamedQuery(name = "produtopdv.todos", query = "SELECT P FROM ModelPdvItens p"
+    @NamedQuery(name = "produtopdv.todos", query = "SELECT P FROM MoVendaItens p"
     
     )
 

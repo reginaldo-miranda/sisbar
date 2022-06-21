@@ -48,6 +48,17 @@ public  class ModelProdutos implements Serializable {
             
     }
 
+    public ModelProdutos(int id_produtos, String descricao, double preco_venda, double qde, String grupo) {
+        this.id_produtos = id_produtos;
+        this.descricao = descricao;
+        this.preco_venda = preco_venda;
+        this.qde = qde;
+        this.grupo = grupo;
+    }
+    
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
