@@ -13,27 +13,15 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.MoVenda;
 import sisbar.model.ModelClientes;
 
-@NamedQueries({
-    @NamedQuery(name = "vendas.todos",
-            query = "SELECT cli FROM MoVenda cli"
-    )
+public class VendaController implements Serializable {
 
-})
-@Table(name = "vendas")
-public class VendaController implements EntidadeBase, Serializable{
-    
-    public List<MoVenda> listaVendas(){
-        
-          EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-            TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("vendas.todos", MoVenda.class);
+    public List<MoVenda> listaVendas() {
+
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("vendaeclientes", MoVenda.class);
 
         return consulta.getResultList();
-     
+
     }
 
-    @Override
-    public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

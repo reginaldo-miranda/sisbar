@@ -15,10 +15,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+@NamedQueries({
+    @NamedQuery(name = "vendas.todos", query = "SELECT P FROM MoVenda p"
+    
+    ),
+    @NamedQuery(name = "vendaeclientes", query = "SELECT v FROM MoVenda v join v.ModelClientes c")
+
+})
 
 @Entity
 @Table(name = "vendas")
@@ -162,3 +171,4 @@ public class MoVenda implements Serializable{
     }
     
 }
+

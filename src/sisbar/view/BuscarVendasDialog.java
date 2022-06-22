@@ -4,6 +4,14 @@
  */
 package sisbar.view;
 
+import javax.swing.table.DefaultTableModel;
+import sisbar.controller.Produtos.ClientesController;
+import sisbar.controller.Produtos.PdvItensController;
+import sisbar.controller.Produtos.VendaController;
+import sisbar.model.MoVenda;
+import sisbar.model.MoVendaItens;
+import static sisbar.model.ModelClientes_.nome;
+
 /**
  *
  * @author suporte11-pc
@@ -13,9 +21,22 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     /**
      * Creates new form BuscarVendasDialog
      */
+   // PdvItensController pdvcontrola = new PdvItensController();
+    VendaController pdvcontrola = new VendaController();
+    ClientesController cli = new ClientesController();
     public BuscarVendasDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        listarDados();
+    }
+
+    public void listarDados() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableVendas.getModel();
+        modelo.setRowCount(0);
+        for (MoVenda pdvitens : pdvcontrola.listaVendas()) {
+            modelo.addRow(new Object[]{pdvitens.getId(), pdvitens.getValorTotal()});
+        }
+
     }
 
     /**
@@ -60,12 +81,12 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonSelecionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(jButton1)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,7 +105,7 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
