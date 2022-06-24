@@ -26,8 +26,8 @@ import sisbar.model.ModelProdutos;
 public class Pdv extends javax.swing.JFrame {
 
   // ModelProdutos modelprod = new ModelProdutos();
-  // PdvItensController pdvcontrola = new PdvItensController();
-    VendaController pdvcontrola = new VendaController();
+   PdvItensController pdvcontrola = new PdvItensController();
+  //  VendaController pdvcontrola = new VendaController();
     
     
     
@@ -38,7 +38,7 @@ public class Pdv extends javax.swing.JFrame {
     public Pdv() {
         initComponents();
         desabilitarbtn();
-       carregaProdutosPdv();
+      // carregaProdutosPdv();
     }
 
     @SuppressWarnings("unchecked")
@@ -82,7 +82,7 @@ public class Pdv extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Qtde", "Preco"
+                "Codigo", "Qde", "Preco"
             }
         ));
         jTablePdv.setShowGrid(true);
@@ -261,8 +261,8 @@ public class Pdv extends javax.swing.JFrame {
        
         DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
         modelo.setRowCount(0);
-        for (MoVenda pdvitens : pdvcontrola.listaVendas()) {
-            modelo.addRow(new Object[] {pdvitens.getId(), pdvitens.getId(), pdvitens.getValorTotal()});
+        for (MoVendaItens pdvitens : pdvcontrola.getListaPdv()) {
+            modelo.addRow(new Object[] {pdvitens.getId(),pdvitens.getQuantidade() , pdvitens.getValorTotal()});
         }
     }
  

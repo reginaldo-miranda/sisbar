@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "vendas.todos", query = "SELECT P FROM MoVenda p"
     
     ),
-    @NamedQuery(name = "vendaeclientes", query = "SELECT v FROM MoVenda v join v.ModelClientes c")
+    @NamedQuery(name = "vendaeclientes", query = "SELECT v FROM MoVenda v")// join v.MOdelClientes c")
 
 })
 
@@ -44,8 +44,10 @@ public class MoVenda implements Serializable{
     private Double valorTotal;
     @Column(name = "parcelas" , nullable = false)
     private Integer parcelas;
+  //  @Column(name = "Clientes")
+  //  private Integer Clientes;
     @ManyToOne
-    @JoinColumn(name = "clientes", referencedColumnName = "id_clientes", nullable = false)
+    @JoinColumn(name = "Clientes", referencedColumnName = "id_clientes")
     private ModelClientes moclientes;
     
     @OneToMany(mappedBy = "venda" , cascade = CascadeType.ALL , orphanRemoval = false, fetch = FetchType.LAZY)
@@ -124,6 +126,7 @@ public class MoVenda implements Serializable{
      * @return the moclientes
      */
     public ModelClientes getMoclientes() {
+        
         return moclientes;
     }
 
@@ -169,6 +172,20 @@ public class MoVenda implements Serializable{
     public void setItens(List<MoVendaItens> itens) {
         this.itens = itens;
     }
+
+    /**
+     * @return the Clientes
     
+    public Integer getClientes() {
+        return Clientes;
+    }
+
+    /**
+     * @param Clientes the Clientes to set
+     
+    public void setClientes(Integer Clientes) {
+        this.Clientes = Clientes;
+    }
+    */
 }
 

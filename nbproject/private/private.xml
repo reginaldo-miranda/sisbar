@@ -5,13 +5,9 @@
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelClientes.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/BuscarVendasDialog.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelPdvItens.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/VendaController.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelPdv.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/MoVenda.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Pdv.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/Pdvitens.java</file>
-            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/PdvController.java</file>
         </group>
     </open-files>
 </project-private>

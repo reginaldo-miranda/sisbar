@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
@@ -42,7 +43,7 @@ public class ModelClientes implements EntidadeBase, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_clientes")
+    @JoinColumn(name = "id_clientes")
     private int id_clientes;
 
     @Column(name = "nome", nullable = false, length = 80)

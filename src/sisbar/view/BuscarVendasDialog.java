@@ -33,8 +33,8 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     public void listarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableVendas.getModel();
         modelo.setRowCount(0);
-        for (MoVenda pdvitens : pdvcontrola.listaVendas()) {
-            modelo.addRow(new Object[]{pdvitens.getId(), pdvitens.getValorTotal()});
+        for (MoVenda pdvVenda : pdvcontrola.listaVendas()) {
+            modelo.addRow(new Object[]{pdvVenda.getId(), pdvVenda.getMoclientes().getNome(), pdvVenda.getValorTotal()});
         }
 
     }
@@ -60,7 +60,7 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Id", "Valor"
+                "Id", "Cliente", "Valor"
             }
         ));
         jScrollPane1.setViewportView(jTableVendas);
