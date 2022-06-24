@@ -31,7 +31,7 @@ public class Pdv extends javax.swing.JFrame {
     
     
     
-    private String receber, receberProd, receberPreco = null;
+    private String receber, receberProd, receberPreco, receberCli = null;
     private Integer id_prod;
   
 
@@ -270,8 +270,8 @@ public class Pdv extends javax.swing.JFrame {
      
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
-        receber = dialog.getClienteSelecionado();
-        jTextFieldNomeCliente.setText(receber);
+        receberCli = dialog.getClienteSelecionado();
+        jTextFieldNomeCliente.setText(receberCli);
 
 
     }//GEN-LAST:event_jButtonBuscaClientesActionPerformed
@@ -342,18 +342,19 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        
+   
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         
         
         ModelProdutos p = gerente.find(ModelProdutos.class, id_prod);
-        ModelClientes c = gerente.find(ModelClientes.class, 2);
+        ModelClientes c = gerente.find(ModelClientes.class,receberCli);
         ProdutosController prod = new ProdutosController();
              
         MoVenda v = new MoVenda();
         v.setData(Calendar.getInstance());
         v.setParcelas(3);
         v.setMoclientes(c);
+        
        
       
         MoVendaItens v1 = new MoVendaItens();

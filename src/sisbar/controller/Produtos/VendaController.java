@@ -1,6 +1,7 @@
 package sisbar.controller.Produtos;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -11,9 +12,13 @@ import javax.persistence.TypedQuery;
 import sisbar.DAO.EntidadeBase;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.MoVenda;
+import sisbar.model.MoVendaItens;
 import sisbar.model.ModelClientes;
+import sisbar.model.ModelProdutos;
 
 public class VendaController implements Serializable {
+     private String receber, receberProd, receberPreco = null;
+    private Integer id_prod;
 
     public List<MoVenda> listaVendas() {
 
@@ -22,6 +27,11 @@ public class VendaController implements Serializable {
 
         return consulta.getResultList();
 
+    }
+    
+    public void  gravarVenda(){
+     
+    
     }
 
 }

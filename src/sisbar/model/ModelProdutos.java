@@ -33,7 +33,7 @@ import javax.persistence.Table;
 
 
 @Table(name = "produtos")
-public  class ModelProdutos implements Serializable {
+public class  ModelProdutos implements Serializable {
 
    //   private  ArrayList<ModelProdutos> listaProd = new ArrayList<>();
           
