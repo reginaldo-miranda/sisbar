@@ -7,6 +7,7 @@ package sisbar.view;
 import com.mysql.cj.x.protobuf.MysqlxResultset;
 import java.util.Calendar;
 import java.util.List;
+import java.util.function.Function;
 import javax.persistence.EntityManager;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
@@ -15,7 +16,9 @@ import sisbar.controller.Produtos.ProdutosController;
 import sisbar.controller.Produtos.VendaController;
 import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
+import static sisbar.model.MoVenda_.moclientes;
 import sisbar.model.ModelClientes;
+import static sisbar.model.ModelClientes_.id_clientes;
 import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
 
@@ -25,22 +28,19 @@ import sisbar.model.ModelProdutos;
  */
 public class Pdv extends javax.swing.JFrame {
 
-  // ModelProdutos modelprod = new ModelProdutos();
-   PdvItensController pdvcontrola = new PdvItensController();
-  //  VendaController pdvcontrola = new VendaController();
-    
-    
-    
-    private String receber, receberProd, receberPreco, receberCli = null;
-    private Integer id_prod;
-  
+    // ModelProdutos modelprod = new ModelProdutos();
+    PdvItensController pdvcontrola = new PdvItensController();
+    //  VendaController pdvcontrola = new VendaController();
 
+    private String receber, receberProd, receberPreco, receberCli = null;
+    private Integer id_prod, receb_id_cliente;
+    
     public Pdv() {
         initComponents();
         desabilitarbtn();
-      // carregaProdutosPdv();
+        // carregaProdutosPdv();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -64,6 +64,8 @@ public class Pdv extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jButtonSair = new javax.swing.JButton();
         jButtonBuscarVendas = new javax.swing.JButton();
+        jTextFieldParcelas = new javax.swing.JTextField();
+        jTextFieldIdClie = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Venda");
@@ -181,10 +183,15 @@ public class Pdv extends javax.swing.JFrame {
                         .addComponent(jButtonBuscarVendas)
                         .addGap(125, 125, 125)
                         .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldIdClie, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonBuscaClientes))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -221,13 +228,17 @@ public class Pdv extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonNovaVenda)
                             .addComponent(jButtonBuscarVendas))))
-                .addGap(7, 7, 7)
-                .addComponent(jLabel2)
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldIdClie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldParcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jButtonBuscaClientes))
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,32 +269,37 @@ public class Pdv extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  public void carregaProdutosPdv() {
-       
+        
         DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
         modelo.setRowCount(0);
         for (MoVendaItens pdvitens : pdvcontrola.getListaPdv()) {
-            modelo.addRow(new Object[] {pdvitens.getId(),pdvitens.getQuantidade() , pdvitens.getValorTotal()});
+            modelo.addRow(new Object[]{pdvitens.getId(), pdvitens.getQuantidade(), pdvitens.getValorTotal()});
         }
     }
- 
+
     private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
-     
+        
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
+        
         receberCli = dialog.getClienteSelecionado();
         jTextFieldNomeCliente.setText(receberCli);
-
+        
+        receb_id_cliente = dialog.getId_cli_selecionado();
+        jTextFieldIdClie.setText(Integer.toString(receb_id_cliente));
+       
+        
 
     }//GEN-LAST:event_jButtonBuscaClientesActionPerformed
-
+    
     private void desabilitarbtn() {
-
+        
         jButtonBuscaClientes.setEnabled(false);
         jButtonBuscaProd.setEnabled(false);
         jButtonGravar.setEnabled(false);
-
+        
     }
-
+    
     private void habilitarbtn() {
         jButtonBuscaClientes.setEnabled(true);
         jButtonBuscaProd.setEnabled(true);
@@ -302,11 +318,11 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProduto2KeyPressed
 
     private void jTextFieldProduto2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProduto2KeyReleased
-      /*  modelprod.setDescricao(jTextFieldProduto2.getText());
+        /*  modelprod.setDescricao(jTextFieldProduto2.getText());
         produtos prod = new produtos();
         prod.pegardados(modelprod);
         prod.setVisible(true);
-        */
+         */
     }//GEN-LAST:event_jTextFieldProduto2KeyReleased
 
     private void jButtonBuscaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaProdActionPerformed
@@ -325,8 +341,8 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBuscaProdActionPerformed
 
     private void jButtonNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovaVendaActionPerformed
-         habilitarbtn();
-         jTextFieldQde.requestFocus();
+        habilitarbtn();
+        jTextFieldQde.requestFocus();
     }//GEN-LAST:event_jButtonNovaVendaActionPerformed
 
     private void jTextFieldQdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldQdeActionPerformed
@@ -338,25 +354,27 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldPUnitarioActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
-                dispose();
+        dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-   
+        
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         
-        
         ModelProdutos p = gerente.find(ModelProdutos.class, id_prod);
-        ModelClientes c = gerente.find(ModelClientes.class,receberCli);
+        
+        receberCli = jTextFieldNomeCliente.getText();
+        
+        ModelClientes c = gerente.find(ModelClientes.class, 2);
+        
         ProdutosController prod = new ProdutosController();
-             
+        
         MoVenda v = new MoVenda();
         v.setData(Calendar.getInstance());
-        v.setParcelas(3);
+        v.setParcelas(Integer.parseInt(jTextFieldParcelas.getText()));
+        //v.setId(Integer.valueOf(id_prod));
         v.setMoclientes(c);
         
-       
-      
         MoVendaItens v1 = new MoVendaItens();
         v1.setProdutos(p);
         v1.setQuantidade(Double.valueOf(jTextFieldQde.getText()));
@@ -374,8 +392,8 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGravarActionPerformed
 
     private void jButtonBuscarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarVendasActionPerformed
-         BuscarVendasDialog dialog = new BuscarVendasDialog(new javax.swing.JFrame(), true);
-         dialog.setVisible(true);
+        BuscarVendasDialog dialog = new BuscarVendasDialog(new javax.swing.JFrame(), true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarVendasActionPerformed
 
     /**
@@ -427,9 +445,11 @@ public class Pdv extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePdv;
+    private javax.swing.JTextField jTextFieldIdClie;
     private javax.swing.JTextField jTextFieldIdPedido;
     private javax.swing.JTextField jTextFieldNomeCliente;
     private javax.swing.JTextField jTextFieldPUnitario;
+    private javax.swing.JTextField jTextFieldParcelas;
     private javax.swing.JTextField jTextFieldProduto2;
     private javax.swing.JTextField jTextFieldQde;
     private javax.swing.JTextField jTextFieldTotal;
@@ -438,5 +458,4 @@ public class Pdv extends javax.swing.JFrame {
     /**
      * @return the pegue
      */
-    
 }

@@ -10,7 +10,8 @@ import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.VendaController;
 import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
-import static sisbar.model.ModelClientes_.nome;
+//import static sisbar.model.ModelClientes_.nome;
+
 
 /**
  *

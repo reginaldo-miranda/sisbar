@@ -172,20 +172,10 @@ public class MoVenda implements Serializable{
     public void setItens(List<MoVendaItens> itens) {
         this.itens = itens;
     }
-
-    /**
-     * @return the Clientes
-    
-    public Integer getClientes() {
-        return Clientes;
+/*
+    public void setMoclientes(Integer receb_id_cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
-    /**
-     * @param Clientes the Clientes to set
-     
-    public void setClientes(Integer Clientes) {
-        this.Clientes = Clientes;
-    }
-    */
+*/
 }
 

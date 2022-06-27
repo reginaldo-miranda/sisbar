@@ -9,6 +9,7 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
 
     ClientesController controla = new ClientesController();
     private String clienteSelecionado;
+    private Integer id_cli_selecionado;
 
     public BuscaClienteJdailog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -18,7 +19,7 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
 
     public void carregaClienteJdailog() {
 
-        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) getjTableClientes().getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome()});
@@ -91,14 +92,16 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-        int linha = jTableClientes.getSelectedRow();
+        int linha = getjTableClientes().getSelectedRow();
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um Cliente");
         } else {
 
             // setSelecionado(true);
-            setClienteSelecionado(jTableClientes.getValueAt(linha, 1).toString());
+            setClienteSelecionado(getjTableClientes().getValueAt(linha, 0).toString());
+            setId_cli_selecionado(Integer.parseInt(getjTableClientes().getValueAt(linha, 0).toString()));
+            setClienteSelecionado(getjTableClientes().getValueAt(linha, 1).toString());
             this.dispose();
 
         }
@@ -164,4 +167,34 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
     public void setClienteSelecionado(String clienteSelecionado) {
         this.clienteSelecionado = clienteSelecionado;
     }
+
+
+    /**
+     * @return the jTableClientes
+     */
+    public javax.swing.JTable getjTableClientes() {
+        return jTableClientes;
+    }
+
+    /**
+     * @param jTableClientes the jTableClientes to set
+     */
+    public void setjTableClientes(javax.swing.JTable jTableClientes) {
+        this.jTableClientes = jTableClientes;
+    }
+
+    /**
+     * @return the id_cli_selecionado
+     */
+    public Integer getId_cli_selecionado() {
+        return id_cli_selecionado;
+    }
+
+    /**
+     * @param id_cli_selecionado the id_cli_selecionado to set
+     */
+    public void setId_cli_selecionado(Integer id_cli_selecionado) {
+        this.id_cli_selecionado = id_cli_selecionado;
+    }
+    
 }
