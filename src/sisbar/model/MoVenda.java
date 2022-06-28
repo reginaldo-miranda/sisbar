@@ -55,6 +55,7 @@ public class MoVenda implements Serializable{
 
     public MoVenda() {
         this.valorTotal = 0.0;
+        moclientes = new ModelClientes();
     }
 
     public void adicionarItens(MoVendaItens obj){

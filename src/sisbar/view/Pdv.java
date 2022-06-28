@@ -365,7 +365,11 @@ public class Pdv extends javax.swing.JFrame {
         
         receberCli = jTextFieldNomeCliente.getText();
         
-        ModelClientes c = gerente.find(ModelClientes.class, 2);
+     //  ModelClientes c = gerente.find(ModelClientes.class, 2);
+        
+        ModelClientes cli = new ModelClientes();
+        cli.setId_clientes(receb_id_cliente);
+        
         
         ProdutosController prod = new ProdutosController();
         
@@ -373,7 +377,7 @@ public class Pdv extends javax.swing.JFrame {
         v.setData(Calendar.getInstance());
         v.setParcelas(Integer.parseInt(jTextFieldParcelas.getText()));
         //v.setId(Integer.valueOf(id_prod));
-        v.setMoclientes(c);
+        v.setMoclientes(cli);
         
         MoVendaItens v1 = new MoVendaItens();
         v1.setProdutos(p);
