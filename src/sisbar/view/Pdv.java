@@ -1,47 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sisbar.view;
 
-import com.mysql.cj.x.protobuf.MysqlxResultset;
 import java.util.Calendar;
-import java.util.List;
-import java.util.function.Function;
 import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.ProdutosController;
-import sisbar.controller.Produtos.VendaController;
 import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
-import static sisbar.model.MoVenda_.moclientes;
 import sisbar.model.ModelClientes;
-import static sisbar.model.ModelClientes_.id_clientes;
-import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
 
-/**
- *
- * @author suporte11-pc
- */
 public class Pdv extends javax.swing.JFrame {
 
-    // ModelProdutos modelprod = new ModelProdutos();
     PdvItensController pdvcontrola = new PdvItensController();
-    //  VendaController pdvcontrola = new VendaController();
 
     private String receber, receberProd, receberPreco, receberCli = null;
     private Integer id_prod, receb_id_cliente;
-    
+
     public Pdv() {
         initComponents();
         desabilitarbtn();
         // carregaProdutosPdv();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -272,7 +255,7 @@ public class Pdv extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
  public void carregaProdutosPdv() {
-        
+
         DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
         modelo.setRowCount(0);
         for (MoVendaItens pdvitens : pdvcontrola.getListaPdv()) {
@@ -281,36 +264,33 @@ public class Pdv extends javax.swing.JFrame {
     }
 
     private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
-        
+
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
-        
+
         receberCli = dialog.getClienteSelecionado();
         jTextFieldNomeCliente.setText(receberCli);
-        
+
         receb_id_cliente = dialog.getId_cli_selecionado();
         jTextFieldIdClie.setText(Integer.toString(receb_id_cliente));
         jTextFieldParcelas.requestFocus();
-       
-        
 
     }//GEN-LAST:event_jButtonBuscaClientesActionPerformed
-    
+
     private void desabilitarbtn() {
-        
+
         jButtonBuscaClientes.setEnabled(false);
         jButtonBuscaProd.setEnabled(false);
         jButtonGravar.setEnabled(false);
-        
+
     }
-    
+
     private void habilitarbtn() {
         jButtonBuscaClientes.setEnabled(true);
         jButtonBuscaProd.setEnabled(true);
         // jButtonGravar.setEnabled(true);
     }
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
     }//GEN-LAST:event_formComponentShown
 
     private void jTextFieldProduto2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextFieldProduto2InputMethodTextChanged
@@ -330,16 +310,16 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProduto2KeyReleased
 
     private void jButtonBuscaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaProdActionPerformed
-        
+
         BuscaProdutosDialog dialog = new BuscaProdutosDialog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
         receberProd = dialog.getProdSelecionado();
         receberPreco = dialog.getPrecoSelecionado();
         id_prod = dialog.getIdSelecionado();
-        
+
         jTextFieldProduto2.setText(receberProd);
         jTextFieldPUnitario.setText(receberPreco);
-        
+
         jTextFieldQde.requestFocus();
         jButtonGravar.setEnabled(true);
     }//GEN-LAST:event_jButtonBuscaProdActionPerformed
@@ -362,31 +342,26 @@ public class Pdv extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSairActionPerformed
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
-        
-        if (jTextFieldParcelas.getText().isEmpty()){
+
+        if (jTextFieldParcelas.getText().isEmpty()) {
             JOptionPane.showInternalMessageDialog(null, "preencher as parcelas");
             jTextFieldParcelas.requestFocus();
         }
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        
+
         ModelProdutos p = gerente.find(ModelProdutos.class, id_prod);
-        
+
         receberCli = jTextFieldNomeCliente.getText();
-        
-     //  ModelClientes c = gerente.find(ModelClientes.class, 2);
-        
         ModelClientes cli = new ModelClientes();
         cli.setId_clientes(receb_id_cliente);
-        
-        
+
         ProdutosController prod = new ProdutosController();
-        
+
         MoVenda v = new MoVenda();
         v.setData(Calendar.getInstance());
         v.setParcelas(Integer.parseInt(jTextFieldParcelas.getText()));
-        //v.setId(Integer.valueOf(id_prod));
         v.setMoclientes(cli);
-        
+
         MoVendaItens v1 = new MoVendaItens();
         v1.setProdutos(p);
         v1.setQuantidade(Double.valueOf(jTextFieldQde.getText()));
@@ -394,7 +369,7 @@ public class Pdv extends javax.swing.JFrame {
         v1.setValorTotal(v1.getQuantidade() * v1.getValorUnitario());
         v1.setId(Integer.valueOf(id_prod));
         v.adicionarItens(v1);
-        
+
         gerente.getTransaction().begin();
         gerente.persist(v);
         gerente.getTransaction().commit();
@@ -407,10 +382,6 @@ public class Pdv extends javax.swing.JFrame {
         BuscarVendasDialog dialog = new BuscarVendasDialog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarVendasActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -467,7 +438,4 @@ public class Pdv extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTotal;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the pegue
-     */
 }

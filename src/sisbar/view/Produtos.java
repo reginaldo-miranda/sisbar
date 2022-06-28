@@ -7,30 +7,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class produtos extends javax.swing.JFrame {
 
-    /**
-     * @return the controla
-     */
     public ProdutosController getControla() {
         return controla;
     }
 
-    /**
-     * @param controla the controla to set
-     */
     public void setControla(ProdutosController controla) {
         this.controla = controla;
     }
 
-    /**
-     * @return the jTextDescricao
-     */
     public javax.swing.JTextField getjTextDescricao() {
         return jTextDescricao;
     }
 
-    /**
-     * @param jTextDescricao the jTextDescricao to set
-     */
     public void setjTextDescricao(javax.swing.JTextField jTextDescricao) {
         this.jTextDescricao = jTextDescricao;
     }
@@ -47,6 +35,7 @@ public class produtos extends javax.swing.JFrame {
 
     public void carregarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableProd.getModel();
+        modelo.setRowCount(0);
         for (ModelProdutos prod : getControla().getListaProd()) {
             modelo.addRow(new Object[]{prod.getDescricao(), prod.getGrupo()});
         }

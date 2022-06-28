@@ -38,8 +38,7 @@ import sisbar.DAO.EntidadeBase;
 @Table(name = "Clientes")
 
 public class ModelClientes implements EntidadeBase, Serializable {
-    
-  
+
     public ModelClientes() {
 
     }
@@ -54,15 +53,14 @@ public class ModelClientes implements EntidadeBase, Serializable {
 
     @Column(name = "fone", length = 40)
     private String fone;
-    
-/*
+
     public ModelClientes(int id_clientes, String nome, String fone) {
         this.id_clientes = id_clientes;
         this.nome = nome;
         this.fone = fone;
-    
-    }*/
-    //   private MoVenda movenda;
+
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;

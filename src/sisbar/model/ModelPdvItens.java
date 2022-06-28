@@ -13,7 +13,6 @@ import javax.persistence.NamedQuery;
 
 @NamedQueries({
     @NamedQuery(name = "produtopdv.todos", query = "SELECT P FROM MoVendaItens p"
-    
     )
 
 })
@@ -23,36 +22,35 @@ public class ModelPdvItens implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_pdvItens")
+    @Column(name = "id_pdvItens")
     private int idPdv;
-    
-    @Column(name="qde")
+
+    @Column(name = "qde")
     private Double qtde;
-    
-    @Column(name=("preco_venda"))
+
+    @Column(name = ("preco_venda"))
     private Double preco;
-    
+
     private Double precoTotal;
-    
+
     @ManyToOne
     private ModelPdv pdv;
-    
+
     @ManyToOne
     private ModelProdutos produtos;
-    
 
-  public ModelPdvItens(){
-      
-  }
-  /*
+    public ModelPdvItens() {
+
+    }
+
+    /*
    public ModelPdvItens(Double qtde, Double preco, ModelPdv pdv, ModelProdutos produtos) {
         this.setQtde(qtde);
         this.setPdv(pdv);
         this.setProdutos(produtos);
     }  
-*/
-  
-  
+     */
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -81,96 +79,56 @@ public class ModelPdvItens implements Serializable {
         }
         return Objects.equals(this.produtos, other.produtos);
     }
- 
 
-    /**
-     * @param produtos the produtos to set
-     */
-    
     public void setProdutos(ModelPdvItens produtosItens) {
         this.produtos = produtos;
-        if(produtos != null && this.getPreco() == null){
+        if (produtos != null && this.getPreco() == null) {
             this.setPreco(produtos.getPreco_venda());
         }
     }
 
-    /**
-     * @return the idPdv
-     */
     public int getIdPdv() {
         return idPdv;
     }
 
-    /**
-     * @param idPdv the idPdv to set
-     */
     public void setIdPdv(int idPdv) {
         this.idPdv = idPdv;
     }
 
-    /**
-     * @return the qtde
-     */
     public Double getQtde() {
         return qtde;
     }
 
-    /**
-     * @param qtde the qtde to set
-     */
     public void setQtde(Double qtde) {
         this.qtde = qtde;
     }
 
-    /**
-     * @return the preco
-     */
     public Double getPreco() {
         return preco;
     }
 
-    /**
-     * @param preco the preco to set
-     */
     public void setPreco(Double preco) {
         this.preco = preco;
     }
 
-    /**
-     * @return the precoTotal
-     */
     public Double getPrecoTotal() {
         return precoTotal;
     }
 
-    /**
-     * @param precoTotal the precoTotal to set
-     */
     public void setPrecoTotal(Double precoTotal) {
         this.precoTotal = precoTotal;
     }
 
-    /**
-     * @return the pdv
-     */
     public ModelPdv getPdv() {
         return pdv;
     }
 
-    /**
-     * @param pdv the pdv to set
-     */
     public void setPdv(ModelPdv pdv) {
         this.pdv = pdv;
     }
 
-    /**
-     * @return the produtos
-     */
     public ModelProdutos getProdutos() {
         return produtos;
     }
-    
-    
-    
+
 }

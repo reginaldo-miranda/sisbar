@@ -17,7 +17,8 @@ import sisbar.model.ModelClientes;
 import sisbar.model.ModelProdutos;
 
 public class VendaController implements Serializable {
-     private String receber, receberProd, receberPreco = null;
+
+    private String receber, receberProd, receberPreco = null;
     private Integer id_prod;
 
     public List<MoVenda> listaVendas() {
@@ -28,10 +29,9 @@ public class VendaController implements Serializable {
         return consulta.getResultList();
 
     }
-    
-    public void  gravarVenda(){
-     
-    
+
+    public void gravarVenda() {
+
     }
 
 }

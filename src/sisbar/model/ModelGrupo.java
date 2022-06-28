@@ -61,37 +61,22 @@ public class ModelGrupo implements Serializable {
         return id_grupo;
     }
 
-    /**
-     * @param id_grupo the id_grupo to set
-     */
     public void setId_grupo(int id_grupo) {
         this.id_grupo = id_grupo;
     }
 
-    /**
-     * @return the descricao
-     */
     public String getDescricao() {
         return descricao;
     }
 
-    /**
-     * @param descricao the descricao to set
-     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the desconto
-     */
     public double getDesconto() {
         return desconto;
     }
 
-    /**
-     * @param desconto the desconto to set
-     */
     public void setDesconto(double desconto) {
         this.desconto = desconto;
     }

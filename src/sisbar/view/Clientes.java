@@ -11,7 +11,7 @@ public class Clientes extends javax.swing.JFrame {
 
     ClientesController controla = new ClientesController();
     ModelClientes model = new ModelClientes();
-    
+
     private String clienteselecionado;
 
     public Clientes(java.awt.Frame parent, boolean modal) {
@@ -22,17 +22,17 @@ public class Clientes extends javax.swing.JFrame {
         jTextFielNome.requestFocus();
         jTableClientes.setEnabled(false);
         Table table = null;
-/*
+        /*
         DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
         }
-*/
+         */
     }
-    
-    public void carregarClientes(){
-           DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
+
+    public void carregarClientes() {
+        DefaultTableModel modelo = (DefaultTableModel) jTableClientes.getModel();
         for (ModelClientes cli : controla.getListaCli()) {
 
             modelo.addRow(new Object[]{cli.getId_clientes(), cli.getNome(), cli.getFone()});
@@ -285,7 +285,7 @@ public class Clientes extends javax.swing.JFrame {
         jTextFieldId_cliente.setText(getjTableClientes().getValueAt(linha, 0).toString());
         jTextFielNome.setText(getjTableClientes().getValueAt(linha, 1).toString());
         jTextFieldFone.setText(getjTableClientes().getValueAt(linha, 2).toString());
-        
+
         jButtonAlterar.setEnabled(true);
         jButtonExcluir.setEnabled(true);
     }//GEN-LAST:event_jTableClientesMouseClicked
@@ -320,9 +320,9 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonIncluirMouseClicked
 
     private void jTextFieldPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarKeyReleased
-        // TODO add your handling code here:
+
         ClientesController contr = new ClientesController();
-        //  contr.pesquisarCli(jTextFieldPesquisar.getText());
+
     }//GEN-LAST:event_jTextFieldPesquisarKeyReleased
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
@@ -341,9 +341,6 @@ public class Clientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextFielNomeKeyReleased
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -370,30 +367,18 @@ public class Clientes extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPesquisar;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the clienteselecionado
-     */
     public String getClienteselecionado() {
         return clienteselecionado;
     }
 
-    /**
-     * @param clienteselecionado the clienteselecionado to set
-     */
     public void setClienteselecionado(String clienteselecionado) {
         this.clienteselecionado = clienteselecionado;
     }
 
-    /**
-     * @return the jTableClientes
-     */
     public javax.swing.JTable getjTableClientes() {
         return jTableClientes;
     }
 
-    /**
-     * @param jTableClientes the jTableClientes to set
-     */
     public void setjTableClientes(javax.swing.JTable jTableClientes) {
         this.jTableClientes = jTableClientes;
     }

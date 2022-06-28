@@ -111,9 +111,6 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jButtonSairActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -168,31 +165,18 @@ public class BuscaClienteJdailog extends javax.swing.JDialog {
         this.clienteSelecionado = clienteSelecionado;
     }
 
-
-    /**
-     * @return the jTableClientes
-     */
     public javax.swing.JTable getjTableClientes() {
         return jTableClientes;
     }
 
-    /**
-     * @param jTableClientes the jTableClientes to set
-     */
     public void setjTableClientes(javax.swing.JTable jTableClientes) {
         this.jTableClientes = jTableClientes;
     }
 
-    /**
-     * @return the id_cli_selecionado
-     */
     public Integer getId_cli_selecionado() {
         return id_cli_selecionado;
     }
 
-    /**
-     * @param id_cli_selecionado the id_cli_selecionado to set
-     */
     public void setId_cli_selecionado(Integer id_cli_selecionado) {
         this.id_cli_selecionado = id_cli_selecionado;
     }

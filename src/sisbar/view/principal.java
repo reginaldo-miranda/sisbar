@@ -96,7 +96,7 @@ public class principal extends javax.swing.JFrame {
 
     private void jMenuItemClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClientesActionPerformed
         // TODO add your handling code here:
-        Clientes clie = new Clientes (new javax.swing.JFrame(), true);
+        Clientes clie = new Clientes(new javax.swing.JFrame(), true);
         clie.setVisible(true);
     }//GEN-LAST:event_jMenuItemClientesActionPerformed
 

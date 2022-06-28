@@ -161,11 +161,9 @@ public class Grupo extends javax.swing.JDialog {
 
             modelo.addRow(new Object[]{gru.getDescricao(), gru.getDesconto()});
         }
-        /**
-         * @param args the command line arguments
-         */
 
         /*
+        
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -234,44 +232,26 @@ public class Grupo extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldDescricao;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the controlag
-     */
     public GrupoController getControlag() {
         return controlag;
     }
 
-    /**
-     * @param controlag the controlag to set
-     */
     public void setControlag(GrupoController controlag) {
         this.controlag = controlag;
     }
 
-    /**
-     * @return the selecionado
-     */
     public boolean isSelecionado() {
         return selecionado;
     }
 
-    /**
-     * @param selecionado the selecionado to set
-     */
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
     }
 
-    /**
-     * @return the itenSelecionado
-     */
     public String getItenSelecionado() {
         return itenSelecionado;
     }
 
-    /**
-     * @param itenSelecionado the itenSelecionado to set
-     */
     public void setItenSelecionado(String itenSelecionado) {
         this.itenSelecionado = itenSelecionado;
     }

@@ -1,4 +1,3 @@
-
 package sisbar.model;
 
 import java.io.Serializable;
@@ -27,9 +26,9 @@ import javax.persistence.TypedQuery;
 import javax.swing.table.DefaultTableModel;
 import org.eclipse.persistence.annotations.Noncacheable;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+
 @NamedQueries({
     @NamedQuery(name = "vendas.todos", query = "SELECT P FROM MoVenda p"
-    
     ),
     @NamedQuery(name = "vendasclientes", query = "SELECT v FROM MoVenda v join v.moclientes c")
 
@@ -37,112 +36,85 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 
 @Entity
 @Table(name = "vendas")
-        
-public class MoVenda implements Serializable{
+
+public class MoVenda implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @Temporal(TemporalType.DATE)
-    @Column(name = "data" , nullable = false)
+    @Column(name = "data", nullable = false)
     private Calendar data;
-    @Column(name= "valorTotal", nullable = false )// columnDefinition = "decimal(12,2)")
+    @Column(name = "valorTotal", nullable = false)// columnDefinition = "decimal(12,2)")
     private Double valorTotal;
-    
-    @Column(name = "parcelas" , nullable = false)
+
+    @Column(name = "parcelas", nullable = false)
     private Integer parcelas;
-  //  @Column(name = "Clientes")
-  //  private Integer Clientes;
+
     @ManyToOne
     @JoinColumn(name = "Clientes", referencedColumnName = "id_clientes")
     private ModelClientes moclientes;
-    
-    @OneToMany(mappedBy = "venda" , cascade = CascadeType.ALL , orphanRemoval = false, fetch = FetchType.LAZY)
+
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.LAZY)
     private List<MoVendaItens> itens = new ArrayList<>();
 
     public MoVenda() {
         this.valorTotal = 0.0;
         moclientes = new ModelClientes();
-        
+
     }
 
-    public void adicionarItens(MoVendaItens obj){
+    public void adicionarItens(MoVendaItens obj) {
         obj.setVenda(this);
         this.valorTotal += obj.getValorTotal();
         this.itens.add(obj);
-        
+
     }
-    public void removerItens(int index){
-          MoVendaItens obj = this.itens.get(index);
-          this.valorTotal = obj.getValorTotal();
-          this.itens.remove(index);
+
+    public void removerItens(int index) {
+        MoVendaItens obj = this.itens.get(index);
+        this.valorTotal = obj.getValorTotal();
+        this.itens.remove(index);
     }
-    
+
     public Integer getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Integer id) {
         this.id = id;
     }
 
-    /**
-     * @return the data
-     */
     public Calendar getData() {
         return data;
     }
 
-    /**
-     * @param data the data to set
-     */
     public void setData(Calendar data) {
         this.data = data;
     }
 
-    /**
-     * @return the valorTotal
-     */
     public Double getValorTotal() {
         return valorTotal;
     }
 
-    /**
-     * @param valorTotal the valorTotal to set
-     */
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
-    /**
-     * @return the parcelas
-     */
     public Integer getParcelas() {
         return parcelas;
     }
 
-    /**
-     * @param parcelas the parcelas to set
-     */
     public void setParcelas(Integer parcelas) {
         this.parcelas = parcelas;
     }
 
-    /**
-     * @return the moclientes
-     */
     public ModelClientes getMoclientes() {
-      
-        
-     return moclientes;
+
+        return moclientes;
     }
 
-    /**
-     * @param moclientes the moclientes to set
-     */
     public void setMoclientes(ModelClientes moclientes) {
         this.moclientes = moclientes;
     }
@@ -169,24 +141,12 @@ public class MoVenda implements Serializable{
         return Objects.equals(this.id, other.id);
     }
 
-    /**
-     * @return the itens
-     */
     public List<MoVendaItens> getItens() {
         return itens;
     }
 
-    /**
-     * @param itens the itens to set
-     */
     public void setItens(List<MoVendaItens> itens) {
         this.itens = itens;
     }
-/*
-    public void setMoclientes(Integer receb_id_cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-*/
-    
-}
 
+}

@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 // alter + inser gerar codigo get e set e hascode
 package sisbar.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import static java.util.Collections.list;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,34 +11,26 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author coreo
- */
 @Entity
 
 @NamedQueries({
     @NamedQuery(name = "produto.todos", query = "SELECT P FROM ModelProdutos p"
-    
     )
 
 })
 
-
 @Table(name = "produtos")
-public class  ModelProdutos implements Serializable {
+public class ModelProdutos implements Serializable {
 
-   //   private  ArrayList<ModelProdutos> listaProd = new ArrayList<>();
-          
-       public ModelProdutos() {
+    //   private  ArrayList<ModelProdutos> listaProd = new ArrayList<>();
+    public ModelProdutos() {
     }
-       
-    
-    public ModelProdutos(String descricao, String  grupo) {
-        
+
+    public ModelProdutos(String descricao, String grupo) {
+
         setDescricao(descricao);
         setGrupo(grupo);
-            
+
     }
 
     public ModelProdutos(int id_produtos, String descricao, double preco_venda, double qde, String grupo) {
@@ -55,9 +40,6 @@ public class  ModelProdutos implements Serializable {
         this.qde = qde;
         this.grupo = grupo;
     }
-    
-    
-    
 
     @Override
     public int hashCode() {
@@ -80,31 +62,31 @@ public class  ModelProdutos implements Serializable {
         final ModelProdutos other = (ModelProdutos) obj;
         return this.id_produtos == other.id_produtos;
     }
-    
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "id_produtos")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_produtos")
     private int id_produtos;
-   
-    @Column(name = "descricao", nullable = true ,length = 100)
+
+    @Column(name = "descricao", nullable = true, length = 100)
     public String descricao;
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
     @Column(name = "unid_medida", nullable = true, length = 20)
     private String unid_medida;
-   
+
     @Column(name = "preco_venda")
     private double preco_venda;
-    
+
     @Column(name = "qde")
     private double qde;
-    
-    @Column(name= "grupo", nullable = true, length = 30)
+
+    @Column(name = "grupo", nullable = true, length = 30)
     private String grupo;
-    
+
     public String getDescricao() {
         return descricao;
     }
@@ -149,7 +131,4 @@ public class  ModelProdutos implements Serializable {
         this.grupo = grupo;
     }
 
-    
-    
-    
 }
