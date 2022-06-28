@@ -9,11 +9,13 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,11 +23,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.TypedQuery;
+import javax.swing.table.DefaultTableModel;
+import org.eclipse.persistence.annotations.Noncacheable;
+import sisbar.DAO.FabricaGerenciadorEntidades;
 @NamedQueries({
     @NamedQuery(name = "vendas.todos", query = "SELECT P FROM MoVenda p"
     
     ),
-    @NamedQuery(name = "vendaeclientes", query = "SELECT v FROM MoVenda v")// join v.MOdelClientes c")
+    @NamedQuery(name = "vendasclientes", query = "SELECT v FROM MoVenda v join v.moclientes c")
 
 })
 
@@ -42,6 +48,7 @@ public class MoVenda implements Serializable{
     private Calendar data;
     @Column(name= "valorTotal", nullable = false )// columnDefinition = "decimal(12,2)")
     private Double valorTotal;
+    
     @Column(name = "parcelas" , nullable = false)
     private Integer parcelas;
   //  @Column(name = "Clientes")
@@ -56,6 +63,7 @@ public class MoVenda implements Serializable{
     public MoVenda() {
         this.valorTotal = 0.0;
         moclientes = new ModelClientes();
+        
     }
 
     public void adicionarItens(MoVendaItens obj){
@@ -127,8 +135,9 @@ public class MoVenda implements Serializable{
      * @return the moclientes
      */
     public ModelClientes getMoclientes() {
+      
         
-        return moclientes;
+     return moclientes;
     }
 
     /**
@@ -178,5 +187,6 @@ public class MoVenda implements Serializable{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 */
+    
 }
 

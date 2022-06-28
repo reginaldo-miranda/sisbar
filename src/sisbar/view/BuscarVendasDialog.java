@@ -10,6 +10,7 @@ import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.VendaController;
 import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
+import sisbar.model.ModelClientes;
 //import static sisbar.model.ModelClientes_.nome;
 
 
@@ -34,8 +35,10 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     public void listarDados() {
         DefaultTableModel modelo = (DefaultTableModel) jTableVendas.getModel();
         modelo.setRowCount(0);
+        ModelClientes cli = new ModelClientes();
         for (MoVenda pdvVenda : pdvcontrola.listaVendas()) {
-            modelo.addRow(new Object[]{pdvVenda.getId(), pdvVenda.getMoclientes().getNome(), pdvVenda.getValorTotal()});
+            modelo.addRow(new Object[]{pdvVenda.getId(),pdvVenda.getMoclientes().getNome(), pdvVenda.getValorTotal()});
+           //modelo.addRow(new Object[]{pdvVenda.getId(), pdvVenda.getValorTotal()});
         }
 
     }

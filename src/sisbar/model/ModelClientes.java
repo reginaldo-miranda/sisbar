@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
@@ -54,13 +55,13 @@ public class ModelClientes implements EntidadeBase, Serializable {
     @Column(name = "fone", length = 40)
     private String fone;
     
-
+/*
     public ModelClientes(int id_clientes, String nome, String fone) {
         this.id_clientes = id_clientes;
         this.nome = nome;
         this.fone = fone;
-    }
-
+    
+    }*/
     //   private MoVenda movenda;
     @Override
     public int hashCode() {

@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/ModelClientes.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Clientes.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/view/BuscarVendasDialog.java</file>
+            <file>file:/C:/laragon/www/sisbar/src/sisbar/controller/Produtos/VendaController.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/model/MoVenda.java</file>
             <file>file:/C:/laragon/www/sisbar/src/sisbar/view/Pdv.java</file>
         </group>

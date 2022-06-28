@@ -23,7 +23,7 @@ public class VendaController implements Serializable {
     public List<MoVenda> listaVendas() {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("vendaeclientes", MoVenda.class);
+        TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("vendasclientes", MoVenda.class);
 
         return consulta.getResultList();
 

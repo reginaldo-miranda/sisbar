@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.function.Function;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.controller.Produtos.PdvItensController;
@@ -166,6 +167,8 @@ public class Pdv extends javax.swing.JFrame {
             }
         });
 
+        jTextFieldParcelas.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -287,6 +290,7 @@ public class Pdv extends javax.swing.JFrame {
         
         receb_id_cliente = dialog.getId_cli_selecionado();
         jTextFieldIdClie.setText(Integer.toString(receb_id_cliente));
+        jTextFieldParcelas.requestFocus();
        
         
 
@@ -359,6 +363,10 @@ public class Pdv extends javax.swing.JFrame {
 
     private void jButtonGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGravarActionPerformed
         
+        if (jTextFieldParcelas.getText().isEmpty()){
+            JOptionPane.showInternalMessageDialog(null, "preencher as parcelas");
+            jTextFieldParcelas.requestFocus();
+        }
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         
         ModelProdutos p = gerente.find(ModelProdutos.class, id_prod);
