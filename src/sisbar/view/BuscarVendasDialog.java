@@ -1,5 +1,6 @@
 package sisbar.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.controller.Produtos.PdvItensController;
@@ -12,6 +13,9 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
 
     VendaController pdvcontrola = new VendaController();
     ClientesController cli = new ClientesController();
+    private Integer vendaSelecionada;
+    private String clienteSelecionado;
+    private Double valorSelecionado;
 
     public BuscarVendasDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -51,6 +55,11 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTableVendas);
 
         jButtonSelecionar.setText("Selecionar");
+        jButtonSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSelecionarActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Sair");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +101,22 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
+               int linha = jTableVendas.getSelectedRow();
+
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione um produto");
+        } else {
+
+            // setSelecionado(true);
+            setVendaSelecionada(Integer.parseInt(jTableVendas.getValueAt(linha, 0).toString()));
+            setClienteSelecionado(jTableVendas.getValueAt(linha, 1).toString());
+            setValorSelecionado(Double.parseDouble(jTableVendas.getValueAt(linha, 2).toString()));
+            this.dispose();
+
+        }
+    }//GEN-LAST:event_jButtonSelecionarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -138,4 +163,46 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableVendas;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the vendaSelecionada
+     */
+    public Integer getVendaSelecionada() {
+        return vendaSelecionada;
+    }
+
+    /**
+     * @param vendaSelecionada the vendaSelecionada to set
+     */
+    public void setVendaSelecionada(Integer vendaSelecionada) {
+        this.vendaSelecionada = vendaSelecionada;
+    }
+
+    /**
+     * @return the clienteSelecionado
+     */
+    public String getClienteSelecionado() {
+        return clienteSelecionado;
+    }
+
+    /**
+     * @param clienteSelecionado the clienteSelecionado to set
+     */
+    public void setClienteSelecionado(String clienteSelecionado) {
+        this.clienteSelecionado = clienteSelecionado;
+    }
+
+    /**
+     * @return the valorSelecionado
+     */
+    public Double getValorSelecionado() {
+        return valorSelecionado;
+    }
+
+    /**
+     * @param valorSelecionado the valorSelecionado to set
+     */
+    public void setValorSelecionado(Double valorSelecionado) {
+        this.valorSelecionado = valorSelecionado;
+    }
 }
