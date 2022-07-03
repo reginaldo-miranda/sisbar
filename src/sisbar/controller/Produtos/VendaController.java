@@ -13,6 +13,7 @@ import sisbar.DAO.EntidadeBase;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
+import static sisbar.model.MoVendaItens_.venda;
 import sisbar.model.ModelClientes;
 import sisbar.model.ModelProdutos;
 
@@ -24,7 +25,7 @@ public class VendaController implements Serializable {
     public List<MoVenda> listaVendas() {
 
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
-        TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("vendasclientes", MoVenda.class);
+        TypedQuery<MoVenda> consulta = (TypedQuery<MoVenda>) gerente.createNamedQuery("itensdaVenda", MoVenda.class);
 
         return consulta.getResultList();
 

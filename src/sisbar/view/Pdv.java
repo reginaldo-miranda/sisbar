@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.controller.Produtos.ClientesController;
 import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.ProdutosController;
 import sisbar.model.MoVenda;
@@ -17,7 +18,7 @@ public class Pdv extends javax.swing.JFrame {
     PdvItensController pdvcontrola = new PdvItensController();
 
     private String receber, receberProd, receberPreco, receberCli = null;
-    private Integer id_prod, receb_id_cliente;
+    private Integer id_prod, receb_id_cliente, receberVenda;
 
     public Pdv() {
         initComponents();
@@ -263,6 +264,14 @@ public class Pdv extends javax.swing.JFrame {
         }
     }
 
+    public void carregarvendas() {
+        DefaultTableModel modelo = (DefaultTableModel) jTablePdv.getModel();
+        modelo.setRowCount(0);
+        for (MoVendaItens pdvitens : pdvcontrola.listaVendaId(receberVenda)) {
+            modelo.addRow(new Object[]{pdvitens.getId(), pdvitens.getQuantidade(), pdvitens.getValorTotal()});
+        }
+    }
+
     private void jButtonBuscaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscaClientesActionPerformed
 
         BuscaClienteJdailog dialog = new BuscaClienteJdailog(new javax.swing.JFrame(), true);
@@ -381,6 +390,16 @@ public class Pdv extends javax.swing.JFrame {
     private void jButtonBuscarVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarVendasActionPerformed
         BuscarVendasDialog dialog = new BuscarVendasDialog(new javax.swing.JFrame(), true);
         dialog.setVisible(true);
+        receberVenda = dialog.getVendaSelecionada();
+        receberCli = dialog.getClienteSelecionado();
+        jTextFieldIdPedido.setText(Integer.toString(receberVenda));
+        jTextFieldNomeCliente.setText(receberCli);
+        PdvItensController vendaitens = new PdvItensController();
+        vendaitens.listaVendaId(receberVenda);
+        carregarvendas();
+        
+
+
     }//GEN-LAST:event_jButtonBuscarVendasActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

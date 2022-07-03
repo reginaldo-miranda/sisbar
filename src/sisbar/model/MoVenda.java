@@ -35,7 +35,7 @@ import sisbar.DAO.FabricaGerenciadorEntidades;
 })
 
 @Entity
-@Table(name = "vendas")
+@Table(name = "venda")
 
 public class MoVenda implements Serializable {
 

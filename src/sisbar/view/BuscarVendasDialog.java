@@ -1,7 +1,11 @@
 package sisbar.view;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.controller.Produtos.ClientesController;
 import sisbar.controller.Produtos.PdvItensController;
 import sisbar.controller.Produtos.VendaController;
@@ -103,7 +107,7 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelecionarActionPerformed
-               int linha = jTableVendas.getSelectedRow();
+        int linha = jTableVendas.getSelectedRow();
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um produto");
@@ -114,7 +118,6 @@ public class BuscarVendasDialog extends javax.swing.JDialog {
             setClienteSelecionado(jTableVendas.getValueAt(linha, 1).toString());
             setValorSelecionado(Double.parseDouble(jTableVendas.getValueAt(linha, 2).toString()));
             this.dispose();
-
         }
     }//GEN-LAST:event_jButtonSelecionarActionPerformed
 

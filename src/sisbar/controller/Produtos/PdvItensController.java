@@ -11,6 +11,8 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
 import sisbar.model.MoVendaItens;
+import static sisbar.model.MoVendaItens_.id;
+import static sisbar.model.MoVendaItens_.venda;
 import sisbar.model.ModelClientes;
 import sisbar.model.ModelPdvItens;
 import sisbar.model.ModelProdutos;
@@ -53,6 +55,18 @@ public class PdvItensController {
         // return listaProd;
         return consulta.getResultList();
     }
+        
+           
+    public List<MoVendaItens> listaVendaId(int vendas){
+        
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        
+        TypedQuery<MoVendaItens> covendid = (TypedQuery<MoVendaItens>) gerente.createNamedQuery("itensdaVenda", MoVendaItens.class);
+        covendid.setParameter(vendas, getListacli());
+        
+        return covendid.getResultList();
+    }
+
 
     /**
      * @return the listacli

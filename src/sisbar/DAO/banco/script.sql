@@ -1,13 +1,13 @@
-USE sisbar;
+USE bar;
 
-
+/*
 CREATE table vendaItens(
    id INT not null PRIMARY KEY AUTO_INCREMENT,
    quantidade Double,
    valorUnitario Double,
    valorTotal Double
 )
-
+*/
 CREATE table venda(
  id INT not null PRIMARY KEY AUTO_INCREMENT,
  data date,

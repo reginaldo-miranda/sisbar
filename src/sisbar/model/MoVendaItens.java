@@ -17,8 +17,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "produtopdv1.todos", query = "SELECT P FROM MoVendaItens p"
     
-    )
-
+    ),
+    @NamedQuery(name = "itensdaVenda", query = "SELECT vi FROM MoVendaItens vi WHERE vi.venda = :vendas ")
 })
 
 @Entity

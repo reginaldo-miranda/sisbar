@@ -38,6 +38,12 @@ public class ModelPdvItens implements Serializable {
 
     @ManyToOne
     private ModelProdutos produtos;
+    
+    @ManyToOne
+    private MoVenda movenda;
+    
+    @ManyToOne
+    private ModelPdvItens pdvItens;
 
     public ModelPdvItens() {
 
@@ -129,6 +135,20 @@ public class ModelPdvItens implements Serializable {
 
     public ModelProdutos getProdutos() {
         return produtos;
+    }
+
+    /**
+     * @return the pdvItens
+     */
+    public ModelPdvItens getPdvItens() {
+        return pdvItens;
+    }
+
+    /**
+     * @param pdvItens the pdvItens to set
+     */
+    public void setPdvItens(ModelPdvItens pdvItens) {
+        this.pdvItens = pdvItens;
     }
 
 }
