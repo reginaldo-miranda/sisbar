@@ -57,14 +57,25 @@ public class PdvItensController {
     }
         
            
-    public List<MoVendaItens> listaVendaId(int vendas){
+    public List<MoVendaItens> listaVendaId(int v){
         
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
         
         TypedQuery<MoVendaItens> covendid = (TypedQuery<MoVendaItens>) gerente.createNamedQuery("itensdaVenda", MoVendaItens.class);
-        covendid.setParameter(vendas, getListacli());
+        covendid.setParameter(v, venda);
         
         return covendid.getResultList();
+    }
+    
+     public MoVendaItens pesquisaVendaItens(int codigo) {
+
+        MoVendaItens veIt;
+        EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+
+        veIt = gerente.find(MoVendaItens.class, codigo);
+        gerente.close();
+        return veIt;
+
     }
 
 

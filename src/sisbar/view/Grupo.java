@@ -11,7 +11,7 @@ public class Grupo extends javax.swing.JDialog {
 
     private boolean selecionado = false;
     public String itenSelecionado;
-    public produtos produtos;
+    public Produtos produtos;
     private JFrame frame;
 
     private GrupoController controlag = new GrupoController();
