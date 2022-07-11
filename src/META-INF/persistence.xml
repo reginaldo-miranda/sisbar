@@ -17,13 +17,5 @@
       <property name="javax.persistence.jdbc.password" value="1234"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="sisbarPU2" transaction-type="RESOURCE_LOCAL">
-    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bar?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="1234"/>
-    </properties>
-  </persistence-unit>
+
 </persistence>

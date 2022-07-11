@@ -19,7 +19,7 @@ import javax.persistence.Table;
     
     ),
     //@NamedQuery(name = "itensdaVenda", query = "SELECT vi FROM MoVendaItens vi WHERE vi.venda = :vendas ")
-    @NamedQuery(name = "itensdaVenda", query = "SELECT vi FROM MoVendaItens vi")    
+    @NamedQuery(name = "itensdaVenda", query = "SELECT vi FROM MoVenda vi")    
        
 })
 
@@ -35,9 +35,11 @@ public class MoVendaItens implements Serializable{
     private Double valorUnitario;
     @Column(name = "valorTotal")
     private Double valorTotal;
+    
     @ManyToOne
     @JoinColumn(name = "venda", referencedColumnName = "id" )
     private MoVenda venda;
+    
     @ManyToOne
     @JoinColumn(name = "produtos" , referencedColumnName = "id_produtos")
     private ModelProdutos produtos;

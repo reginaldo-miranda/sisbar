@@ -23,7 +23,7 @@ public class Pdv extends javax.swing.JFrame {
     public Pdv() {
         initComponents();
         desabilitarbtn();
-        carregaProdutosPdv();
+       // carregaProdutosPdv();
     }
 
     @SuppressWarnings("unchecked")
@@ -395,10 +395,10 @@ public class Pdv extends javax.swing.JFrame {
         jTextFieldIdPedido.setText(Integer.toString(receberVenda));
         jTextFieldNomeCliente.setText(receberCli);
         PdvItensController vendaitens = new PdvItensController();
-        vendaitens.getListaPdv();
+        //vendaitens.getListaPdv();
         //carregarvendas();
-       // pesquisaVendaItens();
-        
+       // Integer codigo = 1;
+        vendaitens.listaVendaId(receberVenda);
 
 
     }//GEN-LAST:event_jButtonBuscarVendasActionPerformed

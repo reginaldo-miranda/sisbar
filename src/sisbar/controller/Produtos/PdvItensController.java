@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import sisbar.DAO.FabricaGerenciadorEntidades;
+import sisbar.model.MoVenda;
 import sisbar.model.MoVendaItens;
 import static sisbar.model.MoVendaItens_.id;
 import static sisbar.model.MoVendaItens_.venda;
@@ -60,11 +61,22 @@ public class PdvItensController {
     public List<MoVendaItens> listaVendaId(int v){
         
         EntityManager gerente = FabricaGerenciadorEntidades.getGerente();
+        MoVendaItens vi = gerente.find(MoVendaItens.class, v);
+        if(vi == null){
+            System.out.println("nao achei nemhuma venda");
+        }else{
+            List<MoVendaItens> lista = new ArrayList<>();
+            lista.add(vi);
+            
+            for(MoVendaItens vend : lista){
+            System.out.println("a numero da venda é "+ vi.getId());
+            }
+        }
         
-        TypedQuery<MoVendaItens> covendid = (TypedQuery<MoVendaItens>) gerente.createNamedQuery("itensdaVenda", MoVendaItens.class);
-        covendid.setParameter(v, venda);
+      //  TypedQuery<MoVendaItens> covendid = (TypedQuery<MoVendaItens>) gerente.createNamedQuery("itensdaVenda", MoVendaItens.class);
+     ///   covendid.setParameter(v, venda);
         
-        return covendid.getResultList();
+        return null;
     }
     
      public MoVendaItens pesquisaVendaItens(int codigo) {
